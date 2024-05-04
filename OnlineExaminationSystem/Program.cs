@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using OnlineExaminationSystem.Administrator;
+using OnlineExaminationSystem.Administrator.People;
+using System;
 using System.Windows.Forms;
 
 namespace OnlineExaminationSystem
@@ -20,7 +19,7 @@ namespace OnlineExaminationSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new Form1());
+            Application.Run(new FrmAddUpdatePerson(1));
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]

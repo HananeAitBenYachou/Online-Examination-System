@@ -5,6 +5,12 @@ VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExaminationSystem", "OnlineExaminationSystem.csproj", "{5AA01AAD-33AA-47A4-9A3C-A4667ACD6220}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExaminationSystem_DataAccessLayer", "..\OnlineExaminationSystem_DataAccessLayer\OnlineExaminationSystem_DataAccessLayer.csproj", "{9503B2E6-6BD4-464D-A0A5-1524241D7E44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExaminationSystem_BusinessLayer", "..\OnlineExaminationSystem_BusinessLayer\OnlineExaminationSystem_BusinessLayer.csproj", "{6944ABCE-755B-424F-8164-0C396753C276}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExaminationSystem_UtilityLayer", "..\OnlineExaminationSystem_UtilityLayer\OnlineExaminationSystem_UtilityLayer.csproj", "{6FA3D14F-8A4D-4342-90FD-DF0224A13D50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{5AA01AAD-33AA-47A4-9A3C-A4667ACD6220}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AA01AAD-33AA-47A4-9A3C-A4667ACD6220}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AA01AAD-33AA-47A4-9A3C-A4667ACD6220}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9503B2E6-6BD4-464D-A0A5-1524241D7E44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9503B2E6-6BD4-464D-A0A5-1524241D7E44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9503B2E6-6BD4-464D-A0A5-1524241D7E44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9503B2E6-6BD4-464D-A0A5-1524241D7E44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6944ABCE-755B-424F-8164-0C396753C276}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6944ABCE-755B-424F-8164-0C396753C276}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6944ABCE-755B-424F-8164-0C396753C276}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6944ABCE-755B-424F-8164-0C396753C276}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FA3D14F-8A4D-4342-90FD-DF0224A13D50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FA3D14F-8A4D-4342-90FD-DF0224A13D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FA3D14F-8A4D-4342-90FD-DF0224A13D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FA3D14F-8A4D-4342-90FD-DF0224A13D50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
