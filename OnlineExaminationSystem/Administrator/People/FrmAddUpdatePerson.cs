@@ -118,7 +118,7 @@ namespace OnlineExaminationSystem.Administrator.People
             txtNationalNo.Text = _person.NationalNo;
             txtEmail.Text = _person.Email;
             txtPhone.Text = _person.PhoneNumber;
-            txtAddress.Text = (_person.Address == null) ? string.Empty : _person.Address;
+            txtAddress.Text = _person.Address ?? string.Empty;
 
             dtpBirthDate.Value = _person.BirthDate;
 
@@ -231,18 +231,18 @@ namespace OnlineExaminationSystem.Administrator.People
             llbRemoveImage.Visible = false;
         }
 
-        private void RbFemale_Click(object sender, System.EventArgs e)
+        private void RbMale_CheckedChanged(object sender, EventArgs e)
         {
-            if (pbPersonalImage.ImageLocation == null)
-                pbPersonalImage.Image = Resources.woman;
-        }
-
-        private void RbMale_Click(object sender, System.EventArgs e)
-        {
-            if (pbPersonalImage.ImageLocation == null)
+            if (rbMale.Checked && pbPersonalImage.ImageLocation == null)
                 pbPersonalImage.Image = Resources.man;
         }
 
+        private void RbFemale_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbFemale.Checked && pbPersonalImage.ImageLocation == null)
+                pbPersonalImage.Image = Resources.woman;
+        }
+       
         private void TxtPhone_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);

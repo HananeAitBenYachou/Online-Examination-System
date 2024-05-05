@@ -65,6 +65,12 @@
     <Compile Include="Administrator\People\FrmAddUpdatePerson.Designer.cs">
       <DependentUpon>FrmAddUpdatePerson.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\People\UserControls\UcPersonCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrator\People\UserControls\UcPersonCard.Designer.cs">
+      <DependentUpon>UcPersonCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Administrator\FrmHome.resx">
@@ -72,6 +78,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\People\FrmAddUpdatePerson.resx">
       <DependentUpon>FrmAddUpdatePerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\People\UserControls\UcPersonCard.resx">
+      <DependentUpon>UcPersonCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
