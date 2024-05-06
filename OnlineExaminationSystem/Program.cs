@@ -1,5 +1,6 @@
 ﻿using OnlineExaminationSystem.Administrator;
 using OnlineExaminationSystem.Administrator.People;
+using OnlineExaminationSystem.Administrator.Tracks;
 using System;
 using System.Windows.Forms;
 
@@ -19,7 +20,7 @@ namespace OnlineExaminationSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new FrmHome());
+            Application.Run(new FrmAddUpdateTrack(1));
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]

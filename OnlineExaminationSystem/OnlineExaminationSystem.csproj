@@ -77,6 +77,12 @@
     <Compile Include="Administrator\People\UserControls\UcPersonCardWithFilter.Designer.cs">
       <DependentUpon>UcPersonCardWithFilter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\Tracks\FrmAddUpdateTrack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator\Tracks\FrmAddUpdateTrack.Designer.cs">
+      <DependentUpon>FrmAddUpdateTrack.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Administrator\FrmHome.resx">
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\People\UserControls\UcPersonCardWithFilter.resx">
       <DependentUpon>UcPersonCardWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\Tracks\FrmAddUpdateTrack.resx">
+      <DependentUpon>FrmAddUpdateTrack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -171,6 +180,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\graduate1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

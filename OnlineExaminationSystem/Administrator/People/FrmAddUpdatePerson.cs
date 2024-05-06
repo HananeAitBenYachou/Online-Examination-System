@@ -277,7 +277,7 @@ namespace OnlineExaminationSystem.Administrator.People
             if (string.IsNullOrWhiteSpace(txtNationalNo.Text))        
                 SetValidationError(txtNationalNo, e, "This field is required !");     
            
-            else if (_person.NationalNo != txtNationalNo.Text && Person.DoesPersonExist(txtNationalNo, Person.EnFilterBy.NationalNo))     
+            else if (_person.NationalNo != txtNationalNo.Text && Person.DoesPersonExist(txtNationalNo.Text, Person.EnFilterBy.NationalNo))     
                 SetValidationError(txtNationalNo, e, "This nationalNo is already taken by another person!");
             
             else          

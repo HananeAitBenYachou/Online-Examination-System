@@ -44,6 +44,11 @@ namespace OnlineExamination_BusinessLayer
             return TrackData.DoesTrackExist(trackID);
         }
 
+        public static bool DoesTrackExist(string name)
+        {
+            return TrackData.DoesTrackExist(name);
+        }
+
         private bool AddNewTrack()
         {
             TrackID = TrackData.AddNewTrack(Name, Description);
