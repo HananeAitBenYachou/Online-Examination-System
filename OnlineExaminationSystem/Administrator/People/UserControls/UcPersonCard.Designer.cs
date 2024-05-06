@@ -57,7 +57,9 @@
             // 
             // groupBox
             // 
+            this.groupBox.BackColor = System.Drawing.Color.Transparent;
             this.groupBox.BorderColor = System.Drawing.Color.Silver;
+            this.groupBox.BorderRadius = 15;
             this.groupBox.Controls.Add(this.pbPersonalImage);
             this.groupBox.Controls.Add(this.txtEmail);
             this.groupBox.Controls.Add(this.label11);
@@ -83,13 +85,14 @@
             this.groupBox.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
             this.groupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox.FillColor = System.Drawing.SystemColors.Control;
-            this.groupBox.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
+            this.groupBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox.ForeColor = System.Drawing.Color.White;
             this.groupBox.Location = new System.Drawing.Point(0, 0);
             this.groupBox.Name = "groupBox";
             this.groupBox.Size = new System.Drawing.Size(999, 405);
             this.groupBox.TabIndex = 1;
             this.groupBox.Text = "Personal Information";
+            this.groupBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pbPersonalImage
             // 
@@ -299,7 +302,7 @@
             this.rbMale.UncheckedState.BorderThickness = 2;
             this.rbMale.UncheckedState.FillColor = System.Drawing.Color.Transparent;
             this.rbMale.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.rbMale.CheckedChanged += new System.EventHandler(this.RbMale_CheckedChanged);
+            this.rbMale.CheckedChanged += new System.EventHandler(this.RbGender_CheckedChanged);
             // 
             // rbFemale
             // 
@@ -318,7 +321,7 @@
             this.rbFemale.UncheckedState.BorderThickness = 2;
             this.rbFemale.UncheckedState.FillColor = System.Drawing.Color.Transparent;
             this.rbFemale.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.rbFemale.CheckedChanged += new System.EventHandler(this.RbFemale_CheckedChanged);
+            this.rbFemale.CheckedChanged += new System.EventHandler(this.RbGender_CheckedChanged);
             // 
             // label5
             // 
@@ -481,6 +484,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.groupBox);
             this.Name = "UcPersonCard";
             this.Size = new System.Drawing.Size(999, 405);

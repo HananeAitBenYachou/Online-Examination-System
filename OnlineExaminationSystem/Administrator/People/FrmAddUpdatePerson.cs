@@ -231,18 +231,14 @@ namespace OnlineExaminationSystem.Administrator.People
             llbRemoveImage.Visible = false;
         }
 
-        private void RbMale_CheckedChanged(object sender, EventArgs e)
+        private void RbGender_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbMale.Checked && pbPersonalImage.ImageLocation == null)
-                pbPersonalImage.Image = Resources.man;
+            if (pbPersonalImage.ImageLocation == null)
+            {
+                pbPersonalImage.Image = rbMale.Checked ? Resources.man : Resources.woman;
+            }
         }
 
-        private void RbFemale_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbFemale.Checked && pbPersonalImage.ImageLocation == null)
-                pbPersonalImage.Image = Resources.woman;
-        }
-       
         private void TxtPhone_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);

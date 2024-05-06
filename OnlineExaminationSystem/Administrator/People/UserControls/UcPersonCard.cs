@@ -1,13 +1,8 @@
-﻿using OnlineExamination_BusinessLayer;
+﻿using Guna.UI2.WinForms;
+using OnlineExamination_BusinessLayer;
 using OnlineExaminationSystem.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OnlineExaminationSystem.Administrator.People.UserControls
@@ -20,6 +15,26 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
         public UcPersonCard()
         {
             InitializeComponent();
+        }
+
+        private void Reset()
+        {
+            ClearTextBoxes();
+
+            PersonID = null;
+            Person = null;
+
+            dtpBirthDate.Value = DateTime.Now;
+
+            rbMale.Checked = true;
+        }
+
+        private void ClearTextBoxes()
+        {
+            foreach (var textBox in groupBox.Controls.OfType<Guna2TextBox>())
+                textBox.Text = string.Empty;
+
+            txtPersonID.Text = "N/A";
         }
 
         private void LoadPersonData()
@@ -52,6 +67,7 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
             if (Person == null)
             {
                 ShowErrorMessage($"No person with ID = {personID} was found in the system !");
+                Reset();
                 return false;
             }
 
@@ -66,6 +82,7 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
             if (Person == null)
             {
                 ShowErrorMessage($"No person with NationalNo = {NationalNo} was found in the system !");
+                Reset();
                 return false;
             }
 
@@ -78,16 +95,13 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void RbMale_CheckedChanged(object sender, EventArgs e)
+        private void RbGender_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbMale.Checked && pbPersonalImage.ImageLocation == null)
-                pbPersonalImage.Image = Resources.man;
+            if (pbPersonalImage.ImageLocation == null)
+            {
+                pbPersonalImage.Image = rbMale.Checked ? Resources.man : Resources.woman;
+            }
         }
 
-        private void RbFemale_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbFemale.Checked && pbPersonalImage.ImageLocation == null)
-                pbPersonalImage.Image = Resources.woman;
-        }
     }
 }

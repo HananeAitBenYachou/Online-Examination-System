@@ -320,7 +320,7 @@
             this.rbMale.UncheckedState.BorderThickness = 2;
             this.rbMale.UncheckedState.FillColor = System.Drawing.Color.Transparent;
             this.rbMale.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.rbMale.CheckedChanged += new System.EventHandler(this.RbMale_CheckedChanged);
+            this.rbMale.CheckedChanged += new System.EventHandler(this.RbGender_CheckedChanged);
             // 
             // rbFemale
             // 
@@ -337,7 +337,7 @@
             this.rbFemale.UncheckedState.BorderThickness = 2;
             this.rbFemale.UncheckedState.FillColor = System.Drawing.Color.Transparent;
             this.rbFemale.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.rbFemale.CheckedChanged += new System.EventHandler(this.RbFemale_CheckedChanged);
+            this.rbFemale.CheckedChanged += new System.EventHandler(this.RbGender_CheckedChanged);
             // 
             // label5
             // 
