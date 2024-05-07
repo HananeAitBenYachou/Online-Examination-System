@@ -83,6 +83,12 @@
     <Compile Include="Administrator\Tracks\FrmAddUpdateTrack.Designer.cs">
       <DependentUpon>FrmAddUpdateTrack.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\Tracks\FrmShowTrackInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator\Tracks\FrmShowTrackInfo.Designer.cs">
+      <DependentUpon>FrmShowTrackInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Administrator\FrmHome.resx">
@@ -99,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\Tracks\FrmAddUpdateTrack.resx">
       <DependentUpon>FrmAddUpdateTrack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\Tracks\FrmShowTrackInfo.resx">
+      <DependentUpon>FrmShowTrackInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

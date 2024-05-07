@@ -20,7 +20,7 @@ namespace OnlineExaminationSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new FrmAddUpdateTrack(1));
+            Application.Run(new FrmShowTrackInfo(2));
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
