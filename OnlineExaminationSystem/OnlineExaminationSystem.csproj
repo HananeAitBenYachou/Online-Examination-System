@@ -83,6 +83,12 @@
     <Compile Include="Administrator\Tracks\FrmAddUpdateTrack.Designer.cs">
       <DependentUpon>FrmAddUpdateTrack.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\Tracks\FrmListTracks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator\Tracks\FrmListTracks.Designer.cs">
+      <DependentUpon>FrmListTracks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\Tracks\FrmShowTrackInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\Tracks\FrmAddUpdateTrack.resx">
       <DependentUpon>FrmAddUpdateTrack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\Tracks\FrmListTracks.resx">
+      <DependentUpon>FrmListTracks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\Tracks\FrmShowTrackInfo.resx">
       <DependentUpon>FrmShowTrackInfo.cs</DependentUpon>
@@ -192,6 +201,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\graduate1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\graduation-hat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\show.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
