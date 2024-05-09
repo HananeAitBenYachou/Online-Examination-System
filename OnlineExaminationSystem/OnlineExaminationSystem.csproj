@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrator\Courses\FrmAddUpdateCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator\Courses\FrmAddUpdateCourse.Designer.cs">
+      <DependentUpon>FrmAddUpdateCourse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\FrmHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Administrator\Courses\FrmAddUpdateCourse.resx">
+      <DependentUpon>FrmAddUpdateCourse.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrator\FrmHome.resx">
       <DependentUpon>FrmHome.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,6 +228,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

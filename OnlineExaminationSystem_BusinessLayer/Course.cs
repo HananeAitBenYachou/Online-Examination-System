@@ -24,7 +24,8 @@ namespace OnlineExamination_BusinessLayer
             Duration = default;
             Prerequisites = null;
         }
-        private Course(int? courseID, string name, string description, float credits, short duration, string prerequisites)
+        private Course(int? courseID, string name, string description, 
+                       float credits, short duration, string prerequisites)
         {
             _mode = EnMode.Update;
             this.CourseID = courseID;
@@ -43,17 +44,21 @@ namespace OnlineExamination_BusinessLayer
             short duration = default;
             string prerequisites = default;
 
-            bool isFound = CourseData.GetCourseInfoByID(courseID, ref name, ref description, ref credits, ref duration, ref prerequisites);
+            bool isFound = CourseData.GetCourseInfoByID(courseID, ref name, ref description,
+                                                        ref credits, ref duration, ref prerequisites);
 
-            if (isFound)
-                return new Course(courseID, name, description, credits, duration, prerequisites);
-            else
-                return null;
+
+            return isFound ? new Course(courseID, name, description, credits, duration, prerequisites) : null;         
         }
 
         public static bool DoesCourseExist(int? courseID)
         {
             return CourseData.DoesCourseExist(courseID);
+        }
+
+        public static bool DoesCourseExist(string name)
+        {
+            return CourseData.DoesCourseExist(name);
         }
 
         private bool AddNewCourse()
@@ -95,6 +100,5 @@ namespace OnlineExamination_BusinessLayer
         {
             return CourseData.GetAllCourses();
         }
-
     }
 }
