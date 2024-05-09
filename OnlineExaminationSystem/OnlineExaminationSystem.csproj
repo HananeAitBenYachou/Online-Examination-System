@@ -59,6 +59,12 @@
     <Compile Include="Administrator\Courses\FrmAddUpdateCourse.Designer.cs">
       <DependentUpon>FrmAddUpdateCourse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\Courses\FrmListCourses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator\Courses\FrmListCourses.Designer.cs">
+      <DependentUpon>FrmListCourses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\Courses\FrmShowCourseInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Administrator\Courses\FrmAddUpdateCourse.resx">
       <DependentUpon>FrmAddUpdateCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\Courses\FrmListCourses.resx">
+      <DependentUpon>FrmListCourses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\Courses\FrmShowCourseInfo.resx">
       <DependentUpon>FrmShowCourseInfo.cs</DependentUpon>

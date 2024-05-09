@@ -46,19 +46,6 @@ namespace OnlineExaminationSystem.Administrator.Tracks
                 _tracksDataView.RowFilter = $"[{filterOption}] = {filterValue}";
             else
                 _tracksDataView.RowFilter = $"[{filterOption}] LIKE '%{filterValue}%'";
-
-
-            //if (string.IsNullOrWhiteSpace(txtFilterValue.Text))
-            //{
-            //    _tracksDataView.RowFilter = null;
-            //    return;
-            //}
-
-            //if (cbFilterByOptions.Text == "Track ID")
-            //    _tracksDataView.RowFilter = string.Format("[{0}] = {1}", cbFilterByOptions.Text,txtFilterValue.Text.Trim());
-
-            //else
-            //    _tracksDataView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", cbFilterByOptions.Text, txtFilterValue.Text.Trim());
         }
 
         private void CbFilterByOptions_SelectedIndexChanged(object sender, EventArgs e)

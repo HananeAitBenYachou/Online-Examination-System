@@ -21,7 +21,10 @@ namespace OnlineExaminationSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new FrmShowCourseInfo(12));
+            Application.Run(new FrmListCourses());
+
+            //Application.Run(new FrmAddUpdateCourse());
+
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
