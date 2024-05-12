@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Administrator.TrackCourses;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -108,6 +109,18 @@ namespace OnlineExaminationSystem.Administrator.Tracks
                 ShowErrorMessage($"Failed to delete track with ID: {currentTrackID}.");
         }
 
+        private void ShowTrackCoursesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmShowTrackCourses form = new FrmShowTrackCourses((int)dgvTracksList.CurrentRow.Cells[0].Value);
+            form.ShowDialog();
+        }
+
+        private void AddCourseToTrackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAddCourseToTrack form = new FrmAddCourseToTrack((int)dgvTracksList.CurrentRow.Cells[0].Value);
+            form.ShowDialog();
+        }
+
         private void DgvTracksList_SelectionChanged(object sender, EventArgs e)
         {
             cmsTracks.Enabled = dgvTracksList.SelectedRows.Count > 0;
@@ -127,6 +140,6 @@ namespace OnlineExaminationSystem.Administrator.Tracks
         {
             MessageBox.Show(message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
+      
     }
 }

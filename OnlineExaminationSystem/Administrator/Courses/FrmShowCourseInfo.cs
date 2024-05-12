@@ -13,6 +13,7 @@ namespace OnlineExaminationSystem.Administrator.Courses
     public partial class FrmShowCourseInfo : Form
     {
         private readonly int? courseID = null;
+
         public FrmShowCourseInfo(int? courseID)
         {
             InitializeComponent();

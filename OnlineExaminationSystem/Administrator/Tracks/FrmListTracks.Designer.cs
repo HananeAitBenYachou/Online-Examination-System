@@ -48,6 +48,8 @@
             this.txtFilterValue = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnAddNewTrack = new Guna.UI2.WinForms.Guna2Button();
             this.guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
+            this.showTrackCoursesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addCourseToTrackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTracksList)).BeginInit();
             this.cmsTracks.SuspendLayout();
             this.SuspendLayout();
@@ -132,9 +134,11 @@
             this.addNewTrackToolStripMenuItem,
             this.editTrackInformationToolStripMenuItem,
             this.showTrackDetailsToolStripMenuItem,
-            this.deleteTrackToolStripMenuItem});
+            this.deleteTrackToolStripMenuItem,
+            this.showTrackCoursesToolStripMenuItem,
+            this.addCourseToTrackToolStripMenuItem});
             this.cmsTracks.Name = "cbUsers";
-            this.cmsTracks.Size = new System.Drawing.Size(250, 148);
+            this.cmsTracks.Size = new System.Drawing.Size(250, 248);
             // 
             // addNewTrackToolStripMenuItem
             // 
@@ -292,6 +296,26 @@
             this.guna2ImageButton1.Size = new System.Drawing.Size(64, 64);
             this.guna2ImageButton1.TabIndex = 19;
             // 
+            // showTrackCoursesToolStripMenuItem
+            // 
+            this.showTrackCoursesToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.showTrackCoursesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.showTrackCoursesToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.add1;
+            this.showTrackCoursesToolStripMenuItem.Name = "showTrackCoursesToolStripMenuItem";
+            this.showTrackCoursesToolStripMenuItem.Size = new System.Drawing.Size(249, 36);
+            this.showTrackCoursesToolStripMenuItem.Text = "Show Track Courses";
+            this.showTrackCoursesToolStripMenuItem.Click += new System.EventHandler(this.ShowTrackCoursesToolStripMenuItem_Click);
+            // 
+            // addCourseToTrackToolStripMenuItem
+            // 
+            this.addCourseToTrackToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.addCourseToTrackToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.addCourseToTrackToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.add1;
+            this.addCourseToTrackToolStripMenuItem.Name = "addCourseToTrackToolStripMenuItem";
+            this.addCourseToTrackToolStripMenuItem.Size = new System.Drawing.Size(249, 36);
+            this.addCourseToTrackToolStripMenuItem.Text = "Add Course To Track";
+            this.addCourseToTrackToolStripMenuItem.Click += new System.EventHandler(this.AddCourseToTrackToolStripMenuItem_Click);
+            // 
             // FrmListTracks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -333,5 +357,7 @@
         private System.Windows.Forms.ToolStripMenuItem editTrackInformationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showTrackDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteTrackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showTrackCoursesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addCourseToTrackToolStripMenuItem;
     }
 }

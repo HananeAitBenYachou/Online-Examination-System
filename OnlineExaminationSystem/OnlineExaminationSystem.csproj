@@ -101,6 +101,18 @@
     <Compile Include="Administrator\People\UserControls\UcPersonCardWithFilter.Designer.cs">
       <DependentUpon>UcPersonCardWithFilter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\TrackCourses\FrmAddCourseToTrack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator\TrackCourses\FrmAddCourseToTrack.Designer.cs">
+      <DependentUpon>FrmAddCourseToTrack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\TrackCourses\FrmShowTrackCourses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator\TrackCourses\FrmShowTrackCourses.Designer.cs">
+      <DependentUpon>FrmShowTrackCourses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\Tracks\FrmAddUpdateTrack.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +130,18 @@
     </Compile>
     <Compile Include="Administrator\Tracks\FrmShowTrackInfo.Designer.cs">
       <DependentUpon>FrmShowTrackInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\Tracks\UserControls\UcTrackCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrator\Tracks\UserControls\UcTrackCard.Designer.cs">
+      <DependentUpon>UcTrackCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,6 +169,12 @@
     <EmbeddedResource Include="Administrator\People\UserControls\UcPersonCardWithFilter.resx">
       <DependentUpon>UcPersonCardWithFilter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\TrackCourses\FrmAddCourseToTrack.resx">
+      <DependentUpon>FrmAddCourseToTrack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\TrackCourses\FrmShowTrackCourses.resx">
+      <DependentUpon>FrmShowTrackCourses.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrator\Tracks\FrmAddUpdateTrack.resx">
       <DependentUpon>FrmAddUpdateTrack.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,6 +183,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\Tracks\FrmShowTrackInfo.resx">
       <DependentUpon>FrmShowTrackInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\Tracks\UserControls\UcTrackCard.resx">
+      <DependentUpon>UcTrackCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
