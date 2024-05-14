@@ -55,6 +55,53 @@ namespace OnlineExamination_DataAccessLayer
             return isFound;
         }
 
+        public static bool GetTrackInfoByName(string name, ref int? trackID, ref string description)
+        {
+            bool isFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Tracks_GetTrackInfoByName", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@Name",name);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found successfully !
+                                isFound = true;
+
+                                trackID = (reader["TrackID"] != DBNull.Value) ? (int?)reader["TrackID"] : null;
+
+                                description = (reader["Description"] != DBNull.Value) ? (string)reader["Description"] : null;
+
+                            }
+
+                            else
+                            {
+                                // The record wasn't found !
+                                isFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+
+                isFound = false;
+            }
+            return isFound;
+        }
+
         public static bool DoesTrackExist(int? trackID)
         {
             bool isFound = false;

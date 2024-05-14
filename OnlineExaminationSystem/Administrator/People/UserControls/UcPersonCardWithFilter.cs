@@ -79,10 +79,10 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
                 return;
             }
 
-            if (SearchPerson())
-                RaisePersonSelectedEvent();
-            else
-                Reset(); 
+            if (!SearchPerson())
+                Reset();
+
+            RaisePersonSelectedEvent();
         }
 
         private bool SearchPerson()

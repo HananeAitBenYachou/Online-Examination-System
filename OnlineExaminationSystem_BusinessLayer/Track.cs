@@ -39,6 +39,19 @@ namespace OnlineExamination_BusinessLayer
                 return null;
         }
 
+        public static Track Find(string name)
+        {
+            int? trackID = default;
+            string description = default;
+
+            bool isFound = TrackData.GetTrackInfoByName(name, ref trackID, ref description);
+
+            if (isFound)
+                return new Track(trackID, name, description);
+            else
+                return null;
+        }
+
         public static bool DoesTrackExist(int? trackID)
         {
             return TrackData.DoesTrackExist(trackID);

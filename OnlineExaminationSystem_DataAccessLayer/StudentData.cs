@@ -61,7 +61,7 @@ namespace OnlineExamination_DataAccessLayer
             return isFound;
         }
 
-        public static bool DoesStudentExist(int? studentID)
+        public static bool DoesStudentExistByStudentID(int? studentID)
         {
             bool isFound = false;
 
@@ -71,11 +71,49 @@ namespace OnlineExamination_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_Students_CheckIfStudentExists", connection))
+                    using (SqlCommand command = new SqlCommand("SP_Students_CheckIfStudentExistsByStudentID", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@StudentID", (object)studentID ?? DBNull.Value);
+
+                        SqlParameter returnValue = new SqlParameter
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+
+                        command.Parameters.Add(returnValue);
+
+                        command.ExecuteScalar();
+
+                        isFound = (int)returnValue.Value == 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+
+                isFound = false;
+            }
+            return isFound;
+        }
+
+        public static bool DoesStudentExistByPersonID(int? personID)
+        {
+            bool isFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Students_CheckIfStudentExistsByPersonID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@PersonID", (object)personID ?? DBNull.Value);
 
                         SqlParameter returnValue = new SqlParameter
                         {

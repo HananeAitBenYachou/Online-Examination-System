@@ -1,6 +1,7 @@
 ﻿using OnlineExaminationSystem.Administrator;
 using OnlineExaminationSystem.Administrator.Courses;
 using OnlineExaminationSystem.Administrator.People;
+using OnlineExaminationSystem.Administrator.Students;
 using OnlineExaminationSystem.Administrator.TrackCourses;
 using OnlineExaminationSystem.Administrator.Tracks;
 using System;
@@ -22,7 +23,7 @@ namespace OnlineExaminationSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new FrmAddCourseToTrack(6));
+            Application.Run(new FrmAddUpdateStudent(1));
 
         }
 
