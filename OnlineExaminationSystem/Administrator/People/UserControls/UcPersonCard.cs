@@ -77,7 +77,7 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
 
         public bool LoadPersonData(string NationalNo)
         {
-            Person Person = Person.Find(NationalNo);
+            Person = Person.Find(NationalNo);
 
             if (Person == null)
             {

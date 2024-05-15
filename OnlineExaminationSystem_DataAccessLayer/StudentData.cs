@@ -8,7 +8,7 @@ namespace OnlineExamination_DataAccessLayer
 {
     public class StudentData
     {
-        public static bool GetStudentInfoByID(int? studentID, ref int personID, ref DateTime startDate, ref DateTime graduationDate, ref bool isMarkedForDelete, ref int? trackID)
+        public static bool GetStudentInfoByStudentID(int? studentID, ref int personID, ref DateTime startDate, ref DateTime graduationDate, ref bool isMarkedForDelete, ref int? trackID)
         {
             bool isFound = false;
 
@@ -18,7 +18,7 @@ namespace OnlineExamination_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_Students_GetStudentInfoByID", connection))
+                    using (SqlCommand command = new SqlCommand("SP_Students_GetStudentInfoByStudentID", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
@@ -41,6 +41,58 @@ namespace OnlineExamination_DataAccessLayer
 
                                 trackID = (reader["TrackID"] != DBNull.Value) ? (int?)reader["TrackID"] : null;
 
+                            }
+
+                            else
+                            {
+                                // The record wasn't found !
+                                isFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+
+                isFound = false;
+            }
+            return isFound;
+        }
+
+        public static bool GetStudentInfoByPersonID(int personID , ref int? studentID, ref DateTime startDate, ref DateTime graduationDate, ref bool isMarkedForDelete, ref int? trackID)
+        {
+            bool isFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Students_GetStudentInfoByPersonID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@PersonID",personID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found successfully !
+                                isFound = true;
+
+                                studentID = (reader["StudentID"] != DBNull.Value) ? (int?)reader["StudentID"] : null;
+
+                                startDate = (DateTime)reader["StartDate"];
+
+                                graduationDate = (DateTime)reader["GraduationDate"];
+
+                                isMarkedForDelete = (bool)reader["IsMarkedForDelete"];
+
+                                trackID = (reader["TrackID"] != DBNull.Value) ? (int?)reader["TrackID"] : null;
                             }
 
                             else

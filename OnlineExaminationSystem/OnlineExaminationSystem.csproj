@@ -107,6 +107,18 @@
     <Compile Include="Administrator\Students\FrmAddUpdateStudent.Designer.cs">
       <DependentUpon>FrmAddUpdateStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\Students\FrmShowStudentInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator\Students\FrmShowStudentInfo.Designer.cs">
+      <DependentUpon>FrmShowStudentInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\Students\UserControls\UcStudentCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrator\Students\UserControls\UcStudentCard.Designer.cs">
+      <DependentUpon>UcStudentCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\TrackCourses\FrmAddCourseToTrack.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +183,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\Students\FrmAddUpdateStudent.resx">
       <DependentUpon>FrmAddUpdateStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\Students\FrmShowStudentInfo.resx">
+      <DependentUpon>FrmShowStudentInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\Students\UserControls\UcStudentCard.resx">
+      <DependentUpon>UcStudentCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\TrackCourses\FrmAddCourseToTrack.resx">
       <DependentUpon>FrmAddCourseToTrack.cs</DependentUpon>

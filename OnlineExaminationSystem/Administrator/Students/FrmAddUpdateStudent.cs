@@ -82,7 +82,7 @@ namespace OnlineExaminationSystem.Administrator.Students
 
         private void LoadStudentData()
         {
-            _student = Student.Find(_studentID);
+            _student = Student.Find(_studentID , EnFilterBy.StudentID);
 
             if (_student == null)
             {

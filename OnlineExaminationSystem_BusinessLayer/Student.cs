@@ -41,7 +41,7 @@ namespace OnlineExamination_BusinessLayer
             this.TrackInfo = Track.Find(trackID);
         }
 
-        public static Student Find(int? studentID)
+        private static Student FindByStudentID(int? studentID)
         {
             int personID = default;
             DateTime startDate = default;
@@ -49,12 +49,43 @@ namespace OnlineExamination_BusinessLayer
             bool isMarkedForDelete = default;
             int? trackID = default;
 
-            bool isFound = StudentData.GetStudentInfoByID(studentID, ref personID, ref startDate, ref graduationDate, ref isMarkedForDelete, ref trackID);
+            bool isFound = StudentData.GetStudentInfoByStudentID(studentID, ref personID, ref startDate, ref graduationDate, ref isMarkedForDelete, ref trackID);
 
             if (isFound)
                 return new Student(studentID, personID, startDate, graduationDate, isMarkedForDelete, trackID);
             else
                 return null;
+        }
+
+        private static Student FindByPersonID(int personID)
+        {
+            int? studentID = default;
+            DateTime startDate = default;
+            DateTime graduationDate = default;
+            bool isMarkedForDelete = default;
+            int? trackID = default;
+
+            bool isFound = StudentData.GetStudentInfoByPersonID(personID , ref studentID, ref startDate, ref graduationDate, ref isMarkedForDelete, ref trackID);
+
+            if (isFound)
+                return new Student(studentID, personID, startDate, graduationDate, isMarkedForDelete, trackID);
+            else
+                return null;
+        }
+
+        public static Student Find<T>(T filterValue , EnFilterBy filterBy)
+        {
+            switch (filterBy)
+            {
+                case EnFilterBy.PersonID:
+                    return FindByPersonID(Convert.ToInt32(filterValue));
+
+                case EnFilterBy.StudentID:
+                    return FindByStudentID(Convert.ToInt32(filterValue));
+
+                default:
+                    return null;
+            }
         }
 
         public static bool DoesStudentExist<T>(T filterValue , EnFilterBy filterBy)
