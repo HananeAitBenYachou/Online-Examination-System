@@ -107,6 +107,12 @@
     <Compile Include="Administrator\Students\FrmAddUpdateStudent.Designer.cs">
       <DependentUpon>FrmAddUpdateStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\Students\FrmListStudents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator\Students\FrmListStudents.Designer.cs">
+      <DependentUpon>FrmListStudents.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\Students\FrmShowStudentInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\Students\FrmAddUpdateStudent.resx">
       <DependentUpon>FrmAddUpdateStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\Students\FrmListStudents.resx">
+      <DependentUpon>FrmListStudents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\Students\FrmShowStudentInfo.resx">
       <DependentUpon>FrmShowStudentInfo.cs</DependentUpon>
@@ -318,6 +327,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\scholar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\graduating-student.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

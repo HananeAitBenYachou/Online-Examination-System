@@ -23,8 +23,7 @@ namespace OnlineExaminationSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new FrmShowStudentInfo(100 , Administrator.Students.UserControls.UcStudentCard.EnLoadBy.StudentID));
-
+            Application.Run(new FrmListStudents());
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
