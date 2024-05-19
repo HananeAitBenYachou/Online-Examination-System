@@ -14,7 +14,7 @@ using static OnlineExaminationSystem.Administrator.Students.UserControls.UcStude
 
 namespace OnlineExaminationSystem.Administrator.Students
 {
-    public partial class FrmListStudents : Form
+    public partial class FrmAddUpdateInstrcutor : Form
     {
         private DataView _studentsDataView = null;
 
@@ -22,7 +22,7 @@ namespace OnlineExaminationSystem.Administrator.Students
 
         private EnComboBoxTypes _selectedComboBoxType;
 
-        public FrmListStudents()
+        public FrmAddUpdateInstrcutor()
         {
             InitializeComponent();
         }

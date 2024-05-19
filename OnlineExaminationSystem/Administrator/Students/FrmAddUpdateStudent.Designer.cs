@@ -32,12 +32,9 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
             this.lblTitle = new System.Windows.Forms.Label();
             this.tcStudentInfo = new Guna.UI2.WinForms.Guna2TabControl();
             this.tpPersonalInfo = new System.Windows.Forms.TabPage();
-            this.btnNext = new Guna.UI2.WinForms.Guna2Button();
-            this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.ucPersonCardWithFilter1 = new OnlineExaminationSystem.Administrator.People.UserControls.UcPersonCardWithFilter();
             this.tpAcademicInfo = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,7 +45,10 @@
             this.dtpGraduationDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.txtStudentID = new Guna.UI2.WinForms.Guna2TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnNext = new Guna.UI2.WinForms.Guna2Button();
+            this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.guna2GradientPanel1.SuspendLayout();
             this.tcStudentInfo.SuspendLayout();
@@ -79,28 +79,13 @@
             this.guna2GradientPanel1.Size = new System.Drawing.Size(1021, 88);
             this.guna2GradientPanel1.TabIndex = 235;
             // 
-            // guna2ImageButton1
-            // 
-            this.guna2ImageButton1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ImageButton1.CheckedState.ImageSize = new System.Drawing.Size(55, 55);
-            this.guna2ImageButton1.HoverState.ImageSize = new System.Drawing.Size(55, 55);
-            this.guna2ImageButton1.Image = global::OnlineExaminationSystem.Properties.Resources.scholar;
-            this.guna2ImageButton1.ImageOffset = new System.Drawing.Point(0, 0);
-            this.guna2ImageButton1.ImageRotate = 0F;
-            this.guna2ImageButton1.ImageSize = new System.Drawing.Size(55, 55);
-            this.guna2ImageButton1.Location = new System.Drawing.Point(397, 13);
-            this.guna2ImageButton1.Name = "guna2ImageButton1";
-            this.guna2ImageButton1.PressedState.ImageSize = new System.Drawing.Size(55, 55);
-            this.guna2ImageButton1.Size = new System.Drawing.Size(55, 55);
-            this.guna2ImageButton1.TabIndex = 3;
-            // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(454, 29);
+            this.lblTitle.Location = new System.Drawing.Point(441, 29);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(196, 30);
             this.lblTitle.TabIndex = 2;
@@ -149,49 +134,6 @@
             this.tpPersonalInfo.Text = "Personal Info";
             this.tpPersonalInfo.UseVisualStyleBackColor = true;
             // 
-            // btnNext
-            // 
-            this.btnNext.BorderRadius = 22;
-            this.btnNext.CustomizableEdges.BottomLeft = false;
-            this.btnNext.CustomizableEdges.TopRight = false;
-            this.btnNext.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnNext.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnNext.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnNext.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnNext.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(129)))), ((int)(((byte)(100)))));
-            this.btnNext.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext.ForeColor = System.Drawing.Color.White;
-            this.btnNext.Image = global::OnlineExaminationSystem.Properties.Resources.skip;
-            this.btnNext.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnNext.Location = new System.Drawing.Point(858, 552);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(147, 58);
-            this.btnNext.TabIndex = 261;
-            this.btnNext.Text = "Next";
-            this.btnNext.EnabledChanged += new System.EventHandler(this.BtnNext_EnabledChanged);
-            this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.BorderRadius = 22;
-            this.btnClose.CustomizableEdges.BottomLeft = false;
-            this.btnClose.CustomizableEdges.TopRight = false;
-            this.btnClose.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnClose.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnClose.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnClose.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnClose.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
-            this.btnClose.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Image = global::OnlineExaminationSystem.Properties.Resources.close;
-            this.btnClose.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnClose.Location = new System.Drawing.Point(692, 552);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(147, 58);
-            this.btnClose.TabIndex = 260;
-            this.btnClose.Text = "Close";
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            // 
             // ucPersonCardWithFilter1
             // 
             this.ucPersonCardWithFilter1.BackColor = System.Drawing.Color.Transparent;
@@ -226,7 +168,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(46)))), ((int)(((byte)(24)))));
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(526, 149);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 21);
@@ -254,7 +196,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(46)))), ((int)(((byte)(24)))));
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(61, 243);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(91, 21);
@@ -281,7 +223,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(46)))), ((int)(((byte)(24)))));
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(526, 243);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(136, 21);
@@ -335,12 +277,55 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(46)))), ((int)(((byte)(24)))));
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(61, 149);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 21);
             this.label3.TabIndex = 209;
             this.label3.Text = "Student ID :";
+            // 
+            // btnNext
+            // 
+            this.btnNext.BorderRadius = 22;
+            this.btnNext.CustomizableEdges.BottomLeft = false;
+            this.btnNext.CustomizableEdges.TopRight = false;
+            this.btnNext.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnNext.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnNext.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnNext.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnNext.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(129)))), ((int)(((byte)(100)))));
+            this.btnNext.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.ForeColor = System.Drawing.Color.White;
+            this.btnNext.Image = global::OnlineExaminationSystem.Properties.Resources.skip;
+            this.btnNext.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnNext.Location = new System.Drawing.Point(858, 552);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(147, 58);
+            this.btnNext.TabIndex = 261;
+            this.btnNext.Text = "Next";
+            this.btnNext.EnabledChanged += new System.EventHandler(this.BtnNext_EnabledChanged);
+            this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.BorderRadius = 22;
+            this.btnClose.CustomizableEdges.BottomLeft = false;
+            this.btnClose.CustomizableEdges.TopRight = false;
+            this.btnClose.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnClose.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnClose.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnClose.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnClose.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.btnClose.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.Image = global::OnlineExaminationSystem.Properties.Resources.close;
+            this.btnClose.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnClose.Location = new System.Drawing.Point(692, 552);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(147, 58);
+            this.btnClose.TabIndex = 260;
+            this.btnClose.Text = "Close";
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // btnSave
             // 
@@ -362,6 +347,21 @@
             this.btnSave.TabIndex = 260;
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
+            // guna2ImageButton1
+            // 
+            this.guna2ImageButton1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ImageButton1.CheckedState.ImageSize = new System.Drawing.Size(55, 55);
+            this.guna2ImageButton1.HoverState.ImageSize = new System.Drawing.Size(55, 55);
+            this.guna2ImageButton1.Image = global::OnlineExaminationSystem.Properties.Resources.scholar;
+            this.guna2ImageButton1.ImageOffset = new System.Drawing.Point(0, 0);
+            this.guna2ImageButton1.ImageRotate = 0F;
+            this.guna2ImageButton1.ImageSize = new System.Drawing.Size(55, 55);
+            this.guna2ImageButton1.Location = new System.Drawing.Point(384, 13);
+            this.guna2ImageButton1.Name = "guna2ImageButton1";
+            this.guna2ImageButton1.PressedState.ImageSize = new System.Drawing.Size(55, 55);
+            this.guna2ImageButton1.Size = new System.Drawing.Size(55, 55);
+            this.guna2ImageButton1.TabIndex = 3;
             // 
             // FrmAddUpdateStudent
             // 

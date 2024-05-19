@@ -1,6 +1,6 @@
 ﻿namespace OnlineExaminationSystem.Administrator.Students
 {
-    partial class FrmListStudents
+    partial class FrmAddUpdateInstrcutor
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListStudents));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAddUpdateInstrcutor));
             this.dgvStudentsList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.cmsStudents = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addNewStudentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();

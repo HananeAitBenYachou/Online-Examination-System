@@ -8,7 +8,9 @@ namespace OnlineExamination_DataAccessLayer
 {
     public class InstructorData
     {
-        public static bool GetInstructorInfoByID(int? instructorID, ref int personID, ref DateTime hireDate, ref DateTime? exitDate, ref float monthlySalary, ref bool isMarkedForDelete)
+        public static bool GetInstructorInfoByInstructorID(int? instructorID, ref int personID, ref DateTime hireDate,
+                                                 ref DateTime? exitDate, ref float monthlySalary,
+                                                 ref bool isMarkedForDelete)
         {
             bool isFound = false;
 
@@ -18,7 +20,7 @@ namespace OnlineExamination_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_Instructors_GetInstructorInfoByID", connection))
+                    using (SqlCommand command = new SqlCommand("SP_Instructors_GetInstructorInfoByInstructorID", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
@@ -37,7 +39,7 @@ namespace OnlineExamination_DataAccessLayer
 
                                 exitDate = (reader["ExitDate"] != DBNull.Value) ? (DateTime?)reader["ExitDate"] : null;
 
-                                monthlySalary = (float)reader["MonthlySalary"];
+                                monthlySalary = Convert.ToSingle(reader["MonthlySalary"]);
 
                                 isMarkedForDelete = (bool)reader["IsMarkedForDelete"];
 
@@ -61,7 +63,9 @@ namespace OnlineExamination_DataAccessLayer
             return isFound;
         }
 
-        public static bool DoesInstructorExist(int? instructorID)
+        public static bool GetInstructorInfoByPersonID(int personID , ref int? instructorID, ref DateTime hireDate,
+                                         ref DateTime? exitDate, ref float monthlySalary,
+                                         ref bool isMarkedForDelete)
         {
             bool isFound = false;
 
@@ -71,7 +75,60 @@ namespace OnlineExamination_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_Instructors_CheckIfInstructorExists", connection))
+                    using (SqlCommand command = new SqlCommand("SP_Instructors_GetInstructorInfoByPersonID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@PersonID", personID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found successfully !
+                                isFound = true;
+
+                                instructorID = (reader["InstructorID"] != DBNull.Value) ? (int?)reader["InstructorID"] : null;
+
+                                hireDate = (DateTime)reader["HireDate"];
+
+                                exitDate = (reader["ExitDate"] != DBNull.Value) ? (DateTime?)reader["ExitDate"] : null;
+
+                                monthlySalary = Convert.ToSingle(reader["MonthlySalary"]);
+
+                                isMarkedForDelete = (bool)reader["IsMarkedForDelete"];
+
+                            }
+
+                            else
+                            {
+                                // The record wasn't found !
+                                isFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+
+                isFound = false;
+            }
+            return isFound;
+        }
+
+        public static bool DoesInstructorExistByInstructorID(int? instructorID)
+        {
+            bool isFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Instructors_CheckIfInstructorExistsByInstructorID", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
@@ -99,7 +156,46 @@ namespace OnlineExamination_DataAccessLayer
             return isFound;
         }
 
-        public static int? AddNewInstructor(int personID, DateTime hireDate, DateTime? exitDate, float monthlySalary, bool isMarkedForDelete)
+        public static bool DoesInstructorExistByPersonID(int personID)
+        {
+            bool isFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Instructors_CheckIfInstructorExistsByPersonID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@PersonID",personID);
+
+                        SqlParameter returnValue = new SqlParameter
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+
+                        command.Parameters.Add(returnValue);
+
+                        command.ExecuteScalar();
+
+                        isFound = (int)returnValue.Value == 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+
+                isFound = false;
+            }
+            return isFound;
+        }
+
+        public static int? AddNewInstructor(int personID, DateTime hireDate, DateTime? exitDate,
+                                            float monthlySalary, bool isMarkedForDelete)
         {
             int? instructorID = null;
 
@@ -141,7 +237,8 @@ namespace OnlineExamination_DataAccessLayer
             return instructorID;
         }
 
-        public static bool UpdateInstructorInfo(int? instructorID, int personID, DateTime hireDate, DateTime? exitDate, float monthlySalary, bool isMarkedForDelete)
+        public static bool UpdateInstructorInfo(int? instructorID, int personID, DateTime hireDate, 
+                                                DateTime? exitDate, float monthlySalary, bool isMarkedForDelete)
         {
             int rowsAffected = 0;
 

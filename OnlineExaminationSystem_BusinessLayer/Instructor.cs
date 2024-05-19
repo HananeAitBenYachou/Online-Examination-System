@@ -8,6 +8,8 @@ namespace OnlineExamination_BusinessLayer
     {
         private enum EnMode { AddNew = 0, Update = 1 };
         private EnMode _mode;
+
+        public enum EnFilterBy { InstructorID = 0, PersonID = 1 }
         public int? InstructorID { get; private set; }
         public int PersonID { get; set; }
         public DateTime HireDate { get; set; }
@@ -36,7 +38,7 @@ namespace OnlineExamination_BusinessLayer
             this.IsMarkedForDelete = isMarkedForDelete;
         }
 
-        public static Instructor Find(int? instructorID)
+        private static Instructor FindByInstructorID(int? instructorID)
         {
             int personID = default;
             DateTime hireDate = default;
@@ -44,7 +46,7 @@ namespace OnlineExamination_BusinessLayer
             float monthlySalary = default;
             bool isMarkedForDelete = default;
 
-            bool isFound = InstructorData.GetInstructorInfoByID(instructorID, ref personID, ref hireDate, ref exitDate, ref monthlySalary, ref isMarkedForDelete);
+            bool isFound = InstructorData.GetInstructorInfoByInstructorID(instructorID, ref personID, ref hireDate, ref exitDate, ref monthlySalary, ref isMarkedForDelete);
 
             if (isFound)
                 return new Instructor(instructorID, personID, hireDate, exitDate, monthlySalary, isMarkedForDelete);
@@ -52,9 +54,53 @@ namespace OnlineExamination_BusinessLayer
                 return null;
         }
 
-        public static bool DoesInstructorExist(int? instructorID)
+        private static Instructor FindByPersonID(int personID)
         {
-            return InstructorData.DoesInstructorExist(instructorID);
+            int? instructorID = default;
+            DateTime hireDate = default;
+            DateTime? exitDate = default;
+            float monthlySalary = default;
+            bool isMarkedForDelete = default;
+
+            bool isFound = InstructorData.GetInstructorInfoByPersonID(personID , ref instructorID, ref hireDate, ref exitDate, ref monthlySalary, ref isMarkedForDelete);
+
+            if (isFound)
+                return new Instructor(instructorID, personID, hireDate, exitDate, monthlySalary, isMarkedForDelete);
+            else
+                return null;
+        }
+
+        public static Instructor Find<T>(T filterValue, EnFilterBy filterBy)
+        {
+            switch (filterBy)
+            {
+                case EnFilterBy.PersonID:
+                    return FindByPersonID(Convert.ToInt32(filterValue));
+
+                case EnFilterBy.InstructorID:
+                    return FindByInstructorID(Convert.ToInt32(filterValue));
+
+                default:
+                    return null;
+            }
+        }
+
+        public static bool DoesInstructorExist<T>(T filterValue, EnFilterBy filterBy)
+        {
+            if (filterValue == null)
+                return false;
+
+            switch (filterBy)
+            {
+                case EnFilterBy.PersonID:
+                    return InstructorData.DoesInstructorExistByPersonID(Convert.ToInt32(filterValue));
+
+                case EnFilterBy.InstructorID:
+                    return InstructorData.DoesInstructorExistByInstructorID(Convert.ToInt32(filterValue));
+
+                default:
+                    return false;
+            }
         }
 
         private bool AddNewInstructor()
