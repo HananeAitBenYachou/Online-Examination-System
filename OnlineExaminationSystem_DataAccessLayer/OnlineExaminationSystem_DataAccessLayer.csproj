@@ -45,6 +45,7 @@
     <Compile Include="AdministratorData.cs" />
     <Compile Include="CourseData.cs" />
     <Compile Include="Global\DataAccessSettings.cs" />
+    <Compile Include="InstructorCourseData.cs" />
     <Compile Include="InstructorData.cs" />
     <Compile Include="PersonData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

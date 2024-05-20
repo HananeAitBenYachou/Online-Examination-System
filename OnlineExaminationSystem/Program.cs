@@ -1,6 +1,7 @@
 ﻿using OnlineExaminationSystem.Administrator;
 using OnlineExaminationSystem.Administrator.Courses;
 using OnlineExaminationSystem.Administrator.Instructors;
+using OnlineExaminationSystem.Administrator.Instructors.InstructorCourses;
 using OnlineExaminationSystem.Administrator.Instructors.UserControls;
 using OnlineExaminationSystem.Administrator.People;
 using OnlineExaminationSystem.Administrator.Students;
@@ -25,8 +26,7 @@ namespace OnlineExaminationSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            int? ID = 1;
-            Application.Run(new FrmShowInstructorInfo(ID));
+            Application.Run(new FrmAssignCourseToInstructor(1));
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]

@@ -89,11 +89,23 @@
     <Compile Include="Administrator\Instructors\FrmAddUpdateInstructor.Designer.cs">
       <DependentUpon>FrmAddUpdateInstructor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\Instructors\FrmListInstructors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator\Instructors\FrmListInstructors.Designer.cs">
+      <DependentUpon>FrmListInstructors.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\Instructors\FrmShowInstructorInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administrator\Instructors\FrmShowInstructorInfo.Designer.cs">
       <DependentUpon>FrmShowInstructorInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\Instructors\InstructorCourses\FrmAssignCourseToInstructor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator\Instructors\InstructorCourses\FrmAssignCourseToInstructor.Designer.cs">
+      <DependentUpon>FrmAssignCourseToInstructor.cs</DependentUpon>
     </Compile>
     <Compile Include="Administrator\Instructors\UserControls\UcInstructorCard.cs">
       <SubType>UserControl</SubType>
@@ -143,16 +155,16 @@
     <Compile Include="Administrator\Students\UserControls\UcStudentCard.Designer.cs">
       <DependentUpon>UcStudentCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\TrackCourses\FrmAddCourseToTrack.cs">
+    <Compile Include="Administrator\Tracks\TrackCourses\FrmAddCourseToTrack.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\TrackCourses\FrmAddCourseToTrack.Designer.cs">
+    <Compile Include="Administrator\Tracks\TrackCourses\FrmAddCourseToTrack.Designer.cs">
       <DependentUpon>FrmAddCourseToTrack.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\TrackCourses\FrmShowTrackCourses.cs">
+    <Compile Include="Administrator\Tracks\TrackCourses\FrmShowTrackCourses.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\TrackCourses\FrmShowTrackCourses.Designer.cs">
+    <Compile Include="Administrator\Tracks\TrackCourses\FrmShowTrackCourses.Designer.cs">
       <DependentUpon>FrmShowTrackCourses.cs</DependentUpon>
     </Compile>
     <Compile Include="Administrator\Tracks\FrmAddUpdateTrack.cs">
@@ -199,8 +211,14 @@
     <EmbeddedResource Include="Administrator\Instructors\FrmAddUpdateInstructor.resx">
       <DependentUpon>FrmAddUpdateInstructor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\Instructors\FrmListInstructors.resx">
+      <DependentUpon>FrmListInstructors.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrator\Instructors\FrmShowInstructorInfo.resx">
       <DependentUpon>FrmShowInstructorInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\Instructors\InstructorCourses\FrmAssignCourseToInstructor.resx">
+      <DependentUpon>FrmAssignCourseToInstructor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\Instructors\UserControls\UcInstructorCard.resx">
       <DependentUpon>UcInstructorCard.cs</DependentUpon>
@@ -226,10 +244,10 @@
     <EmbeddedResource Include="Administrator\Students\UserControls\UcStudentCard.resx">
       <DependentUpon>UcStudentCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\TrackCourses\FrmAddCourseToTrack.resx">
+    <EmbeddedResource Include="Administrator\Tracks\TrackCourses\FrmAddCourseToTrack.resx">
       <DependentUpon>FrmAddCourseToTrack.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\TrackCourses\FrmShowTrackCourses.resx">
+    <EmbeddedResource Include="Administrator\Tracks\TrackCourses\FrmShowTrackCourses.resx">
       <DependentUpon>FrmShowTrackCourses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\Tracks\FrmAddUpdateTrack.resx">
@@ -360,6 +378,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\teacher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\teacher %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using OnlineExaminationSystem_UtilityLayer;
 using OnlineExaminationSystem_DataAccessLayer.Global;
+using System.Collections.Generic;
 
 namespace OnlineExaminationSystem_DataAccessLayer
 {
-    public class TrackCourseData
+    public class InstructorCourseData
     {
-        public static bool GetTrackCourseInfoByID(int? trackCourseID, ref int trackID, ref int courseID)
+        public static bool GetInstructorCourseInfoByID(int? instructorCourseID, ref int instructorID, ref int courseID)
         {
             bool isFound = false;
 
@@ -19,11 +19,11 @@ namespace OnlineExaminationSystem_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_TrackCourses_GetTrackCourseInfoByID", connection))
+                    using (SqlCommand command = new SqlCommand("SP_InstructorCourses_GetInstructorCourseInfoByID", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@TrackCourseID", (object)trackCourseID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@InstructorCourseID", (object)instructorCourseID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -32,7 +32,7 @@ namespace OnlineExaminationSystem_DataAccessLayer
                                 // The record was found successfully !
                                 isFound = true;
 
-                                trackID = (int)reader["TrackID"];
+                                instructorID = (int)reader["InstructorID"];
 
                                 courseID = (int)reader["CourseID"];
 
@@ -56,7 +56,7 @@ namespace OnlineExaminationSystem_DataAccessLayer
             return isFound;
         }
 
-        public static bool DoesTrackCourseExist(int? trackCourseID)
+        public static bool DoesInstructorCourseExist(int? instructorCourseID)
         {
             bool isFound = false;
 
@@ -66,11 +66,11 @@ namespace OnlineExaminationSystem_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_TrackCourses_CheckIfTrackCourseExists", connection))
+                    using (SqlCommand command = new SqlCommand("SP_InstructorCourses_CheckIfInstructorCourseExists", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@TrackCourseID", (object)trackCourseID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@InstructorCourseID", (object)instructorCourseID ?? DBNull.Value);
 
                         SqlParameter returnValue = new SqlParameter
                         {
@@ -94,9 +94,9 @@ namespace OnlineExaminationSystem_DataAccessLayer
             return isFound;
         }
 
-        public static int? AddNewTrackCourse(int trackID, int courseID)
+        public static int? AddNewInstructorCourse(int instructorID, int courseID)
         {
-            int? trackCourseID = null;
+            int? instructorCourseID = null;
 
             try
             {
@@ -104,23 +104,23 @@ namespace OnlineExaminationSystem_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_TrackCourses_AddNewTrackCourse", connection))
+                    using (SqlCommand command = new SqlCommand("SP_InstructorCourses_AddNewInstructorCourse", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@TrackID", trackID);
+                        command.Parameters.AddWithValue("@InstructorID", instructorID);
                         command.Parameters.AddWithValue("@CourseID", courseID);
 
 
-                        SqlParameter outputTrackCourseIDParameter = new SqlParameter("@NewTrackCourseID", SqlDbType.Int)
+                        SqlParameter outputInstructorCourseIDParameter = new SqlParameter("@NewInstructorCourseID", SqlDbType.Int)
                         {
                             Direction = ParameterDirection.Output
                         };
 
-                        command.Parameters.Add(outputTrackCourseIDParameter);
+                        command.Parameters.Add(outputInstructorCourseIDParameter);
 
                         command.ExecuteNonQuery();
 
-                        trackCourseID = (int)outputTrackCourseIDParameter.Value;
+                        instructorCourseID = (int)outputInstructorCourseIDParameter.Value;
                     }
                 }
             }
@@ -128,12 +128,12 @@ namespace OnlineExaminationSystem_DataAccessLayer
             {
                 ErrorLogger.LogError(ex);
 
-                trackCourseID = null;
+                instructorCourseID = null;
             }
-            return trackCourseID;
+            return instructorCourseID;
         }
 
-        public static bool DeleteTrackCourse(int? trackCourseID)
+        public static bool DeleteInstructorCourse(int? instructorCourseID)
         {
             int rowsAffected = 0;
 
@@ -143,11 +143,11 @@ namespace OnlineExaminationSystem_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_TrackCourses_DeleteTrackCourse", connection))
+                    using (SqlCommand command = new SqlCommand("SP_InstructorCourses_DeleteInstructorCourse", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@TrackCourseID", (object)trackCourseID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@InstructorCourseID", (object)instructorCourseID ?? DBNull.Value);
 
                         rowsAffected = command.ExecuteNonQuery();
                     }
@@ -160,9 +160,9 @@ namespace OnlineExaminationSystem_DataAccessLayer
             return rowsAffected != 0;
         }
 
-        public static DataTable GetAllTrackCourses(int? trackID)
+        public static DataTable GetAllInstructorCourses(int? instructorID)
         {
-            DataTable trackCourses = new DataTable();
+            DataTable instructorCourses = new DataTable();
 
             try
             {
@@ -170,17 +170,17 @@ namespace OnlineExaminationSystem_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_TrackCourses_GetAllTrackCourses", connection))
+                    using (SqlCommand command = new SqlCommand("SP_InstructorCourses_GetAllInstructorCourses", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@TrackID", (object)trackID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@InstructorID", (object)instructorID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)
                             {
-                                trackCourses.Load(reader);
+                                instructorCourses.Load(reader);
                             }
                         }
                     }
@@ -190,12 +190,12 @@ namespace OnlineExaminationSystem_DataAccessLayer
             {
                 ErrorLogger.LogError(ex);
             }
-            return trackCourses;
+            return instructorCourses;
         }
 
-        public static Dictionary<string, int> GetAvailableCoursesForTrack(int? trackID)
+        public static Dictionary<string, int> GetAvailableCoursesForInstructor(int? instructorID)
         {
-            Dictionary<string,int> courses = new Dictionary <string,int>();
+            Dictionary<string, int> courses = new Dictionary<string, int>();
 
             try
             {
@@ -203,18 +203,18 @@ namespace OnlineExaminationSystem_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_TrackCourses_GetAvailableCoursesForTrack", connection))
+                    using (SqlCommand command = new SqlCommand("SP_InstructorCourses_GetAvailableCoursesForInstructor", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@TrackID", (object)trackID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@InstructorID", (object)instructorID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            while(reader.Read())
+                            while (reader.Read())
                             {
                                 courses.Add((string)reader["Name"], (int)reader["Course ID"]);
-                            }            
+                            }
                         }
                     }
                 }
