@@ -1,6 +1,6 @@
-﻿namespace OnlineExaminationSystem.Administrator.Students
+﻿namespace OnlineExaminationSystem.Administrator.Instructors
 {
-    partial class FrmShowStudentInfo
+    partial class FrmShowInstructorInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
+            this.ucInstructorCard1 = new OnlineExaminationSystem.Administrator.Instructors.UserControls.UcInstructorCard();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
-            this.ucStudentCard1 = new OnlineExaminationSystem.Administrator.Students.UserControls.UcStudentCard();
             this.SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -40,6 +40,15 @@
             this.guna2BorderlessForm1.ContainerControl = this;
             this.guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
             this.guna2BorderlessForm1.TransparentWhileDrag = true;
+            // 
+            // ucInstructorCard1
+            // 
+            this.ucInstructorCard1.BackColor = System.Drawing.Color.Transparent;
+            this.ucInstructorCard1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucInstructorCard1.Location = new System.Drawing.Point(0, 0);
+            this.ucInstructorCard1.Name = "ucInstructorCard1";
+            this.ucInstructorCard1.Size = new System.Drawing.Size(1005, 646);
+            this.ucInstructorCard1.TabIndex = 0;
             // 
             // btnClose
             // 
@@ -55,36 +64,25 @@
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Image = global::OnlineExaminationSystem.Properties.Resources.close;
             this.btnClose.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnClose.Location = new System.Drawing.Point(856, 653);
+            this.btnClose.Location = new System.Drawing.Point(854, 652);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(147, 58);
-            this.btnClose.TabIndex = 260;
+            this.btnClose.TabIndex = 261;
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
-            // ucStudentCard1
-            // 
-            this.ucStudentCard1.BackColor = System.Drawing.Color.Transparent;
-            this.ucStudentCard1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucStudentCard1.ForeColor = System.Drawing.Color.Transparent;
-            this.ucStudentCard1.Location = new System.Drawing.Point(0, 0);
-            this.ucStudentCard1.Name = "ucStudentCard1";
-            this.ucStudentCard1.Size = new System.Drawing.Size(1005, 646);
-            this.ucStudentCard1.TabIndex = 0;
-            // 
-            // FrmShowStudentInfo
+            // FrmShowInstructorInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1005, 715);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.ucStudentCard1);
+            this.Controls.Add(this.ucInstructorCard1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmShowStudentInfo";
+            this.Name = "FrmShowInstructorInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmShowStudentInfo";
-            this.Load += new System.EventHandler(this.FrmShowStudentInfo_Load);
+            this.Text = "FrmShowInstructorInfo";
             this.ResumeLayout(false);
 
         }
@@ -92,7 +90,7 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
-        private UserControls.UcStudentCard ucStudentCard1;
+        private UserControls.UcInstructorCard ucInstructorCard1;
         private Guna.UI2.WinForms.Guna2Button btnClose;
     }
 }

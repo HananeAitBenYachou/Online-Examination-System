@@ -89,6 +89,18 @@
     <Compile Include="Administrator\Instructors\FrmAddUpdateInstructor.Designer.cs">
       <DependentUpon>FrmAddUpdateInstructor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\Instructors\FrmShowInstructorInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator\Instructors\FrmShowInstructorInfo.Designer.cs">
+      <DependentUpon>FrmShowInstructorInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\Instructors\UserControls\UcInstructorCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrator\Instructors\UserControls\UcInstructorCard.Designer.cs">
+      <DependentUpon>UcInstructorCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\People\FrmAddUpdatePerson.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +198,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\Instructors\FrmAddUpdateInstructor.resx">
       <DependentUpon>FrmAddUpdateInstructor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\Instructors\FrmShowInstructorInfo.resx">
+      <DependentUpon>FrmShowInstructorInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator\Instructors\UserControls\UcInstructorCard.resx">
+      <DependentUpon>UcInstructorCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator\People\FrmAddUpdatePerson.resx">
       <DependentUpon>FrmAddUpdatePerson.cs</DependentUpon>
