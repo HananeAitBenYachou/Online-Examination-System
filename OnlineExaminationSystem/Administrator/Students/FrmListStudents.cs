@@ -139,7 +139,7 @@ namespace OnlineExaminationSystem.Administrator.Students
             form.ShowDialog();
         }
 
-        private void DeleteTrackToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DeleteInstructorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int? currentStudentID = (int)dgvStudentsList.CurrentRow.Cells[0].Value;
 

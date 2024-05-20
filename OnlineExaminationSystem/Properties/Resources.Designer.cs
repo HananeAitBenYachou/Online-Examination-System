@@ -303,6 +303,16 @@ namespace OnlineExaminationSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap teacher__1_ {
+            get {
+                object obj = ResourceManager.GetObject("teacher (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap teaching {
             get {
                 object obj = ResourceManager.GetObject("teaching", resourceCulture);

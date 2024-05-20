@@ -180,7 +180,7 @@
             this.deleteStudentToolStripMenuItem.Name = "deleteStudentToolStripMenuItem";
             this.deleteStudentToolStripMenuItem.Size = new System.Drawing.Size(269, 36);
             this.deleteStudentToolStripMenuItem.Text = "Delete Student";
-            this.deleteStudentToolStripMenuItem.Click += new System.EventHandler(this.DeleteTrackToolStripMenuItem_Click);
+            this.deleteStudentToolStripMenuItem.Click += new System.EventHandler(this.DeleteInstructorToolStripMenuItem_Click);
             // 
             // btnAddNewStudent
             // 
