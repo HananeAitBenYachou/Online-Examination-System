@@ -1,12 +1,5 @@
-﻿using OnlineExaminationSystem.Administrator;
-using OnlineExaminationSystem.Administrator.Courses;
-using OnlineExaminationSystem.Administrator.Instructors;
-using OnlineExaminationSystem.Administrator.Instructors.InstructorCourses;
-using OnlineExaminationSystem.Administrator.Instructors.UserControls;
-using OnlineExaminationSystem.Administrator.People;
-using OnlineExaminationSystem.Administrator.Students;
-using OnlineExaminationSystem.Administrator.TrackCourses;
-using OnlineExaminationSystem.Administrator.Tracks;
+﻿
+using OnlineExaminationSystem.Instructor_system.Questions;
 using System;
 using System.Windows.Forms;
 
@@ -26,7 +19,7 @@ namespace OnlineExaminationSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new FrmAssignCourseToInstructor(1));
+            Application.Run(new FrmAddUpdateQuestion(4));
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]

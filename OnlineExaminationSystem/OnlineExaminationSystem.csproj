@@ -53,214 +53,223 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administrator\Courses\FrmAddUpdateCourse.cs">
+    <Compile Include="Administrator-system\Courses\FrmAddUpdateCourse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Courses\FrmAddUpdateCourse.Designer.cs">
+    <Compile Include="Administrator-system\Courses\FrmAddUpdateCourse.Designer.cs">
       <DependentUpon>FrmAddUpdateCourse.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Courses\FrmListCourses.cs">
+    <Compile Include="Administrator-system\Courses\FrmListCourses.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Courses\FrmListCourses.Designer.cs">
+    <Compile Include="Administrator-system\Courses\FrmListCourses.Designer.cs">
       <DependentUpon>FrmListCourses.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Courses\FrmShowCourseInfo.cs">
+    <Compile Include="Administrator-system\Courses\FrmShowCourseInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Courses\FrmShowCourseInfo.Designer.cs">
+    <Compile Include="Administrator-system\Courses\FrmShowCourseInfo.Designer.cs">
       <DependentUpon>FrmShowCourseInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Courses\UserControls\UcCourseCard.cs">
+    <Compile Include="Administrator-system\Courses\UserControls\UcCourseCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrator\Courses\UserControls\UcCourseCard.Designer.cs">
+    <Compile Include="Administrator-system\Courses\UserControls\UcCourseCard.Designer.cs">
       <DependentUpon>UcCourseCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\FrmHome.cs">
+    <Compile Include="Administrator-system\FrmHome.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\FrmHome.Designer.cs">
+    <Compile Include="Administrator-system\FrmHome.Designer.cs">
       <DependentUpon>FrmHome.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Instructors\FrmAddUpdateInstructor.cs">
+    <Compile Include="Administrator-system\Instructors\FrmAddUpdateInstructor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Instructors\FrmAddUpdateInstructor.Designer.cs">
+    <Compile Include="Administrator-system\Instructors\FrmAddUpdateInstructor.Designer.cs">
       <DependentUpon>FrmAddUpdateInstructor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Instructors\FrmListInstructors.cs">
+    <Compile Include="Administrator-system\Instructors\FrmListInstructors.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Instructors\FrmListInstructors.Designer.cs">
+    <Compile Include="Administrator-system\Instructors\FrmListInstructors.Designer.cs">
       <DependentUpon>FrmListInstructors.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Instructors\FrmShowInstructorInfo.cs">
+    <Compile Include="Administrator-system\Instructors\FrmShowInstructorInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Instructors\FrmShowInstructorInfo.Designer.cs">
+    <Compile Include="Administrator-system\Instructors\FrmShowInstructorInfo.Designer.cs">
       <DependentUpon>FrmShowInstructorInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Instructors\InstructorCourses\FrmAssignCourseToInstructor.cs">
+    <Compile Include="Administrator-system\Instructors\InstructorCourses\FrmAssignCourseToInstructor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Instructors\InstructorCourses\FrmAssignCourseToInstructor.Designer.cs">
+    <Compile Include="Administrator-system\Instructors\InstructorCourses\FrmAssignCourseToInstructor.Designer.cs">
       <DependentUpon>FrmAssignCourseToInstructor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Instructors\UserControls\UcInstructorCard.cs">
+    <Compile Include="Administrator-system\Instructors\UserControls\UcInstructorCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrator\Instructors\UserControls\UcInstructorCard.Designer.cs">
+    <Compile Include="Administrator-system\Instructors\UserControls\UcInstructorCard.Designer.cs">
       <DependentUpon>UcInstructorCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\People\FrmAddUpdatePerson.cs">
+    <Compile Include="Administrator-system\People\FrmAddUpdatePerson.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\People\FrmAddUpdatePerson.Designer.cs">
+    <Compile Include="Administrator-system\People\FrmAddUpdatePerson.Designer.cs">
       <DependentUpon>FrmAddUpdatePerson.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\People\UserControls\UcPersonCard.cs">
+    <Compile Include="Administrator-system\People\UserControls\UcPersonCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrator\People\UserControls\UcPersonCard.Designer.cs">
+    <Compile Include="Administrator-system\People\UserControls\UcPersonCard.Designer.cs">
       <DependentUpon>UcPersonCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\People\UserControls\UcPersonCardWithFilter.cs">
+    <Compile Include="Administrator-system\People\UserControls\UcPersonCardWithFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrator\People\UserControls\UcPersonCardWithFilter.Designer.cs">
+    <Compile Include="Administrator-system\People\UserControls\UcPersonCardWithFilter.Designer.cs">
       <DependentUpon>UcPersonCardWithFilter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Students\FrmAddUpdateStudent.cs">
+    <Compile Include="Administrator-system\Students\FrmAddUpdateStudent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Students\FrmAddUpdateStudent.Designer.cs">
+    <Compile Include="Administrator-system\Students\FrmAddUpdateStudent.Designer.cs">
       <DependentUpon>FrmAddUpdateStudent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Students\FrmListStudents.cs">
+    <Compile Include="Administrator-system\Students\FrmListStudents.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Students\FrmListStudents.Designer.cs">
+    <Compile Include="Administrator-system\Students\FrmListStudents.Designer.cs">
       <DependentUpon>FrmListStudents.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Students\FrmShowStudentInfo.cs">
+    <Compile Include="Administrator-system\Students\FrmShowStudentInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Students\FrmShowStudentInfo.Designer.cs">
+    <Compile Include="Administrator-system\Students\FrmShowStudentInfo.Designer.cs">
       <DependentUpon>FrmShowStudentInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Students\UserControls\UcStudentCard.cs">
+    <Compile Include="Administrator-system\Students\UserControls\UcStudentCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrator\Students\UserControls\UcStudentCard.Designer.cs">
+    <Compile Include="Administrator-system\Students\UserControls\UcStudentCard.Designer.cs">
       <DependentUpon>UcStudentCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Tracks\TrackCourses\FrmAddCourseToTrack.cs">
+    <Compile Include="Administrator-system\Tracks\TrackCourses\FrmAddCourseToTrack.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Tracks\TrackCourses\FrmAddCourseToTrack.Designer.cs">
+    <Compile Include="Administrator-system\Tracks\TrackCourses\FrmAddCourseToTrack.Designer.cs">
       <DependentUpon>FrmAddCourseToTrack.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Tracks\TrackCourses\FrmShowTrackCourses.cs">
+    <Compile Include="Administrator-system\Tracks\TrackCourses\FrmShowTrackCourses.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Tracks\TrackCourses\FrmShowTrackCourses.Designer.cs">
+    <Compile Include="Administrator-system\Tracks\TrackCourses\FrmShowTrackCourses.Designer.cs">
       <DependentUpon>FrmShowTrackCourses.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Tracks\FrmAddUpdateTrack.cs">
+    <Compile Include="Administrator-system\Tracks\FrmAddUpdateTrack.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Tracks\FrmAddUpdateTrack.Designer.cs">
+    <Compile Include="Administrator-system\Tracks\FrmAddUpdateTrack.Designer.cs">
       <DependentUpon>FrmAddUpdateTrack.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Tracks\FrmListTracks.cs">
+    <Compile Include="Administrator-system\Tracks\FrmListTracks.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Tracks\FrmListTracks.Designer.cs">
+    <Compile Include="Administrator-system\Tracks\FrmListTracks.Designer.cs">
       <DependentUpon>FrmListTracks.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Tracks\FrmShowTrackInfo.cs">
+    <Compile Include="Administrator-system\Tracks\FrmShowTrackInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrator\Tracks\FrmShowTrackInfo.Designer.cs">
+    <Compile Include="Administrator-system\Tracks\FrmShowTrackInfo.Designer.cs">
       <DependentUpon>FrmShowTrackInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\Tracks\UserControls\UcTrackCard.cs">
+    <Compile Include="Administrator-system\Tracks\UserControls\UcTrackCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrator\Tracks\UserControls\UcTrackCard.Designer.cs">
+    <Compile Include="Administrator-system\Tracks\UserControls\UcTrackCard.Designer.cs">
       <DependentUpon>UcTrackCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instructor-system\Questions\FrmAddUpdateQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instructor-system\Questions\FrmAddUpdateQuestion.Designer.cs">
+      <DependentUpon>FrmAddUpdateQuestion.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Administrator\Courses\FrmAddUpdateCourse.resx">
+    <EmbeddedResource Include="Administrator-system\Courses\FrmAddUpdateCourse.resx">
       <DependentUpon>FrmAddUpdateCourse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Courses\FrmListCourses.resx">
+    <EmbeddedResource Include="Administrator-system\Courses\FrmListCourses.resx">
       <DependentUpon>FrmListCourses.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Courses\FrmShowCourseInfo.resx">
+    <EmbeddedResource Include="Administrator-system\Courses\FrmShowCourseInfo.resx">
       <DependentUpon>FrmShowCourseInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Courses\UserControls\UcCourseCard.resx">
+    <EmbeddedResource Include="Administrator-system\Courses\UserControls\UcCourseCard.resx">
       <DependentUpon>UcCourseCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\FrmHome.resx">
+    <EmbeddedResource Include="Administrator-system\FrmHome.resx">
       <DependentUpon>FrmHome.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Instructors\FrmAddUpdateInstructor.resx">
+    <EmbeddedResource Include="Administrator-system\Instructors\FrmAddUpdateInstructor.resx">
       <DependentUpon>FrmAddUpdateInstructor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Instructors\FrmListInstructors.resx">
+    <EmbeddedResource Include="Administrator-system\Instructors\FrmListInstructors.resx">
       <DependentUpon>FrmListInstructors.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Instructors\FrmShowInstructorInfo.resx">
+    <EmbeddedResource Include="Administrator-system\Instructors\FrmShowInstructorInfo.resx">
       <DependentUpon>FrmShowInstructorInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Instructors\InstructorCourses\FrmAssignCourseToInstructor.resx">
+    <EmbeddedResource Include="Administrator-system\Instructors\InstructorCourses\FrmAssignCourseToInstructor.resx">
       <DependentUpon>FrmAssignCourseToInstructor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Instructors\UserControls\UcInstructorCard.resx">
+    <EmbeddedResource Include="Administrator-system\Instructors\UserControls\UcInstructorCard.resx">
       <DependentUpon>UcInstructorCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\People\FrmAddUpdatePerson.resx">
+    <EmbeddedResource Include="Administrator-system\People\FrmAddUpdatePerson.resx">
       <DependentUpon>FrmAddUpdatePerson.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\People\UserControls\UcPersonCard.resx">
+    <EmbeddedResource Include="Administrator-system\People\UserControls\UcPersonCard.resx">
       <DependentUpon>UcPersonCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\People\UserControls\UcPersonCardWithFilter.resx">
+    <EmbeddedResource Include="Administrator-system\People\UserControls\UcPersonCardWithFilter.resx">
       <DependentUpon>UcPersonCardWithFilter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Students\FrmAddUpdateStudent.resx">
+    <EmbeddedResource Include="Administrator-system\Students\FrmAddUpdateStudent.resx">
       <DependentUpon>FrmAddUpdateStudent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Students\FrmListStudents.resx">
+    <EmbeddedResource Include="Administrator-system\Students\FrmListStudents.resx">
       <DependentUpon>FrmListStudents.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Students\FrmShowStudentInfo.resx">
+    <EmbeddedResource Include="Administrator-system\Students\FrmShowStudentInfo.resx">
       <DependentUpon>FrmShowStudentInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Students\UserControls\UcStudentCard.resx">
+    <EmbeddedResource Include="Administrator-system\Students\UserControls\UcStudentCard.resx">
       <DependentUpon>UcStudentCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Tracks\TrackCourses\FrmAddCourseToTrack.resx">
+    <EmbeddedResource Include="Administrator-system\Tracks\TrackCourses\FrmAddCourseToTrack.resx">
       <DependentUpon>FrmAddCourseToTrack.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Tracks\TrackCourses\FrmShowTrackCourses.resx">
+    <EmbeddedResource Include="Administrator-system\Tracks\TrackCourses\FrmShowTrackCourses.resx">
       <DependentUpon>FrmShowTrackCourses.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Tracks\FrmAddUpdateTrack.resx">
+    <EmbeddedResource Include="Administrator-system\Tracks\FrmAddUpdateTrack.resx">
       <DependentUpon>FrmAddUpdateTrack.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Tracks\FrmListTracks.resx">
+    <EmbeddedResource Include="Administrator-system\Tracks\FrmListTracks.resx">
       <DependentUpon>FrmListTracks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Tracks\FrmShowTrackInfo.resx">
+    <EmbeddedResource Include="Administrator-system\Tracks\FrmShowTrackInfo.resx">
       <DependentUpon>FrmShowTrackInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrator\Tracks\UserControls\UcTrackCard.resx">
+    <EmbeddedResource Include="Administrator-system\Tracks\UserControls\UcTrackCard.resx">
       <DependentUpon>UcTrackCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instructor-system\Questions\FrmAddUpdateQuestion.resx">
+      <DependentUpon>FrmAddUpdateQuestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -298,7 +307,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Instructor\" />
     <Folder Include="Student\" />
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +389,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\teacher %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\conversation1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,7 +9,7 @@ namespace OnlineExamination_BusinessLayer
         private enum EnMode { AddNew = 0, Update = 1 };
         private EnMode _mode;
 
-        public enum EnFilterBy { StudentID = 0 , PersonID = 1}
+        public enum EnFilterBy { StudentID = 0, PersonID = 1 }
         public int? StudentID { get; private set; }
         public int PersonID { get; set; }
         public DateTime StartDate { get; set; }
@@ -65,7 +65,7 @@ namespace OnlineExamination_BusinessLayer
             bool isMarkedForDelete = default;
             int? trackID = default;
 
-            bool isFound = StudentData.GetStudentInfoByPersonID(personID , ref studentID, ref startDate, ref graduationDate, ref isMarkedForDelete, ref trackID);
+            bool isFound = StudentData.GetStudentInfoByPersonID(personID, ref studentID, ref startDate, ref graduationDate, ref isMarkedForDelete, ref trackID);
 
             if (isFound)
                 return new Student(studentID, personID, startDate, graduationDate, isMarkedForDelete, trackID);
@@ -73,7 +73,7 @@ namespace OnlineExamination_BusinessLayer
                 return null;
         }
 
-        public static Student Find<T>(T filterValue , EnFilterBy filterBy)
+        public static Student Find<T>(T filterValue, EnFilterBy filterBy)
         {
             switch (filterBy)
             {
@@ -88,7 +88,7 @@ namespace OnlineExamination_BusinessLayer
             }
         }
 
-        public static bool DoesStudentExist<T>(T filterValue , EnFilterBy filterBy)
+        public static bool DoesStudentExist<T>(T filterValue, EnFilterBy filterBy)
         {
             if (filterValue == null)
                 return false;

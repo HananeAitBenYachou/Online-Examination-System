@@ -1,6 +1,6 @@
-using System;
 using OnlineExaminationSystem_DataAccessLayer.Global;
 using OnlineExaminationSystem_UtilityLayer;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -69,7 +69,7 @@ namespace OnlineExamination_DataAccessLayer
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@Name",name);
+                        command.Parameters.AddWithValue("@Name", name);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -154,7 +154,7 @@ namespace OnlineExamination_DataAccessLayer
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@Name",name);
+                        command.Parameters.AddWithValue("@Name", name);
 
                         SqlParameter returnValue = new SqlParameter
                         {

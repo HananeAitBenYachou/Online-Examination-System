@@ -1,4 +1,5 @@
 using OnlineExamination_DataAccessLayer;
+using System.Collections.Generic;
 using System.Data;
 
 namespace OnlineExamination_BusinessLayer
@@ -24,7 +25,7 @@ namespace OnlineExamination_BusinessLayer
             Duration = default;
             Prerequisites = null;
         }
-        private Course(int? courseID, string name, string description, 
+        private Course(int? courseID, string name, string description,
                        float credits, short duration, string prerequisites)
         {
             _mode = EnMode.Update;
@@ -48,7 +49,22 @@ namespace OnlineExamination_BusinessLayer
                                                         ref credits, ref duration, ref prerequisites);
 
 
-            return isFound ? new Course(courseID, name, description, credits, duration, prerequisites) : null;         
+            return isFound ? new Course(courseID, name, description, credits, duration, prerequisites) : null;
+        }
+
+        public static Course Find(string name)
+        {
+            int? courseID = default;
+            string description = default;
+            float credits = default;
+            short duration = default;
+            string prerequisites = default;
+
+            bool isFound = CourseData.GetCourseInfoByName(name, ref courseID, ref description,
+                                                        ref credits, ref duration, ref prerequisites);
+
+
+            return isFound ? new Course(courseID, name, description, credits, duration, prerequisites) : null;
         }
 
         public static bool DoesCourseExist(int? courseID)
@@ -100,5 +116,11 @@ namespace OnlineExamination_BusinessLayer
         {
             return CourseData.GetAllCourses();
         }
+
+        public static List<string> GetAllCoursesNames()
+        {
+            return CourseData.GetAllCoursesNames();
+        }
+
     }
 }

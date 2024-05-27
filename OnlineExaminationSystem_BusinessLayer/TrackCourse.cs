@@ -1,10 +1,6 @@
 ﻿using OnlineExaminationSystem_DataAccessLayer;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineExaminationSystem_BusinessLayer
 {
@@ -66,7 +62,7 @@ namespace OnlineExaminationSystem_BusinessLayer
             return TrackCourseData.GetAllTrackCourses(trackID);
         }
 
-        public static Dictionary<string,int> GetAvailableCoursesForTrack(int? trackID)
+        public static Dictionary<string, int> GetAvailableCoursesForTrack(int? trackID)
         {
             return TrackCourseData.GetAvailableCoursesForTrack(trackID);
         }

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
+﻿using OnlineExaminationSystem_DataAccessLayer.Global;
 using OnlineExaminationSystem_UtilityLayer;
-using OnlineExaminationSystem_DataAccessLayer.Global;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace OnlineExaminationSystem_DataAccessLayer
 {
@@ -195,7 +195,7 @@ namespace OnlineExaminationSystem_DataAccessLayer
 
         public static Dictionary<string, int> GetAvailableCoursesForTrack(int? trackID)
         {
-            Dictionary<string,int> courses = new Dictionary <string,int>();
+            Dictionary<string, int> courses = new Dictionary<string, int>();
 
             try
             {
@@ -211,10 +211,10 @@ namespace OnlineExaminationSystem_DataAccessLayer
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            while(reader.Read())
+                            while (reader.Read())
                             {
                                 courses.Add((string)reader["Name"], (int)reader["Course ID"]);
-                            }            
+                            }
                         }
                     }
                 }

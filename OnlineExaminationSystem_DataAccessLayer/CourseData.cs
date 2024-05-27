@@ -1,6 +1,7 @@
-using System;
 using OnlineExaminationSystem_DataAccessLayer.Global;
 using OnlineExaminationSystem_UtilityLayer;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -32,6 +33,59 @@ namespace OnlineExamination_DataAccessLayer
                                 isFound = true;
 
                                 name = (string)reader["Name"];
+
+                                description = (reader["Description"] != DBNull.Value) ? (string)reader["Description"] : null;
+
+                                credits = Convert.ToSingle(reader["Credits"]);
+
+                                duration = (short)reader["Duration"];
+
+                                prerequisites = (reader["Prerequisites"] != DBNull.Value) ? (string)reader["Prerequisites"] : null;
+
+                            }
+
+                            else
+                            {
+                                // The record wasn't found !
+                                isFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+
+                isFound = false;
+            }
+            return isFound;
+        }
+
+        public static bool GetCourseInfoByName(string name, ref int? courseID, ref string description, ref float credits, ref short duration, ref string prerequisites)
+        {
+            bool isFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Courses_GetCourseInfoByName", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@Name", name);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found successfully !
+                                isFound = true;
+
+                                courseID = (reader["CourseID"] != DBNull.Value) ? (int?)reader["CourseID"] : null;
 
                                 description = (reader["Description"] != DBNull.Value) ? (string)reader["Description"] : null;
 
@@ -113,7 +167,7 @@ namespace OnlineExamination_DataAccessLayer
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@Name",name);
+                        command.Parameters.AddWithValue("@Name", name);
 
                         SqlParameter returnValue = new SqlParameter
                         {
@@ -271,5 +325,36 @@ namespace OnlineExamination_DataAccessLayer
             return courses;
         }
 
+        public static List<string> GetAllCoursesNames()
+        {
+            List<string> coursesNames = new List<string>();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Courses_GetAllCoursesNames", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                coursesNames.Add(reader.GetString(0));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+            }
+
+            return coursesNames;
+        }
     }
 }

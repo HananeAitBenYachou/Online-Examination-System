@@ -1,6 +1,6 @@
-using System;
 using OnlineExaminationSystem_DataAccessLayer.Global;
 using OnlineExaminationSystem_UtilityLayer;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -63,7 +63,7 @@ namespace OnlineExamination_DataAccessLayer
             return isFound;
         }
 
-        public static bool GetInstructorInfoByPersonID(int personID , ref int? instructorID, ref DateTime hireDate,
+        public static bool GetInstructorInfoByPersonID(int personID, ref int? instructorID, ref DateTime hireDate,
                                          ref DateTime? exitDate, ref float monthlySalary,
                                          ref bool isMarkedForDelete)
         {
@@ -170,7 +170,7 @@ namespace OnlineExamination_DataAccessLayer
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@PersonID",personID);
+                        command.Parameters.AddWithValue("@PersonID", personID);
 
                         SqlParameter returnValue = new SqlParameter
                         {
@@ -237,7 +237,7 @@ namespace OnlineExamination_DataAccessLayer
             return instructorID;
         }
 
-        public static bool UpdateInstructorInfo(int? instructorID, int personID, DateTime hireDate, 
+        public static bool UpdateInstructorInfo(int? instructorID, int personID, DateTime hireDate,
                                                 DateTime? exitDate, float monthlySalary, bool isMarkedForDelete)
         {
             int rowsAffected = 0;

@@ -62,7 +62,7 @@ namespace OnlineExamination_BusinessLayer
             float monthlySalary = default;
             bool isMarkedForDelete = default;
 
-            bool isFound = InstructorData.GetInstructorInfoByPersonID(personID , ref instructorID, ref hireDate, ref exitDate, ref monthlySalary, ref isMarkedForDelete);
+            bool isFound = InstructorData.GetInstructorInfoByPersonID(personID, ref instructorID, ref hireDate, ref exitDate, ref monthlySalary, ref isMarkedForDelete);
 
             if (isFound)
                 return new Instructor(instructorID, personID, hireDate, exitDate, monthlySalary, isMarkedForDelete);

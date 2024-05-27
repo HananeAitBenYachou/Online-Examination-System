@@ -47,6 +47,8 @@
     <Compile Include="InstructorCourse.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Question.cs" />
+    <Compile Include="QuestionChoice.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Track.cs" />
     <Compile Include="TrackCourse.cs" />

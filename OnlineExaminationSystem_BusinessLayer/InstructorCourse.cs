@@ -1,14 +1,10 @@
 ﻿using OnlineExaminationSystem_DataAccessLayer;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 namespace OnlineExaminationSystem_BusinessLayer
 {
     public class InstructorCourse
-    { 
+    {
         public int? InstructorCourseID { get; private set; }
         public int InstructorID { get; set; }
         public int CourseID { get; set; }

@@ -6,15 +6,15 @@ namespace OnlineExamination_BusinessLayer
 {
     public class Person
     {
-        private enum EnMode : byte 
+        private enum EnMode : byte
         { AddNew = 0, Update = 1 };
         public enum EnFilterBy : byte
         {
-            PersonID,NationalNo,Email
+            PersonID, NationalNo, Email
         }
         public enum EnGender : byte
         {
-            Male , Female 
+            Male, Female
         }
 
         private EnMode _mode;
@@ -23,7 +23,7 @@ namespace OnlineExamination_BusinessLayer
         public string LastName { get; set; }
         public string NationalNo { get; set; }
         public char Gender { get; set; }
-        public EnGender GenderText => ( Gender == 'M' ? EnGender.Male : EnGender.Female );
+        public EnGender GenderText => (Gender == 'M' ? EnGender.Male : EnGender.Female);
         public DateTime BirthDate { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
@@ -71,13 +71,13 @@ namespace OnlineExamination_BusinessLayer
             string phoneNumber = default;
             string personalImagePath = default;
 
-            bool isFound = PersonData.GetPersonInfoByID(personID, ref firstName, ref lastName, 
-                                                        ref nationalNo, ref gender, ref birthDate, 
+            bool isFound = PersonData.GetPersonInfoByID(personID, ref firstName, ref lastName,
+                                                        ref nationalNo, ref gender, ref birthDate,
                                                         ref email, ref address, ref phoneNumber, ref personalImagePath);
 
             if (isFound)
                 return new Person(personID, firstName, lastName,
-                                  nationalNo, gender, birthDate, 
+                                  nationalNo, gender, birthDate,
                                   email, address, phoneNumber, personalImagePath);
             else
                 return null;
@@ -95,7 +95,7 @@ namespace OnlineExamination_BusinessLayer
             string phoneNumber = default;
             string personalImagePath = default;
 
-            bool isFound = PersonData.GetPersonInfoByNationalNo(nationalNo , ref personID, ref firstName, 
+            bool isFound = PersonData.GetPersonInfoByNationalNo(nationalNo, ref personID, ref firstName,
                                                                 ref lastName, ref gender, ref birthDate,
                                                                 ref email, ref address, ref phoneNumber, ref personalImagePath);
             if (isFound)
@@ -106,12 +106,12 @@ namespace OnlineExamination_BusinessLayer
                 return null;
         }
 
-        public static bool DoesPersonExist<T>(T filterValue , EnFilterBy filterBy)
+        public static bool DoesPersonExist<T>(T filterValue, EnFilterBy filterBy)
         {
-            if(filterValue == null)
+            if (filterValue == null)
                 return false;
 
-            switch(filterBy)
+            switch (filterBy)
             {
                 case EnFilterBy.PersonID:
                     return PersonData.DoesPersonExistByID(Convert.ToInt32(filterValue));
@@ -126,19 +126,19 @@ namespace OnlineExamination_BusinessLayer
                     return false;
             }
         }
-  
+
         private bool AddNewPerson()
         {
             PersonID = PersonData.AddNewPerson(FirstName, LastName, NationalNo,
-                                               Gender, BirthDate, Email, 
+                                               Gender, BirthDate, Email,
                                                Address, PhoneNumber, PersonalImagePath);
             return PersonID.HasValue;
         }
 
         private bool UpdatePerson()
         {
-            return PersonData.UpdatePersonInfo(PersonID, FirstName, LastName, 
-                                               NationalNo, Gender, BirthDate, 
+            return PersonData.UpdatePersonInfo(PersonID, FirstName, LastName,
+                                               NationalNo, Gender, BirthDate,
                                                Email, Address, PhoneNumber, PersonalImagePath);
         }
 

@@ -89,7 +89,7 @@ namespace OnlineExamination_DataAccessLayer
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@NationalNo",nationalNo);
+                        command.Parameters.AddWithValue("@NationalNo", nationalNo);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -188,7 +188,7 @@ namespace OnlineExamination_DataAccessLayer
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@Email",email);
+                        command.Parameters.AddWithValue("@Email", email);
 
                         SqlParameter returnValue = new SqlParameter
                         {
@@ -298,8 +298,8 @@ namespace OnlineExamination_DataAccessLayer
             return personID;
         }
 
-        public static bool UpdatePersonInfo(int? personID, string firstName, string lastName, 
-                                            string nationalNo, char gender, DateTime birthDate, 
+        public static bool UpdatePersonInfo(int? personID, string firstName, string lastName,
+                                            string nationalNo, char gender, DateTime birthDate,
                                             string email, string address, string phoneNumber, string personalImagePath)
         {
             int rowsAffected = 0;

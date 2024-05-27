@@ -1,6 +1,6 @@
-using System;
 using OnlineExaminationSystem_DataAccessLayer.Global;
 using OnlineExaminationSystem_UtilityLayer;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -61,7 +61,7 @@ namespace OnlineExamination_DataAccessLayer
             return isFound;
         }
 
-        public static bool GetStudentInfoByPersonID(int personID , ref int? studentID, ref DateTime startDate, ref DateTime graduationDate, ref bool isMarkedForDelete, ref int? trackID)
+        public static bool GetStudentInfoByPersonID(int personID, ref int? studentID, ref DateTime startDate, ref DateTime graduationDate, ref bool isMarkedForDelete, ref int? trackID)
         {
             bool isFound = false;
 
@@ -75,7 +75,7 @@ namespace OnlineExamination_DataAccessLayer
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@PersonID",personID);
+                        command.Parameters.AddWithValue("@PersonID", personID);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
