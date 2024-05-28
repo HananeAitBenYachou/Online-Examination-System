@@ -5,17 +5,17 @@ namespace OnlineExaminationSystem.Administrator.Courses
 {
     public partial class FrmShowCourseInfo : Form
     {
-        private readonly int? courseID = null;
+        private readonly int? _courseID = null;
 
         public FrmShowCourseInfo(int? courseID)
         {
             InitializeComponent();
-            this.courseID = courseID;
+            this._courseID = courseID;
         }
 
         private void FrmShowCourseInfo_Load(object sender, EventArgs e)
         {
-            if (!ucCourseCard1.LoadCourseData(courseID))
+            if (!ucCourseCard1.LoadCourseData(_courseID))
                 btnClose.PerformClick();
         }
 

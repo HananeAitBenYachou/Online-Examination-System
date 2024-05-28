@@ -98,7 +98,7 @@
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Image = global::OnlineExaminationSystem.Properties.Resources.save;
             this.btnSave.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnSave.Location = new System.Drawing.Point(701, 625);
+            this.btnSave.Location = new System.Drawing.Point(701, 547);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(147, 58);
             this.btnSave.TabIndex = 343;
@@ -119,7 +119,7 @@
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Image = global::OnlineExaminationSystem.Properties.Resources.close;
             this.btnClose.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnClose.Location = new System.Drawing.Point(861, 625);
+            this.btnClose.Location = new System.Drawing.Point(861, 547);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(147, 58);
             this.btnClose.TabIndex = 342;
@@ -132,7 +132,7 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(590, 445);
+            this.label9.Location = new System.Drawing.Point(590, 391);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(127, 21);
             this.label9.TabIndex = 341;
@@ -149,7 +149,7 @@
             this.cbModelAnswer.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold);
             this.cbModelAnswer.ForeColor = System.Drawing.Color.Black;
             this.cbModelAnswer.ItemHeight = 35;
-            this.cbModelAnswer.Location = new System.Drawing.Point(772, 437);
+            this.cbModelAnswer.Location = new System.Drawing.Point(772, 383);
             this.cbModelAnswer.Name = "cbModelAnswer";
             this.cbModelAnswer.Size = new System.Drawing.Size(148, 41);
             this.cbModelAnswer.TabIndex = 340;
@@ -266,12 +266,27 @@
             this.nudQuestionMark.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.nudQuestionMark.DecimalPlaces = 2;
             this.nudQuestionMark.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudQuestionMark.Location = new System.Drawing.Point(296, 437);
+            this.nudQuestionMark.Location = new System.Drawing.Point(296, 383);
             this.nudQuestionMark.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.nudQuestionMark.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudQuestionMark.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudQuestionMark.Name = "nudQuestionMark";
             this.nudQuestionMark.Size = new System.Drawing.Size(148, 41);
             this.nudQuestionMark.TabIndex = 333;
             this.nudQuestionMark.UpDownButtonFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(129)))), ((int)(((byte)(100)))));
+            this.nudQuestionMark.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // txtQuestionText
             // 
@@ -287,7 +302,7 @@
             this.txtQuestionText.ForeColor = System.Drawing.Color.Black;
             this.txtQuestionText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtQuestionText.IconRightSize = new System.Drawing.Size(28, 28);
-            this.txtQuestionText.Location = new System.Drawing.Point(150, 208);
+            this.txtQuestionText.Location = new System.Drawing.Point(150, 173);
             this.txtQuestionText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtQuestionText.Name = "txtQuestionText";
             this.txtQuestionText.PasswordChar = '\0';
@@ -303,7 +318,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(18, 219);
+            this.label5.Location = new System.Drawing.Point(18, 184);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(118, 21);
             this.label5.TabIndex = 331;
@@ -315,7 +330,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(590, 380);
+            this.label2.Location = new System.Drawing.Point(590, 326);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(168, 21);
             this.label2.TabIndex = 329;
@@ -336,7 +351,7 @@
             "Easy",
             "Medium",
             "Hard"});
-            this.cbQuestionComplexity.Location = new System.Drawing.Point(772, 372);
+            this.cbQuestionComplexity.Location = new System.Drawing.Point(772, 318);
             this.cbQuestionComplexity.Name = "cbQuestionComplexity";
             this.cbQuestionComplexity.Size = new System.Drawing.Size(148, 41);
             this.cbQuestionComplexity.TabIndex = 328;
@@ -347,7 +362,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(154, 380);
+            this.label1.Location = new System.Drawing.Point(154, 326);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(121, 21);
             this.label1.TabIndex = 327;
@@ -367,7 +382,7 @@
             this.cbQuestionTypes.Items.AddRange(new object[] {
             "MCQ",
             "TF"});
-            this.cbQuestionTypes.Location = new System.Drawing.Point(296, 372);
+            this.cbQuestionTypes.Location = new System.Drawing.Point(296, 318);
             this.cbQuestionTypes.Name = "cbQuestionTypes";
             this.cbQuestionTypes.Size = new System.Drawing.Size(148, 41);
             this.cbQuestionTypes.TabIndex = 326;
@@ -379,7 +394,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(324, 144);
+            this.label3.Location = new System.Drawing.Point(324, 120);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 21);
             this.label3.TabIndex = 325;
@@ -396,7 +411,7 @@
             this.cbCourses.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold);
             this.cbCourses.ForeColor = System.Drawing.Color.Black;
             this.cbCourses.ItemHeight = 35;
-            this.cbCourses.Location = new System.Drawing.Point(409, 136);
+            this.cbCourses.Location = new System.Drawing.Point(409, 112);
             this.cbCourses.Name = "cbCourses";
             this.cbCourses.Size = new System.Drawing.Size(287, 41);
             this.cbCourses.TabIndex = 324;
@@ -434,7 +449,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(154, 445);
+            this.label4.Location = new System.Drawing.Point(154, 391);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(125, 21);
             this.label4.TabIndex = 330;
@@ -448,7 +463,7 @@
             this.pnlQuestionChoices.Controls.Add(this.label7);
             this.pnlQuestionChoices.Controls.Add(this.txtChoice2);
             this.pnlQuestionChoices.Controls.Add(this.label8);
-            this.pnlQuestionChoices.Location = new System.Drawing.Point(15, 501);
+            this.pnlQuestionChoices.Location = new System.Drawing.Point(15, 446);
             this.pnlQuestionChoices.Name = "pnlQuestionChoices";
             this.pnlQuestionChoices.Size = new System.Drawing.Size(996, 91);
             this.pnlQuestionChoices.TabIndex = 344;
@@ -458,7 +473,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1020, 700);
+            this.ClientSize = new System.Drawing.Size(1020, 613);
             this.Controls.Add(this.pnlQuestionChoices);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);

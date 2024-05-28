@@ -197,6 +197,18 @@
     <Compile Include="Instructor-system\Questions\FrmAddUpdateQuestion.Designer.cs">
       <DependentUpon>FrmAddUpdateQuestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Instructor-system\Questions\FrmShowQuestionInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instructor-system\Questions\FrmShowQuestionInfo.Designer.cs">
+      <DependentUpon>FrmShowQuestionInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instructor-system\Questions\UserControls\UcQuestionCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Instructor-system\Questions\UserControls\UcQuestionCard.Designer.cs">
+      <DependentUpon>UcQuestionCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Administrator-system\Courses\FrmAddUpdateCourse.resx">
@@ -270,6 +282,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Instructor-system\Questions\FrmAddUpdateQuestion.resx">
       <DependentUpon>FrmAddUpdateQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instructor-system\Questions\FrmShowQuestionInfo.resx">
+      <DependentUpon>FrmShowQuestionInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instructor-system\Questions\UserControls\UcQuestionCard.resx">
+      <DependentUpon>UcQuestionCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
