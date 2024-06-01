@@ -5,22 +5,22 @@ namespace OnlineExamination_BusinessLayer
 {
     public class Track
     {
-        private enum EnMode { AddNew = 0, Update = 1 };
-        private EnMode _mode;
+        private enum Mode { AddNew = 0, Update = 1 };
+        private Mode _mode;
         public int? TrackID { get; private set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
         public Track()
         {
-            _mode = EnMode.AddNew;
+            _mode = Mode.AddNew;
             TrackID = null;
             Name = default;
             Description = null;
         }
         private Track(int? trackID, string name, string description)
         {
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
             this.TrackID = trackID;
             this.Name = name;
             this.Description = description;
@@ -77,15 +77,15 @@ namespace OnlineExamination_BusinessLayer
         {
             switch (_mode)
             {
-                case EnMode.AddNew:
+                case Mode.AddNew:
                     if (AddNewTrack())
                     {
-                        _mode = EnMode.Update;
+                        _mode = Mode.Update;
                         return true;
                     }
                     return false;
 
-                case EnMode.Update:
+                case Mode.Update:
                     return UpdateTrack();
 
             }

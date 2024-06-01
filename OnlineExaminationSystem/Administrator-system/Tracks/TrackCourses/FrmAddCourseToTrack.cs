@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using OnlineExaminationSystem_BusinessLayer;
 using System;
 using System.Collections.Generic;
@@ -27,11 +28,11 @@ namespace OnlineExaminationSystem.Administrator.TrackCourses
 
             if (_track == null)
             {
-                ShowErrorMessage($"No track with ID = {_trackID} was found in the system !");
+                FormUtilities.ShowMessage($"No track with ID = {_trackID} was found in the system !", MessageBoxIcon.Error);
                 return false;
             }
 
-            PopulateFormFieldsWithTrackData();
+            DisplayTrackData();
             LoadAvailableCourses();
             return true;
         }
@@ -45,13 +46,13 @@ namespace OnlineExaminationSystem.Administrator.TrackCourses
 
             else
             {
-                ShowErrorMessage("No available courses to add to this track !");
+                FormUtilities.ShowMessage("No available courses to add to this track !", MessageBoxIcon.Error);
                 btnClose.PerformClick();
             }
 
         }
 
-        private void PopulateFormFieldsWithTrackData()
+        private void DisplayTrackData()
         {
             txtTrackName.Text = _track.Name;
         }
@@ -68,11 +69,11 @@ namespace OnlineExaminationSystem.Administrator.TrackCourses
 
 
             if (!trackCourse.Save())
-                ShowErrorMessage($"Failed to add course {courseName} with ID {courseID} to the track !");
+                FormUtilities.ShowMessage($"Failed to add course {courseName} with ID {courseID} to the track !", MessageBoxIcon.Error);
 
             else
             {
-                ShowSuccessMessage($"Course {courseName} with ID {courseID} added to the track successfully.");
+                FormUtilities.ShowMessage($"Course {courseName} with ID {courseID} added to the track successfully.", MessageBoxIcon.Information);
                 LoadAvailableCourses();
             }
 
@@ -80,7 +81,7 @@ namespace OnlineExaminationSystem.Administrator.TrackCourses
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void FrmAddCourseToTrack_Load(object sender, EventArgs e)
@@ -90,16 +91,6 @@ namespace OnlineExaminationSystem.Administrator.TrackCourses
                 btnClose.PerformClick();
                 return;
             }
-        }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void ShowSuccessMessage(string message)
-        {
-            MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
     }

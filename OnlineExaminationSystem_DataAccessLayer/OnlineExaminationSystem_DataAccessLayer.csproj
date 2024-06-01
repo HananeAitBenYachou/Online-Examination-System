@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="AdministratorData.cs" />
     <Compile Include="CourseData.cs" />
+    <Compile Include="ExamData.cs" />
+    <Compile Include="ExamQuestionData.cs" />
     <Compile Include="Global\DataAccessSettings.cs" />
     <Compile Include="InstructorCourseData.cs" />
     <Compile Include="InstructorData.cs" />

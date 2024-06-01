@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -9,9 +10,9 @@ namespace OnlineExaminationSystem.Administrator.Instructors
     {
         private DataView _instructorsDataView = null;
 
-        private enum EnComboBoxTypes : byte { Gender, Status };
+        private enum ComboBoxType : byte { Gender, Status };
 
-        private EnComboBoxTypes _selectedComboBoxType;
+        private ComboBoxType _selectedComboBoxType;
 
         public FrmListInstructors()
         {
@@ -44,18 +45,18 @@ namespace OnlineExaminationSystem.Administrator.Instructors
                    : $"[{filterOption}] LIKE '%{filterValue}%'";
         }
 
-        private void PopulateComboBoxWithData()
+        private void PopulateFilterComboBox()
         {
             cbTemp.Items.Clear();
             cbTemp.Items.Add("All");
 
             switch (_selectedComboBoxType)
             {
-                case EnComboBoxTypes.Gender:
+                case ComboBoxType.Gender:
                     cbTemp.Items.AddRange(new string[] { "Male", "Female" });
                     break;
 
-                case EnComboBoxTypes.Status:
+                case ComboBoxType.Status:
                     cbTemp.Items.AddRange(new string[] { "Active", "Marked For Delete" });
                     break;
             }
@@ -69,7 +70,7 @@ namespace OnlineExaminationSystem.Administrator.Instructors
             {
                 txtFilterValue.Visible = false;
                 cbTemp.Visible = true;
-                PopulateComboBoxWithData();
+                PopulateFilterComboBox();
             }
 
             else
@@ -135,12 +136,12 @@ namespace OnlineExaminationSystem.Administrator.Instructors
 
             if (Instructor.DeleteInstructor(currentInstructorID))
             {
-                ShowSuccessMessage($"Instructor with ID: {currentInstructorID} deleted successfully.");
+                FormUtilities.ShowMessage($"Instructor with ID: {currentInstructorID} deleted successfully.", MessageBoxIcon.Information);
                 RefreshInstructorsList();
             }
 
             else
-                ShowErrorMessage($"Failed to delete instructor with ID: {currentInstructorID}.");
+                FormUtilities.ShowMessage($"Failed to delete instructor with ID: {currentInstructorID}.", MessageBoxIcon.Error);
         }
 
         private void DgvInstructorsList_SelectionChanged(object sender, EventArgs e)
@@ -151,16 +152,6 @@ namespace OnlineExaminationSystem.Administrator.Instructors
         private void DgvInstructorsList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             showInstructorDetailsToolStripMenuItem.PerformClick();
-        }
-
-        private void ShowSuccessMessage(string message)
-        {
-            MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
     }

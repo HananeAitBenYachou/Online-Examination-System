@@ -5,8 +5,8 @@ namespace OnlineExamination_BusinessLayer
 {
     public class User
     {
-        private enum EnMode { AddNew = 0, Update = 1 };
-        private EnMode _mode;
+        private enum Mode { AddNew = 0, Update = 1 };
+        private Mode _mode;
         public int? UserID { get; private set; }
         public int PersonID { get; set; }
         public string Username { get; set; }
@@ -16,7 +16,7 @@ namespace OnlineExamination_BusinessLayer
 
         public User()
         {
-            _mode = EnMode.AddNew;
+            _mode = Mode.AddNew;
             UserID = null;
             PersonID = default;
             Username = default;
@@ -26,7 +26,7 @@ namespace OnlineExamination_BusinessLayer
         }
         private User(int? userID, int personID, string username, string password, byte userRule, bool isActive)
         {
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
             this.UserID = userID;
             this.PersonID = personID;
             this.Username = username;
@@ -71,15 +71,15 @@ namespace OnlineExamination_BusinessLayer
         {
             switch (_mode)
             {
-                case EnMode.AddNew:
+                case Mode.AddNew:
                     if (AddNewUser())
                     {
-                        _mode = EnMode.Update;
+                        _mode = Mode.Update;
                         return true;
                     }
                     return false;
 
-                case EnMode.Update:
+                case Mode.Update:
                     return UpdateUser();
 
             }

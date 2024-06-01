@@ -1,14 +1,14 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using System.Windows.Forms;
 
 namespace OnlineExaminationSystem.Administrator.Students.UserControls
 {
     public partial class UcStudentCard : UserControl
     {
-        public enum EnLoadBy : byte { PersonID, StudentID }
+        public enum LoadByOption : byte { PersonID, StudentID }
         public int? PersonID => ucPersonCard1.PersonID;
         public Person Person => ucPersonCard1.Person;
-
         public int? StudentID { get; private set; } = null;
         public Student Student { get; private set; } = null;
 
@@ -17,7 +17,7 @@ namespace OnlineExaminationSystem.Administrator.Students.UserControls
             InitializeComponent();
         }
 
-        private void LoadStudentData()
+        private void DisplayStudentData()
         {
             StudentID = Student.StudentID;
 
@@ -29,32 +29,27 @@ namespace OnlineExaminationSystem.Administrator.Students.UserControls
             dtpGraduationDate.Value = Student.GraduationDate;
         }
 
-        public bool LoadStudentData(int? value, EnLoadBy loadBy)
+        public bool LoadStudentData(int? id, LoadByOption loadByOption)
         {
-            switch (loadBy)
+            switch (loadByOption)
             {
-                case EnLoadBy.PersonID:
-                    Student = Student.Find(value, Student.EnFilterBy.PersonID);
+                case LoadByOption.PersonID:
+                    Student = Student.Find(id, Student.FindByOption.PersonID);
                     break;
 
-                case EnLoadBy.StudentID:
-                    Student = Student.Find(value, Student.EnFilterBy.StudentID);
+                case LoadByOption.StudentID:
+                    Student = Student.Find(id, Student.FindByOption.StudentID);
                     break;
             }
 
             if (Student == null)
             {
-                ShowErrorMessage($"No student with ID = {value} was found in the system !");
+                FormUtilities.ShowMessage($"No student with ID = {id} was found in the system !", MessageBoxIcon.Error);
                 return false;
             }
 
-            LoadStudentData();
+            DisplayStudentData();
             return true;
-        }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
     }

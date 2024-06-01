@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Administrator.cs" />
     <Compile Include="Course.cs" />
+    <Compile Include="Exam.cs" />
+    <Compile Include="ExamQuestion.cs" />
     <Compile Include="Instructor.cs" />
     <Compile Include="InstructorCourse.cs" />
     <Compile Include="Person.cs" />

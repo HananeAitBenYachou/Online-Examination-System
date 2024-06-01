@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using System;
 using System.Data;
 using System.Linq;
@@ -12,9 +13,9 @@ namespace OnlineExaminationSystem.Administrator.Students
     {
         private DataView _studentsDataView = null;
 
-        private enum EnComboBoxTypes : byte { Track, Gender, Status };
+        private enum ComboBoxType : byte { Track, Gender, Status };
 
-        private EnComboBoxTypes _selectedComboBoxType;
+        private ComboBoxType _selectedComboBoxType;
 
         public FrmAddUpdateInstrcutor()
         {
@@ -62,15 +63,15 @@ namespace OnlineExaminationSystem.Administrator.Students
 
             switch (_selectedComboBoxType)
             {
-                case EnComboBoxTypes.Gender:
+                case ComboBoxType.Gender:
                     cbTemp.Items.AddRange(new string[] { "Male", "Female" });
                     break;
 
-                case EnComboBoxTypes.Status:
+                case ComboBoxType.Status:
                     cbTemp.Items.AddRange(new string[] { "Active", "Marked For Delete" });
                     break;
 
-                case EnComboBoxTypes.Track:
+                case ComboBoxType.Track:
                     await PopulateComboBoxWithTracksAsync();
                     break;
             }
@@ -129,7 +130,7 @@ namespace OnlineExaminationSystem.Administrator.Students
 
         private void ShowStudentDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmShowStudentInfo form = new FrmShowStudentInfo((int)dgvStudentsList.CurrentRow.Cells[0].Value, EnLoadBy.StudentID);
+            FrmShowStudentInfo form = new FrmShowStudentInfo((int)dgvStudentsList.CurrentRow.Cells[0].Value, LoadByOption.StudentID);
             form.ShowDialog();
         }
 
@@ -142,12 +143,12 @@ namespace OnlineExaminationSystem.Administrator.Students
 
             if (Student.DeleteStudent(currentStudentID))
             {
-                ShowSuccessMessage($"Student with ID: {currentStudentID} deleted successfully.");
+                FormUtilities.ShowMessage($"Student with ID: {currentStudentID} deleted successfully.", MessageBoxIcon.Information);
                 RefreshStudentsList();
             }
 
             else
-                ShowErrorMessage($"Failed to delete student with ID: {currentStudentID}.");
+                FormUtilities.ShowMessage($"Failed to delete student with ID: {currentStudentID}.", MessageBoxIcon.Error);
         }
 
         private void DgvStudentsList_SelectionChanged(object sender, EventArgs e)
@@ -158,16 +159,6 @@ namespace OnlineExaminationSystem.Administrator.Students
         private void DgvStudentsList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             showStudentDetailsToolStripMenuItem.PerformClick();
-        }
-
-        private void ShowSuccessMessage(string message)
-        {
-            MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void CbTemp_SelectedIndexChanged(object sender, EventArgs e)

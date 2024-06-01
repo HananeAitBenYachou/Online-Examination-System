@@ -1,15 +1,14 @@
 ﻿using OnlineExaminationSystem_DataAccessLayer.Global;
 using OnlineExaminationSystem_UtilityLayer;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace OnlineExaminationSystem_DataAccessLayer
 {
-    public class InstructorCourseData
+    public class ExamData
     {
-        public static bool GetInstructorCourseInfoByID(int? instructorCourseID, ref int instructorID, ref int courseID)
+        public static bool GetExamInfoByID(int? examID, ref int courseID, ref byte duration, ref DateTime examinationDate, ref byte numOfTrueFalseQuestions, ref byte numOfMCQQuestions, ref bool isMarkedForDelete)
         {
             bool isFound = false;
 
@@ -19,11 +18,11 @@ namespace OnlineExaminationSystem_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_InstructorCourses_GetInstructorCourseInfoByID", connection))
+                    using (SqlCommand command = new SqlCommand("SP_Exams_GetExamInfoByID", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@InstructorCourseID", (object)instructorCourseID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@ExamID", (object)examID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -32,9 +31,17 @@ namespace OnlineExaminationSystem_DataAccessLayer
                                 // The record was found successfully !
                                 isFound = true;
 
-                                instructorID = (int)reader["InstructorID"];
-
                                 courseID = (int)reader["CourseID"];
+
+                                duration = (byte)reader["Duration"];
+
+                                examinationDate = (DateTime)reader["ExaminationDate"];
+
+                                numOfTrueFalseQuestions = (byte)reader["NumOfTrueFalseQuestions"];
+
+                                numOfMCQQuestions = (byte)reader["NumOfMCQQuestions"];
+
+                                isMarkedForDelete = (bool)reader["IsMarkedForDelete"];
 
                             }
 
@@ -56,7 +63,7 @@ namespace OnlineExaminationSystem_DataAccessLayer
             return isFound;
         }
 
-        public static bool DoesInstructorCourseExist(int? instructorCourseID)
+        public static bool DoesExamExist(int? examID)
         {
             bool isFound = false;
 
@@ -66,11 +73,11 @@ namespace OnlineExaminationSystem_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_InstructorCourses_CheckIfInstructorCourseExists", connection))
+                    using (SqlCommand command = new SqlCommand("SP_Exams_CheckIfExamExists", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@InstructorCourseID", (object)instructorCourseID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@ExamID", (object)examID ?? DBNull.Value);
 
                         SqlParameter returnValue = new SqlParameter
                         {
@@ -94,9 +101,9 @@ namespace OnlineExaminationSystem_DataAccessLayer
             return isFound;
         }
 
-        public static int? AddNewInstructorCourse(int instructorID, int courseID)
+        public static int? AddNewExam(int courseID, byte duration, DateTime examinationDate, byte numOfTrueFalseQuestions, byte numOfMCQQuestions, bool isMarkedForDelete)
         {
-            int? instructorCourseID = null;
+            int? examID = null;
 
             try
             {
@@ -104,23 +111,27 @@ namespace OnlineExaminationSystem_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_InstructorCourses_AddNewInstructorCourse", connection))
+                    using (SqlCommand command = new SqlCommand("SP_Exams_AddNewExam", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@InstructorID", instructorID);
                         command.Parameters.AddWithValue("@CourseID", courseID);
+                        command.Parameters.AddWithValue("@Duration", duration);
+                        command.Parameters.AddWithValue("@ExaminationDate", examinationDate);
+                        command.Parameters.AddWithValue("@NumOfTrueFalseQuestions", numOfTrueFalseQuestions);
+                        command.Parameters.AddWithValue("@NumOfMCQQuestions", numOfMCQQuestions);
+                        command.Parameters.AddWithValue("@IsMarkedForDelete", isMarkedForDelete);
 
 
-                        SqlParameter outputInstructorCourseIDParameter = new SqlParameter("@NewInstructorCourseID", SqlDbType.Int)
+                        SqlParameter outputExamIDParameter = new SqlParameter("@NewExamID", SqlDbType.Int)
                         {
                             Direction = ParameterDirection.Output
                         };
 
-                        command.Parameters.Add(outputInstructorCourseIDParameter);
+                        command.Parameters.Add(outputExamIDParameter);
 
                         command.ExecuteNonQuery();
 
-                        instructorCourseID = (int)outputInstructorCourseIDParameter.Value;
+                        examID = (int)outputExamIDParameter.Value;
                     }
                 }
             }
@@ -128,12 +139,12 @@ namespace OnlineExaminationSystem_DataAccessLayer
             {
                 ErrorLogger.LogError(ex);
 
-                instructorCourseID = null;
+                examID = null;
             }
-            return instructorCourseID;
+            return examID;
         }
 
-        public static bool DeleteInstructorCourse(int? instructorCourseID)
+        public static bool UpdateExamInfo(int? examID, int courseID, byte duration, DateTime examinationDate, byte numOfTrueFalseQuestions, byte numOfMCQQuestions, bool isMarkedForDelete)
         {
             int rowsAffected = 0;
 
@@ -143,11 +154,46 @@ namespace OnlineExaminationSystem_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_InstructorCourses_DeleteInstructorCourse", connection))
+                    using (SqlCommand command = new SqlCommand("SP_Exams_UpdateExamInfo", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ExamID", examID);
+                        command.Parameters.AddWithValue("@CourseID", courseID);
+                        command.Parameters.AddWithValue("@Duration", duration);
+                        command.Parameters.AddWithValue("@ExaminationDate", examinationDate);
+                        command.Parameters.AddWithValue("@NumOfTrueFalseQuestions", numOfTrueFalseQuestions);
+                        command.Parameters.AddWithValue("@NumOfMCQQuestions", numOfMCQQuestions);
+                        command.Parameters.AddWithValue("@IsMarkedForDelete", isMarkedForDelete);
+
+
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+
+                rowsAffected = 0;
+            }
+            return rowsAffected != 0;
+        }
+
+        public static bool DeleteExam(int? examID)
+        {
+            int rowsAffected = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Exams_DeleteExam", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@InstructorCourseID", (object)instructorCourseID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@ExamID", (object)examID ?? DBNull.Value);
 
                         rowsAffected = command.ExecuteNonQuery();
                     }
@@ -160,9 +206,9 @@ namespace OnlineExaminationSystem_DataAccessLayer
             return rowsAffected != 0;
         }
 
-        public static DataTable GetAllInstructorCourses(int? instructorID)
+        public static DataTable GetAllExams()
         {
-            DataTable instructorCourses = new DataTable();
+            DataTable exams = new DataTable();
 
             try
             {
@@ -170,17 +216,15 @@ namespace OnlineExaminationSystem_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_InstructorCourses_GetAllInstructorCourses", connection))
+                    using (SqlCommand command = new SqlCommand("SP_Exams_GetAllExams", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-
-                        command.Parameters.AddWithValue("@InstructorID", (object)instructorID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)
                             {
-                                instructorCourses.Load(reader);
+                                exams.Load(reader);
                             }
                         }
                     }
@@ -190,73 +234,10 @@ namespace OnlineExaminationSystem_DataAccessLayer
             {
                 ErrorLogger.LogError(ex);
             }
-            return instructorCourses;
-        }
-
-        public static List<string> GetAllInstructorCoursesNames(int? instructorID)
-        {
-            List<string> instructorCourses = new List<string>();
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
-                {
-                    connection.Open();
-
-                    using (SqlCommand command = new SqlCommand("SP_InstructorCourses_GetAllInstructorCoursesNames", connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-
-                        command.Parameters.AddWithValue("@InstructorID", (object)instructorID ?? DBNull.Value);
-
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                                instructorCourses.Add(reader.GetString(0));
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorLogger.LogError(ex);
-            }
-            return instructorCourses;
-        }
-
-        public static Dictionary<string, int> GetAvailableCoursesForInstructor(int? instructorID)
-        {
-            Dictionary<string, int> courses = new Dictionary<string, int>();
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
-                {
-                    connection.Open();
-
-                    using (SqlCommand command = new SqlCommand("SP_InstructorCourses_GetAvailableCoursesForInstructor", connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-
-                        command.Parameters.AddWithValue("@InstructorID", (object)instructorID ?? DBNull.Value);
-
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                courses.Add((string)reader["Name"], (int)reader["Course ID"]);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorLogger.LogError(ex);
-            }
-            return courses;
+            return exams;
         }
 
     }
+
 
 }

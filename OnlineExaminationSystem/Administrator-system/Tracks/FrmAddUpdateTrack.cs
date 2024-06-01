@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using System;
 using System.Windows.Forms;
 
@@ -6,8 +7,8 @@ namespace OnlineExaminationSystem.Administrator.Tracks
 {
     public partial class FrmAddUpdateTrack : Form
     {
-        private enum EnMode : byte { AddNew, Update };
-        private EnMode _mode;
+        private enum Mode : byte { AddNew, Update };
+        private Mode _mode;
 
         private int? _trackID = null;
         private Track _track = null;
@@ -16,19 +17,19 @@ namespace OnlineExaminationSystem.Administrator.Tracks
         {
             InitializeComponent();
             _trackID = trackID;
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
         }
         public FrmAddUpdateTrack()
         {
             InitializeComponent();
-            _mode = EnMode.AddNew;
+            _mode = Mode.AddNew;
         }
 
         private void FrmAddUpdateTrack_Load(object sender, EventArgs e)
         {
-            Reset();
+            InitializeForm();
 
-            if (_mode == EnMode.Update)
+            if (_mode == Mode.Update)
                 LoadTrackData();
         }
 
@@ -38,21 +39,21 @@ namespace OnlineExaminationSystem.Administrator.Tracks
 
             if (!_track.Save())
             {
-                ShowErrorMessage("Track data is not saved successfully.");
+                FormUtilities.ShowMessage("Track data is not saved successfully." , MessageBoxIcon.Error);
                 return false;
             }
 
             else
             {
-                ShowSuccessMessage("Track data saved successfully !");
-                UpdateFormForSavedTrack();
+                FormUtilities.ShowMessage("Track data saved successfully !" , MessageBoxIcon.Information);
+                UpdateFormAfterSave();
                 return true;
             }
         }
 
-        private void UpdateFormForSavedTrack()
+        private void UpdateFormAfterSave()
         {
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
             _trackID = _track.TrackID;
             txtTrackID.Text = _trackID.ToString();
         }
@@ -69,34 +70,34 @@ namespace OnlineExaminationSystem.Administrator.Tracks
 
             if (_track == null)
             {
-                ShowErrorMessage($"No track with ID = {_trackID} was found in the system !");
-                this.Close();
+                FormUtilities.ShowMessage($"No track with ID = {_trackID} was found in the system !", MessageBoxIcon.Error);
+                Close();
                 return;
             }
 
-            PopulateFormFieldsWithTrackData();
+            DisplayTrackData();
         }
 
-        private void PopulateFormFieldsWithTrackData()
+        private void DisplayTrackData()
         {
             txtTrackID.Text = _trackID.ToString();
             txtName.Text = _track.Name;
             txtDescription.Text = _track.Description ?? string.Empty;
         }
 
-        private void Reset()
+        private void InitializeForm()
         {
-            if (_mode == EnMode.AddNew)
+            if (_mode == Mode.AddNew)
                 _track = new Track();
 
-            lblTitle.Text = _mode == EnMode.AddNew ? "Add New Track" : "Update Track";
+            lblTitle.Text = _mode == Mode.AddNew ? "Add New Track" : "Update Track";
         }
 
         private void BtnSave_Click(object sender, System.EventArgs e)
         {
             if (!ValidateChildren())
             {
-                ShowErrorMessage("Some fields are not valid. Please check the red icon(s) for details.");
+                FormUtilities.ShowMessage("Some fields are not valid. Please check the red icon(s) for details.", MessageBoxIcon.Warning);
                 return;
             }
 
@@ -105,7 +106,7 @@ namespace OnlineExaminationSystem.Administrator.Tracks
 
         private void BtnClose_Click(object sender, System.EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void TxtName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -118,16 +119,6 @@ namespace OnlineExaminationSystem.Administrator.Tracks
 
             else
                 ClearValidationError(txtName, e);
-        }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void ShowSuccessMessage(string message)
-        {
-            MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void SetValidationError(Control control, System.ComponentModel.CancelEventArgs e, string errorMessage)

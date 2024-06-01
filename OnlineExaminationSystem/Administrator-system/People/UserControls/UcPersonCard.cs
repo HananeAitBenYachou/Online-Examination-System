@@ -1,5 +1,6 @@
 ﻿using Guna.UI2.WinForms;
 using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using OnlineExaminationSystem.Properties;
 using System;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
             txtPersonID.Text = "N/A";
         }
 
-        private void LoadPersonData()
+        private void DisplayPersonData()
         {
             PersonID = Person.PersonID;
 
@@ -51,7 +52,7 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
 
             dtpBirthDate.Value = Person.BirthDate;
 
-            rbMale.Checked = Person.GenderText == Person.EnGender.Male;
+            rbMale.Checked = Person.GenderText == Person.GenderType.Male;
 
             rbFemale.Checked = !rbMale.Checked;
 
@@ -66,12 +67,12 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
 
             if (Person == null)
             {
-                ShowErrorMessage($"No person with ID = {personID} was found in the system !");
+                FormUtilities.ShowMessage($"No person with ID = {personID} was found in the system !", MessageBoxIcon.Error);
                 Reset();
                 return false;
             }
 
-            LoadPersonData();
+            DisplayPersonData();
             return true;
         }
 
@@ -81,18 +82,13 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
 
             if (Person == null)
             {
-                ShowErrorMessage($"No person with NationalNo = {NationalNo} was found in the system !");
+                FormUtilities.ShowMessage($"No person with NationalNo = {NationalNo} was found in the system !", MessageBoxIcon.Error);
                 Reset();
                 return false;
             }
 
-            LoadPersonData();
+            DisplayPersonData();
             return true;
-        }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void RbGender_CheckedChanged(object sender, EventArgs e)
@@ -102,6 +98,5 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
                 pbPersonalImage.Image = rbMale.Checked ? Resources.man : Resources.woman;
             }
         }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using System;
 using System.ComponentModel;
 using System.Globalization;
@@ -9,8 +10,8 @@ namespace OnlineExaminationSystem.Administrator.Instructors
 {
     public partial class FrmAddUpdateInstructor : Form
     {
-        private enum EnMode : byte { AddNew, Update };
-        private EnMode _mode;
+        private enum Mode : byte { AddNew, Update };
+        private Mode _mode;
 
         private int? _instructorID = null;
         private Instructor _instructor = null;
@@ -23,19 +24,19 @@ namespace OnlineExaminationSystem.Administrator.Instructors
         {
             InitializeComponent();
             _instructorID = instructorID;
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
         }
         public FrmAddUpdateInstructor()
         {
             InitializeComponent();
-            _mode = EnMode.AddNew;
+            _mode = Mode.AddNew;
         }
 
         private void FrmAddUpdateInstructor_Load(object sender, EventArgs e)
         {
-            ResetForm();
+            InitializeForm();
 
-            if (_mode == EnMode.Update)
+            if (_mode == Mode.Update)
                 LoadInstructorData();
         }
 
@@ -45,21 +46,21 @@ namespace OnlineExaminationSystem.Administrator.Instructors
 
             if (!_instructor.Save())
             {
-                ShowErrorMessage("Instructor data is not saved successfully.");
+                FormUtilities.ShowMessage("Instructor data is not saved successfully.", MessageBoxIcon.Error);
                 return false;
             }
 
             else
             {
-                ShowSuccessMessage("Instructor data saved successfully !");
-                UpdateFormForSavedInstructor();
+                FormUtilities.ShowMessage("Instructor data saved successfully !", MessageBoxIcon.Information);
+                UpdateFormAfterSave();
                 return true;
             }
         }
 
-        private void UpdateFormForSavedInstructor()
+        private void UpdateFormAfterSave()
         {
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
 
             _instructorID = _instructor.InstructorID;
             txtInstructorID.Text = _instructorID.ToString();
@@ -72,25 +73,25 @@ namespace OnlineExaminationSystem.Administrator.Instructors
             _instructor.PersonID = _personID.Value;
             _instructor.HireDate = dtpHireDate.Value;
             _instructor.MonthlySalary = float.Parse(txtMonthlySalary.Text, NumberStyles.Float, CultureInfo.InvariantCulture);
-            _instructor.IsMarkedForDelete = _mode == EnMode.AddNew ? false : _instructor.IsMarkedForDelete;
+            _instructor.IsMarkedForDelete = _mode == Mode.AddNew ? false : _instructor.IsMarkedForDelete;
             _instructor.ExitDate = ckbIsStillEmployed.Checked ? null : (DateTime?)dtpExitDate.Value;
         }
 
         private void LoadInstructorData()
         {
-            _instructor = Instructor.Find(_instructorID, EnFilterBy.InstructorID);
+            _instructor = Instructor.Find(_instructorID, FindByOption.InstructorID);
 
             if (_instructor == null)
             {
-                ShowErrorMessage($"No instructor with ID = {_instructorID} was found in the system !");
-                this.Close();
+                FormUtilities.ShowMessage($"No instructor with ID = {_instructorID} was found in the system !", MessageBoxIcon.Error);
+                Close();
                 return;
             }
 
-            PopulateFormFieldsWithStudentData();
+            DisplayStudentData();
         }
 
-        private void PopulateFormFieldsWithStudentData()
+        private void DisplayStudentData()
         {
             ucPersonCardWithFilter1.LoadPersonData(_instructor.PersonID);
 
@@ -102,7 +103,7 @@ namespace OnlineExaminationSystem.Administrator.Instructors
 
         private void UpdateFormState()
         {
-            bool isAddNewMode = _mode == EnMode.AddNew;
+            bool isAddNewMode = _mode == Mode.AddNew;
 
             lblTitle.Text = isAddNewMode ? "Add New Instructor" : "Update Instructor";
             ucPersonCardWithFilter1.FilterEnabled = isAddNewMode;
@@ -112,7 +113,7 @@ namespace OnlineExaminationSystem.Administrator.Instructors
             tpWorkInfo.Enabled = !isAddNewMode;
         }
 
-        private void ResetForm()
+        private void InitializeForm()
         {
             dtpHireDate.MaxDate = _maximumHireDateAllowed;
             dtpHireDate.MinDate = _minimumHireDateAllowed;
@@ -122,7 +123,7 @@ namespace OnlineExaminationSystem.Administrator.Instructors
 
             ucPersonCardWithFilter1.PersonSelected += PersonSelectedEventHandler;
 
-            _instructor = _mode == EnMode.AddNew ? new Instructor() : _instructor;
+            _instructor = _mode == Mode.AddNew ? new Instructor() : _instructor;
 
             UpdateFormState();
         }
@@ -132,9 +133,9 @@ namespace OnlineExaminationSystem.Administrator.Instructors
             if (personID == null)
                 btnNext.Enabled = false;
 
-            else if (_mode == EnMode.AddNew && Instructor.DoesInstructorExist(personID, EnFilterBy.PersonID))
+            else if (_mode == Mode.AddNew && Instructor.DoesInstructorExist(personID, FindByOption.PersonID))
             {
-                ShowErrorMessage("The person selected is already linked with another instructor , please select another one !");
+                FormUtilities.ShowMessage("The person selected is already linked with another instructor , please select another one !", MessageBoxIcon.Error);
                 btnNext.Enabled = false;
             }
 
@@ -149,7 +150,7 @@ namespace OnlineExaminationSystem.Administrator.Instructors
         {
             if (!ValidateChildren())
             {
-                ShowErrorMessage("Some fields are not valid. Please check the red icon(s) for details.");
+                FormUtilities.ShowMessage("Some fields are not valid. Please check the red icon(s) for details.", MessageBoxIcon.Error);
                 return;
             }
 
@@ -163,7 +164,7 @@ namespace OnlineExaminationSystem.Administrator.Instructors
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void BtnNext_EnabledChanged(object sender, EventArgs e)
@@ -220,16 +221,6 @@ namespace OnlineExaminationSystem.Administrator.Instructors
         {
             e.Cancel = false;
             errorProvider1.SetError(control, null);
-        }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void ShowSuccessMessage(string message)
-        {
-            MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
     }

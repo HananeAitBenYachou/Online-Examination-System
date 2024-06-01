@@ -1,5 +1,6 @@
 ﻿using Guna.UI2.WinForms;
 using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using OnlineExaminationSystem.Properties;
 using OnlineExaminationSystem_UtilityLayer;
 using System;
@@ -11,8 +12,8 @@ namespace OnlineExaminationSystem.Administrator.People
 {
     public partial class FrmAddUpdatePerson : Form
     {
-        private enum EnMode : byte { AddNew, Update };
-        private EnMode _mode;
+        private enum Mode : byte { AddNew, Update };
+        private Mode _mode;
 
         private int? _personID = null;
         private Person _person = null;
@@ -26,14 +27,13 @@ namespace OnlineExaminationSystem.Administrator.People
         {
             InitializeComponent();
             _personID = personID;
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
         }
         public FrmAddUpdatePerson()
         {
             InitializeComponent();
-            _mode = EnMode.AddNew;
+            _mode = Mode.AddNew;
         }
-
 
         public event EventHandler<int?> PersonAdded;
 
@@ -49,9 +49,9 @@ namespace OnlineExaminationSystem.Administrator.People
 
         private void FrmAddUpdatePerson_Load(object sender, EventArgs e)
         {
-            Reset();
+            InitializeForm();
 
-            if (_mode == EnMode.Update)
+            if (_mode == Mode.Update)
                 LoadPersonData();
         }
 
@@ -64,21 +64,21 @@ namespace OnlineExaminationSystem.Administrator.People
 
             if (!_person.Save())
             {
-                ShowErrorMessage("Person data is not saved successfully.");
+                FormUtilities.ShowMessage("Person data is not saved successfully.", MessageBoxIcon.Error);
                 return false;
             }
 
             else
             {
-                ShowSuccessMessage("Person data saved successfully !");
-                UpdateFormForSavedPerson();
+                FormUtilities.ShowMessage("Person data saved successfully !", MessageBoxIcon.Information);
+                UpdateFormAfterSave();
                 return true;
             }
         }
 
-        private void UpdateFormForSavedPerson()
+        private void UpdateFormAfterSave()
         {
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
             _personID = _person.PersonID;
             txtPersonID.Text = _personID.ToString();
         }
@@ -102,15 +102,15 @@ namespace OnlineExaminationSystem.Administrator.People
 
             if (_person == null)
             {
-                ShowErrorMessage($"No person with ID = {_personID} was found in the system !");
-                this.Close();
+                FormUtilities.ShowMessage($"No person with ID = {_personID} was found in the system !", MessageBoxIcon.Error);
+                Close();
                 return;
             }
 
-            PopulateFormFieldsWithPersonData();
+            DisplayPersonData();
         }
 
-        private void PopulateFormFieldsWithPersonData()
+        private void DisplayPersonData()
         {
             txtPersonID.Text = _personID.ToString();
             txtFirstName.Text = _person.FirstName;
@@ -122,7 +122,7 @@ namespace OnlineExaminationSystem.Administrator.People
 
             dtpBirthDate.Value = _person.BirthDate;
 
-            rbMale.Checked = _person.GenderText == Person.EnGender.Male;
+            rbMale.Checked = _person.GenderText == Person.GenderType.Male;
 
             rbFemale.Checked = !rbMale.Checked;
 
@@ -139,12 +139,12 @@ namespace OnlineExaminationSystem.Administrator.People
             dtpBirthDate.Value = dtpBirthDate.MaxDate;
         }
 
-        private void Reset()
+        private void InitializeForm()
         {
-            if (_mode == EnMode.AddNew)
+            if (_mode == Mode.AddNew)
                 _person = new Person();
 
-            lblTitle.Text = _mode == EnMode.AddNew ? "Add New Person" : "Update Person";
+            lblTitle.Text = _mode == Mode.AddNew ? "Add New Person" : "Update Person";
 
             rbMale.Checked = true;
 
@@ -166,7 +166,7 @@ namespace OnlineExaminationSystem.Administrator.People
                     catch (Exception ex)
                     {
                         ErrorLogger.LogError(ex);
-                        ShowErrorMessage("An error occured while trying to replace the person's old personal image");
+                        FormUtilities.ShowMessage("An error occured while trying to replace the person's old personal image", MessageBoxIcon.Error);
                         return false;
                     }
                 }
@@ -184,7 +184,7 @@ namespace OnlineExaminationSystem.Administrator.People
                     catch (Exception ex)
                     {
                         ErrorLogger.LogError(ex);
-                        ShowErrorMessage("An error occured while trying to save the person's new personal image");
+                        FormUtilities.ShowMessage("An error occured while trying to save the person's new personal image", MessageBoxIcon.Error);
                         return false;
                     }
                 }
@@ -198,7 +198,7 @@ namespace OnlineExaminationSystem.Administrator.People
         {
             if (!ValidateChildren())
             {
-                ShowErrorMessage("Some fields are not valid. Please check the red icon(s) for details.");
+                FormUtilities.ShowMessage("Some fields are not valid. Please check the red icon(s) for details.", MessageBoxIcon.Warning);
                 return;
             }
 
@@ -208,7 +208,7 @@ namespace OnlineExaminationSystem.Administrator.People
 
         private void BtnClose_Click(object sender, System.EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void LlbUploadImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -254,7 +254,7 @@ namespace OnlineExaminationSystem.Administrator.People
                 SetValidationError(txtEmail, e, "This email format is not valid !");
 
 
-            else if (_person.Email != txtEmail.Text && Person.DoesPersonExist(txtEmail.Text, Person.EnFilterBy.Email))
+            else if (_person.Email != txtEmail.Text && Person.DoesPersonExist(txtEmail.Text, Person.FindByOption.Email))
                 SetValidationError(txtEmail, e, "This email address is already in use !");
 
             else
@@ -277,21 +277,11 @@ namespace OnlineExaminationSystem.Administrator.People
             if (string.IsNullOrWhiteSpace(txtNationalNo.Text))
                 SetValidationError(txtNationalNo, e, "This field is required !");
 
-            else if (_person.NationalNo != txtNationalNo.Text && Person.DoesPersonExist(txtNationalNo.Text, Person.EnFilterBy.NationalNo))
+            else if (_person.NationalNo != txtNationalNo.Text && Person.DoesPersonExist(txtNationalNo.Text, Person.FindByOption.NationalNo))
                 SetValidationError(txtNationalNo, e, "This nationalNo is already taken by another person!");
 
             else
                 ClearValidationError(txtNationalNo, e);
-        }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void ShowSuccessMessage(string message)
-        {
-            MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void SetValidationError(Control control, System.ComponentModel.CancelEventArgs e, string errorMessage)

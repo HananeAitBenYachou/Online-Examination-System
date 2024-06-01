@@ -12,7 +12,7 @@ namespace OnlineExaminationSystem.Administrator.Instructors
 
             this.Load += (sender, e) =>
             {
-                if (!ucInstructorCard1.LoadInstructorData(instructorID, UcInstructorCard.EnLoadBy.InstructorID))
+                if (!ucInstructorCard1.LoadInstructorData(instructorID, UcInstructorCard.LoadByOption.InstructorID))
                     btnClose.PerformClick();
             };
 
@@ -24,7 +24,7 @@ namespace OnlineExaminationSystem.Administrator.Instructors
 
             this.Load += (sender, e) =>
             {
-                if (!ucInstructorCard1.LoadInstructorData(personID, UcInstructorCard.EnLoadBy.PersonID))
+                if (!ucInstructorCard1.LoadInstructorData(personID, UcInstructorCard.LoadByOption.PersonID))
                     btnClose.PerformClick();
             };
 

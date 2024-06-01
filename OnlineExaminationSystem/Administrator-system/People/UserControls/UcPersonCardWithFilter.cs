@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using System;
 using System.Windows.Forms;
 
@@ -9,8 +10,8 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
         public int? PersonID => ucPersonCard1.PersonID;
         public Person Person => ucPersonCard1.Person;
 
-        private enum EnFindBy { PersonID, NationalNo };
-        private EnFindBy _findPersonBy;
+        private enum FindByOption { PersonID, NationalNo };
+        private FindByOption _findPersonBy;
 
         public bool FilterEnabled
         {
@@ -75,7 +76,7 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
         {
             if (!ValidateChildren())
             {
-                ShowErrorMessage("Please enter the person's ID / NationalNo !");
+                FormUtilities.ShowMessage("Please enter the person's ID / NationalNo !", MessageBoxIcon.Warning);
                 return;
             }
 
@@ -89,10 +90,10 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
         {
             switch (_findPersonBy)
             {
-                case EnFindBy.PersonID:
+                case FindByOption.PersonID:
                     return ucPersonCard1.LoadPersonData(int.Parse(txtFilterValue.Text.Trim()));
 
-                case EnFindBy.NationalNo:
+                case FindByOption.NationalNo:
                     return ucPersonCard1.LoadPersonData(txtFilterValue.Text.Trim());
 
                 default:
@@ -116,7 +117,7 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
 
         private void CbFilterByOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _findPersonBy = cbFilterByOptions.SelectedIndex == 0 ? EnFindBy.PersonID : EnFindBy.NationalNo;
+            _findPersonBy = cbFilterByOptions.SelectedIndex == 0 ? FindByOption.PersonID : FindByOption.NationalNo;
 
             txtFilterValue.ResetText();
         }
@@ -146,11 +147,5 @@ namespace OnlineExaminationSystem.Administrator.People.UserControls
         {
             txtFilterValue.Select();
         }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
     }
 }

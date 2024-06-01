@@ -15,7 +15,7 @@ namespace OnlineExaminationSystem.Administrator.Tracks
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void FrmShowTrackInfo_Load(object sender, EventArgs e)

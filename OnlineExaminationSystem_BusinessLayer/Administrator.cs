@@ -5,20 +5,20 @@ namespace OnlineExamination_BusinessLayer
 {
     public class Administrator
     {
-        private enum EnMode { AddNew = 0, Update = 1 };
-        private EnMode _mode;
+        private enum Mode { AddNew = 0, Update = 1 };
+        private Mode _mode;
         public int? AdminID { get; private set; }
         public int PersonID { get; set; }
 
         public Administrator()
         {
-            _mode = EnMode.AddNew;
+            _mode = Mode.AddNew;
             AdminID = null;
             PersonID = default;
         }
         private Administrator(int? adminID, int personID)
         {
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
             this.AdminID = adminID;
             this.PersonID = personID;
         }
@@ -55,15 +55,15 @@ namespace OnlineExamination_BusinessLayer
         {
             switch (_mode)
             {
-                case EnMode.AddNew:
+                case Mode.AddNew:
                     if (AddNewAdministrator())
                     {
-                        _mode = EnMode.Update;
+                        _mode = Mode.Update;
                         return true;
                     }
                     return false;
 
-                case EnMode.Update:
+                case Mode.Update:
                     return UpdateAdministrator();
 
             }

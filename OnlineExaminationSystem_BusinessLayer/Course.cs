@@ -6,8 +6,8 @@ namespace OnlineExamination_BusinessLayer
 {
     public class Course
     {
-        private enum EnMode { AddNew = 0, Update = 1 };
-        private EnMode _mode;
+        private enum Mode { AddNew = 0, Update = 1 };
+        private Mode _mode;
         public int? CourseID { get; private set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -17,7 +17,7 @@ namespace OnlineExamination_BusinessLayer
 
         public Course()
         {
-            _mode = EnMode.AddNew;
+            _mode = Mode.AddNew;
             CourseID = null;
             Name = default;
             Description = null;
@@ -28,7 +28,7 @@ namespace OnlineExamination_BusinessLayer
         private Course(int? courseID, string name, string description,
                        float credits, short duration, string prerequisites)
         {
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
             this.CourseID = courseID;
             this.Name = name;
             this.Description = description;
@@ -92,15 +92,15 @@ namespace OnlineExamination_BusinessLayer
         {
             switch (_mode)
             {
-                case EnMode.AddNew:
+                case Mode.AddNew:
                     if (AddNewCourse())
                     {
-                        _mode = EnMode.Update;
+                        _mode = Mode.Update;
                         return true;
                     }
                     return false;
 
-                case EnMode.Update:
+                case Mode.Update:
                     return UpdateCourse();
 
             }

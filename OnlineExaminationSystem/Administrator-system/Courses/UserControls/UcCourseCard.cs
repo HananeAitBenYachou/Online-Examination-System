@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using System.Windows.Forms;
 
 namespace OnlineExaminationSystem.Administrator.Courses.UserControls
@@ -13,7 +14,7 @@ namespace OnlineExaminationSystem.Administrator.Courses.UserControls
             InitializeComponent();
         }
 
-        private void PopulateControlsWithCourseData()
+        private void DisplayCourseData()
         {
             CourseID = Course.CourseID;
 
@@ -31,18 +32,12 @@ namespace OnlineExaminationSystem.Administrator.Courses.UserControls
 
             if (Course == null)
             {
-                ShowErrorMessage($"No course with ID = {courseID} was found in the system !");
+                FormUtilities.ShowMessage($"No course with ID = {courseID} was found in the system !", MessageBoxIcon.Error);
                 return false;
             }
 
-            PopulateControlsWithCourseData();
+            DisplayCourseData();
             return true;
         }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
     }
 }

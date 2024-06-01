@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using OnlineExaminationSystem_BusinessLayer;
 using System;
 using System.Collections.Generic;
@@ -21,22 +22,31 @@ namespace OnlineExaminationSystem.Administrator.Instructors.InstructorCourses
             _instructorID = instructorID;
         }
 
+        private void FrmAssignCourseToInstructor_Load(object sender, EventArgs e)
+        {
+            if (!LoadInstructorData())
+            {
+                btnClose.PerformClick();
+                return;
+            }
+        }
+
         private bool LoadInstructorData()
         {
-            _instructor = Instructor.Find(_instructorID, Instructor.EnFilterBy.InstructorID);
+            _instructor = Instructor.Find(_instructorID, Instructor.FindByOption.InstructorID);
 
             if (_instructor == null)
             {
-                ShowErrorMessage($"No instructor with ID = {_instructorID} was found in the system !");
+                FormUtilities.ShowMessage($"No instructor with ID = {_instructorID} was found in the system !", MessageBoxIcon.Error);
                 return false;
             }
 
-            PopulateFormFieldsWithInstructorData();
-            LoadAvailableCourses();
+            DisplayInstructorData();
+            PopulateComboBoxWithInstructorAvailableCourses();
             return true;
         }
 
-        private void LoadAvailableCourses()
+        private void PopulateComboBoxWithInstructorAvailableCourses()
         {
             _availableCourses = InstructorCourse.GetAvailableCoursesForInstructor(_instructorID);
 
@@ -45,13 +55,12 @@ namespace OnlineExaminationSystem.Administrator.Instructors.InstructorCourses
 
             else
             {
-                ShowErrorMessage("No available courses to assign to this instructor !");
+                FormUtilities.ShowMessage("No available courses to assign to this instructor !", MessageBoxIcon.Error);
                 btnClose.PerformClick();
             }
-
         }
 
-        private void PopulateFormFieldsWithInstructorData()
+        private void DisplayInstructorData()
         {
             txtInstructorID.Text = _instructor.InstructorID.ToString();
         }
@@ -68,37 +77,19 @@ namespace OnlineExaminationSystem.Administrator.Instructors.InstructorCourses
 
 
             if (!instructorCourse.Save())
-                ShowErrorMessage($"Failed to assign course {courseName} with ID {courseID} to this instructor !");
+                FormUtilities.ShowMessage($"Failed to assign course {courseName} with ID {courseID} to this instructor !", MessageBoxIcon.Error);
 
             else
             {
-                ShowSuccessMessage($"Course {courseName} with ID {courseID} assigned to the instructor successfully.");
-                LoadAvailableCourses();
+                FormUtilities.ShowMessage($"Course {courseName} with ID {courseID} assigned to the instructor successfully.", MessageBoxIcon.Information);
+                PopulateComboBoxWithInstructorAvailableCourses();
             }
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
-        private void FrmAssignCourseToInstructor_Load(object sender, EventArgs e)
-        {
-            if (!LoadInstructorData())
-            {
-                btnClose.PerformClick();
-                return;
-            }
-        }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void ShowSuccessMessage(string message)
-        {
-            MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
     }
 }

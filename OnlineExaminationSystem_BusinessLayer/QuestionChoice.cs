@@ -1,32 +1,27 @@
 ﻿using OnlineExaminationSystem_DataAccessLayer;
-using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineExaminationSystem_BusinessLayer
 {
     public class QuestionChoice
     {
 
-        private enum EnMode { AddNew = 0, Update = 1 };
-        private EnMode _mode;
+        private enum Mode { AddNew = 0, Update = 1 };
+        private Mode _mode;
         public int? QuestionChoiceID { get; private set; }
         public int QuestionID { get; set; }
         public string ChoiceText { get; set; }
 
         public QuestionChoice()
         {
-            _mode = EnMode.AddNew;
+            _mode = Mode.AddNew;
             QuestionChoiceID = null;
             QuestionID = default;
             ChoiceText = default;
         }
         private QuestionChoice(int? questionChoiceID, int questionID, string choiceText)
         {
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
             this.QuestionChoiceID = questionChoiceID;
             this.QuestionID = questionID;
             this.ChoiceText = choiceText;
@@ -65,15 +60,15 @@ namespace OnlineExaminationSystem_BusinessLayer
         {
             switch (_mode)
             {
-                case EnMode.AddNew:
+                case Mode.AddNew:
                     if (AddNewQuestionChoice())
                     {
-                        _mode = EnMode.Update;
+                        _mode = Mode.Update;
                         return true;
                     }
                     return false;
 
-                case EnMode.Update:
+                case Mode.Update:
                     return UpdateQuestionChoice();
 
             }
@@ -89,7 +84,7 @@ namespace OnlineExaminationSystem_BusinessLayer
         {
             List<QuestionChoice> questionChoices = new List<QuestionChoice>();
 
-            foreach(var choice in QuestionChoiceData.GetAllQuestionChoices(questionID))                      
+            foreach (var choice in QuestionChoiceData.GetAllQuestionChoices(questionID))
             {
                 questionChoices.Add(Find(choice.Item1));
             }

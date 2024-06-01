@@ -6,10 +6,10 @@ namespace OnlineExamination_BusinessLayer
 {
     public class Instructor
     {
-        private enum EnMode { AddNew = 0, Update = 1 };
-        private EnMode _mode;
+        private enum Mode { AddNew = 0, Update = 1 };
+        private Mode _mode;
 
-        public enum EnFilterBy { InstructorID = 0, PersonID = 1 }
+        public enum FindByOption { InstructorID = 0, PersonID = 1 }
         public int? InstructorID { get; private set; }
         public int PersonID { get; set; }
         public DateTime HireDate { get; set; }
@@ -19,7 +19,7 @@ namespace OnlineExamination_BusinessLayer
 
         public Instructor()
         {
-            _mode = EnMode.AddNew;
+            _mode = Mode.AddNew;
             InstructorID = null;
             PersonID = default;
             HireDate = default;
@@ -29,7 +29,7 @@ namespace OnlineExamination_BusinessLayer
         }
         private Instructor(int? instructorID, int personID, DateTime hireDate, DateTime? exitDate, float monthlySalary, bool isMarkedForDelete)
         {
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
             this.InstructorID = instructorID;
             this.PersonID = personID;
             this.HireDate = hireDate;
@@ -70,33 +70,33 @@ namespace OnlineExamination_BusinessLayer
                 return null;
         }
 
-        public static Instructor Find<T>(T filterValue, EnFilterBy filterBy)
+        public static Instructor Find<T>(T id, FindByOption findByOption)
         {
-            switch (filterBy)
+            switch (findByOption)
             {
-                case EnFilterBy.PersonID:
-                    return FindByPersonID(Convert.ToInt32(filterValue));
+                case FindByOption.PersonID:
+                    return FindByPersonID(Convert.ToInt32(id));
 
-                case EnFilterBy.InstructorID:
-                    return FindByInstructorID(Convert.ToInt32(filterValue));
+                case FindByOption.InstructorID:
+                    return FindByInstructorID(Convert.ToInt32(id));
 
                 default:
                     return null;
             }
         }
 
-        public static bool DoesInstructorExist<T>(T filterValue, EnFilterBy filterBy)
+        public static bool DoesInstructorExist<T>(T id, FindByOption findByOption)
         {
-            if (filterValue == null)
+            if (id == null)
                 return false;
 
-            switch (filterBy)
+            switch (findByOption)
             {
-                case EnFilterBy.PersonID:
-                    return InstructorData.DoesInstructorExistByPersonID(Convert.ToInt32(filterValue));
+                case FindByOption.PersonID:
+                    return InstructorData.DoesInstructorExistByPersonID(Convert.ToInt32(id));
 
-                case EnFilterBy.InstructorID:
-                    return InstructorData.DoesInstructorExistByInstructorID(Convert.ToInt32(filterValue));
+                case FindByOption.InstructorID:
+                    return InstructorData.DoesInstructorExistByInstructorID(Convert.ToInt32(id));
 
                 default:
                     return false;
@@ -118,15 +118,15 @@ namespace OnlineExamination_BusinessLayer
         {
             switch (_mode)
             {
-                case EnMode.AddNew:
+                case Mode.AddNew:
                     if (AddNewInstructor())
                     {
-                        _mode = EnMode.Update;
+                        _mode = Mode.Update;
                         return true;
                     }
                     return false;
 
-                case EnMode.Update:
+                case Mode.Update:
                     return UpdateInstructor();
 
             }

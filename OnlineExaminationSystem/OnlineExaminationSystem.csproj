@@ -107,6 +107,12 @@
     <Compile Include="Administrator-system\Instructors\InstructorCourses\FrmAssignCourseToInstructor.Designer.cs">
       <DependentUpon>FrmAssignCourseToInstructor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator-system\Instructors\InstructorCourses\FrmShowInstructorCourses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator-system\Instructors\InstructorCourses\FrmShowInstructorCourses.Designer.cs">
+      <DependentUpon>FrmShowInstructorCourses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrator-system\Instructors\UserControls\UcInstructorCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -191,11 +197,24 @@
     <Compile Include="Administrator-system\Tracks\UserControls\UcTrackCard.Designer.cs">
       <DependentUpon>UcTrackCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Global\FormUtilities.cs" />
+    <Compile Include="Instructor-system\Exams\FrmAddUpdateExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instructor-system\Exams\FrmAddUpdateExam.Designer.cs">
+      <DependentUpon>FrmAddUpdateExam.cs</DependentUpon>
+    </Compile>
     <Compile Include="Instructor-system\Questions\FrmAddUpdateQuestion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Instructor-system\Questions\FrmAddUpdateQuestion.Designer.cs">
       <DependentUpon>FrmAddUpdateQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instructor-system\Questions\FrmListQuestions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instructor-system\Questions\FrmListQuestions.Designer.cs">
+      <DependentUpon>FrmListQuestions.cs</DependentUpon>
     </Compile>
     <Compile Include="Instructor-system\Questions\FrmShowQuestionInfo.cs">
       <SubType>Form</SubType>
@@ -237,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator-system\Instructors\InstructorCourses\FrmAssignCourseToInstructor.resx">
       <DependentUpon>FrmAssignCourseToInstructor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator-system\Instructors\InstructorCourses\FrmShowInstructorCourses.resx">
+      <DependentUpon>FrmShowInstructorCourses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator-system\Instructors\UserControls\UcInstructorCard.resx">
       <DependentUpon>UcInstructorCard.cs</DependentUpon>
@@ -283,6 +305,9 @@
     <EmbeddedResource Include="Instructor-system\Questions\FrmAddUpdateQuestion.resx">
       <DependentUpon>FrmAddUpdateQuestion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Instructor-system\Questions\FrmListQuestions.resx">
+      <DependentUpon>FrmListQuestions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Instructor-system\Questions\FrmShowQuestionInfo.resx">
       <DependentUpon>FrmShowQuestionInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -325,7 +350,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Student\" />
+    <Folder Include="Student-system\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\homepage.png" />
@@ -410,6 +435,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\conversation1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\discussion.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

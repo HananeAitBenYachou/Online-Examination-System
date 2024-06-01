@@ -7,16 +7,16 @@ namespace OnlineExaminationSystem_BusinessLayer
 {
     public class Question
     {
-        private enum EnMode { AddNew = 0, Update = 1 };
-        private EnMode _mode;
-        public enum EnQuestionTypes : byte { MCQ = 1, TF = 2};
-        public enum EnDifficultyLevels : byte { Easy = 1, Medium = 2, Hard = 3};
+        private enum Mode { AddNew = 0, Update = 1 };
+        private Mode _mode;
+        public enum QuestionTypeOption : byte { MCQ = 1, TF = 2 };
+        public enum DifficultyLevelOption : byte { Easy = 1, Medium = 2, Hard = 3 };
 
         public int? QuestionID { get; private set; }
         public string QuestionText { get; set; }
         public int CourseID { get; set; }
-        public EnQuestionTypes QuestionType { get; set; }
-        public EnDifficultyLevels DifficultyLevel { get; set; }
+        public QuestionTypeOption QuestionType { get; set; }
+        public DifficultyLevelOption DifficultyLevel { get; set; }
         public float Mark { get; set; }
         public string ModelAnswer { get; set; }
         public bool IsMarkedForDelete { get; set; }
@@ -25,7 +25,7 @@ namespace OnlineExaminationSystem_BusinessLayer
 
         public Question()
         {
-            _mode = EnMode.AddNew;
+            _mode = Mode.AddNew;
             QuestionID = null;
             QuestionText = default;
             QuestionType = default;
@@ -37,10 +37,11 @@ namespace OnlineExaminationSystem_BusinessLayer
             QuestionChoices = new List<QuestionChoice>() { new QuestionChoice(), new QuestionChoice(), new QuestionChoice() };
         }
 
-        private Question(int? questionID, string questionText, EnQuestionTypes questionType,
-            int courseID, EnDifficultyLevels difficultyLevel, float mark, string modelAnswer, bool isMarkedForDelete)
+        private Question(int? questionID, string questionText, QuestionTypeOption questionType,
+                         int courseID, DifficultyLevelOption difficultyLevel, float mark,
+                         string modelAnswer, bool isMarkedForDelete)
         {
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
             this.QuestionID = questionID;
             this.QuestionText = questionText;
             this.QuestionType = questionType;
@@ -67,7 +68,7 @@ namespace OnlineExaminationSystem_BusinessLayer
             bool isFound = QuestionData.GetQuestionInfoByID(questionID, ref questionText, ref questionType, ref courseID, ref difficultyLevel, ref mark, ref modelAnswer, ref isMarkedForDelete);
 
             if (isFound)
-                return new Question(questionID, questionText, (EnQuestionTypes)questionType, courseID, (EnDifficultyLevels)difficultyLevel, mark, modelAnswer, isMarkedForDelete);
+                return new Question(questionID, questionText, (QuestionTypeOption)questionType, courseID, (DifficultyLevelOption)difficultyLevel, mark, modelAnswer, isMarkedForDelete);
             else
                 return null;
         }
@@ -92,8 +93,8 @@ namespace OnlineExaminationSystem_BusinessLayer
         private bool AddNewQuestion()
         {
             QuestionID = QuestionData.AddNewQuestion(QuestionText, (byte)QuestionType, CourseID, (byte)DifficultyLevel, Mark, ModelAnswer, IsMarkedForDelete);
-            
-            if(!QuestionID.HasValue)
+
+            if (!QuestionID.HasValue)
                 return false;
 
             return SaveQuestionChoices();
@@ -102,8 +103,8 @@ namespace OnlineExaminationSystem_BusinessLayer
         private bool UpdateQuestion()
         {
             bool isUpdatedSuccessfully = QuestionData.UpdateQuestionInfo(QuestionID, QuestionText, (byte)QuestionType, CourseID, (byte)DifficultyLevel, Mark, ModelAnswer, IsMarkedForDelete);
-            
-            if (!isUpdatedSuccessfully) 
+
+            if (!isUpdatedSuccessfully)
                 return false;
 
             return SaveQuestionChoices();
@@ -113,15 +114,15 @@ namespace OnlineExaminationSystem_BusinessLayer
         {
             switch (_mode)
             {
-                case EnMode.AddNew:
+                case Mode.AddNew:
                     if (AddNewQuestion())
                     {
-                        _mode = EnMode.Update;
+                        _mode = Mode.Update;
                         return true;
                     }
                     return false;
 
-                case EnMode.Update:
+                case Mode.Update:
                     return UpdateQuestion();
 
             }
@@ -133,9 +134,10 @@ namespace OnlineExaminationSystem_BusinessLayer
             return QuestionData.DeleteQuestion(questionID);
         }
 
-        public static DataTable GetAllQuestions()
+        public static DataTable GetAllQuestions(int? instructorID)
         {
-            return QuestionData.GetAllQuestions();
+            return QuestionData.GetAllQuestions(instructorID);
         }
+
     }
 }

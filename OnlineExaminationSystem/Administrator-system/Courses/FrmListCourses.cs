@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -117,12 +118,12 @@ namespace OnlineExaminationSystem.Administrator.Courses
 
             if (Course.DeleteCourse(currentCourseID))
             {
-                ShowSuccessMessage($"Course with ID: {currentCourseID} deleted successfully.");
+                FormUtilities.ShowMessage($"Course with ID: {currentCourseID} deleted successfully.", MessageBoxIcon.Information);
                 RefreshCoursesList();
             }
 
             else
-                ShowErrorMessage($"Failed to delete course with ID: {currentCourseID}.");
+                FormUtilities.ShowMessage($"Failed to delete course with ID: {currentCourseID}.", MessageBoxIcon.Error);
         }
 
         private void DgvCoursesList_SelectionChanged(object sender, EventArgs e)
@@ -133,16 +134,6 @@ namespace OnlineExaminationSystem.Administrator.Courses
         private void DgvCoursesList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             showCourseDetailsToolStripMenuItem.PerformClick();
-        }
-
-        private void ShowSuccessMessage(string message)
-        {
-            MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
     }

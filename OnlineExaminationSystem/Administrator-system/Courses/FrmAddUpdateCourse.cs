@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using System;
 using System.ComponentModel;
 using System.Globalization;
@@ -8,8 +9,8 @@ namespace OnlineExaminationSystem.Administrator.Courses
 {
     public partial class FrmAddUpdateCourse : Form
     {
-        private enum EnMode : byte { AddNew, Update };
-        private EnMode _mode;
+        private enum Mode : byte { AddNew, Update };
+        private Mode _mode;
 
         private int? _courseID = null;
         private Course _course = null;
@@ -21,20 +22,52 @@ namespace OnlineExaminationSystem.Administrator.Courses
         {
             InitializeComponent();
             _courseID = courseID;
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
         }
         public FrmAddUpdateCourse()
         {
             InitializeComponent();
-            _mode = EnMode.AddNew;
+            _mode = Mode.AddNew;
         }
 
         private void FrmAddUpdateCourse_Load(object sender, EventArgs e)
         {
-            Reset();
+            InitializeForm();
 
-            if (_mode == EnMode.Update)
+            if (_mode == Mode.Update)
                 LoadCourseData();
+        }
+
+        private void InitializeForm()
+        {
+            if (_mode == Mode.AddNew)
+                _course = new Course();
+
+            lblTitle.Text = _mode == Mode.AddNew ? "Add New Course" : "Update Course";
+        }
+
+        private void LoadCourseData()
+        {
+            _course = Course.Find(_courseID);
+
+            if (_course == null)
+            {
+                FormUtilities.ShowMessage($"No course with ID = {_courseID} was found in the system !", MessageBoxIcon.Error);
+                Close();
+                return;
+            }
+
+            DisplayCourseData();
+        }
+
+        private void DisplayCourseData()
+        {
+            txtCourseID.Text = _courseID.ToString();
+            txtName.Text = _course.Name;
+            txtDescription.Text = _course.Description ?? string.Empty;
+            txtPrerequisites.Text = _course.Prerequisites ?? string.Empty;
+            txtCredits.Text = _course.Credits.ToString();
+            txtDuration.Text = _course.Duration.ToString();
         }
 
         private bool SaveCourseData()
@@ -43,23 +76,16 @@ namespace OnlineExaminationSystem.Administrator.Courses
 
             if (!_course.Save())
             {
-                ShowErrorMessage("Course data is not saved successfully.");
+                FormUtilities.ShowMessage("Course data is not saved successfully.", MessageBoxIcon.Error);
                 return false;
             }
 
             else
             {
-                ShowSuccessMessage("Course data saved successfully !");
-                UpdateFormForSavedCourse();
+                FormUtilities.ShowMessage("Course data saved successfully !", MessageBoxIcon.Information);
+                UpdateFormAfterSave();
                 return true;
             }
-        }
-
-        private void UpdateFormForSavedCourse()
-        {
-            _mode = EnMode.Update;
-            _courseID = _course.CourseID;
-            txtCourseID.Text = _courseID.ToString();
         }
 
         private void UpdateCourseData()
@@ -71,43 +97,18 @@ namespace OnlineExaminationSystem.Administrator.Courses
             _course.Duration = short.Parse(txtDuration.Text);
         }
 
-        private void LoadCourseData()
+        private void UpdateFormAfterSave()
         {
-            _course = Course.Find(_courseID);
-
-            if (_course == null)
-            {
-                ShowErrorMessage($"No course with ID = {_courseID} was found in the system !");
-                this.Close();
-                return;
-            }
-
-            PopulateFormFieldsWithCourseData();
-        }
-
-        private void PopulateFormFieldsWithCourseData()
-        {
+            _mode = Mode.Update;
+            _courseID = _course.CourseID;
             txtCourseID.Text = _courseID.ToString();
-            txtName.Text = _course.Name;
-            txtDescription.Text = _course.Description ?? string.Empty;
-            txtPrerequisites.Text = _course.Prerequisites ?? string.Empty;
-            txtCredits.Text = _course.Credits.ToString();
-            txtDuration.Text = _course.Duration.ToString();
-        }
-
-        private void Reset()
-        {
-            if (_mode == EnMode.AddNew)
-                _course = new Course();
-
-            lblTitle.Text = _mode == EnMode.AddNew ? "Add New Course" : "Update Course";
         }
 
         private void BtnSave_Click(object sender, System.EventArgs e)
         {
             if (!ValidateChildren())
             {
-                ShowErrorMessage("Some fields are not valid. Please check the red icon(s) for details.");
+                FormUtilities.ShowMessage("Some fields are not valid. Please check the red icon(s) for details.", MessageBoxIcon.Warning);
                 return;
             }
 
@@ -116,7 +117,7 @@ namespace OnlineExaminationSystem.Administrator.Courses
 
         private void BtnClose_Click(object sender, System.EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void TxtName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -167,16 +168,6 @@ namespace OnlineExaminationSystem.Administrator.Courses
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void ShowSuccessMessage(string message)
-        {
-            MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
         private void SetValidationError(Control control, System.ComponentModel.CancelEventArgs e, string errorMessage)
         {
             e.Cancel = true;
@@ -189,5 +180,6 @@ namespace OnlineExaminationSystem.Administrator.Courses
             e.Cancel = false;
             errorProvider1.SetError(control, null);
         }
+
     }
 }

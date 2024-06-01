@@ -66,5 +66,10 @@ namespace OnlineExaminationSystem_BusinessLayer
             return InstructorCourseData.GetAvailableCoursesForInstructor(instructorID);
         }
 
+        public static List<string> GetAllInstructorCoursesNames(int? instructorID)
+        {
+            return InstructorCourseData.GetAllInstructorCoursesNames(instructorID);
+        }
+
     }
 }

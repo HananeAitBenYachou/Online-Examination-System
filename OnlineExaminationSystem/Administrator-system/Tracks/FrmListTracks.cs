@@ -1,5 +1,6 @@
 ﻿using OnlineExamination_BusinessLayer;
 using OnlineExaminationSystem.Administrator.TrackCourses;
+using OnlineExaminationSystem.Global;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -100,12 +101,12 @@ namespace OnlineExaminationSystem.Administrator.Tracks
 
             if (Track.DeleteTrack(currentTrackID))
             {
-                ShowSuccessMessage($"Track with ID: {currentTrackID} deleted successfully.");
+                FormUtilities.ShowMessage($"Track with ID: {currentTrackID} deleted successfully." , MessageBoxIcon.Information);
                 RefreshTracksList();
             }
 
             else
-                ShowErrorMessage($"Failed to delete track with ID: {currentTrackID}.");
+                FormUtilities.ShowMessage($"Failed to delete track with ID: {currentTrackID}." , MessageBoxIcon.Error);
         }
 
         private void ShowTrackCoursesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -128,16 +129,6 @@ namespace OnlineExaminationSystem.Administrator.Tracks
         private void DgvTracksList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             showTrackDetailsToolStripMenuItem.PerformClick();
-        }
-
-        private void ShowSuccessMessage(string message)
-        {
-            MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
     }

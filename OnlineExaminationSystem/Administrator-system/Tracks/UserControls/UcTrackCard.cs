@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using System.Windows.Forms;
 
 namespace OnlineExaminationSystem.Administrator.Tracks.UserControls
@@ -19,26 +20,21 @@ namespace OnlineExaminationSystem.Administrator.Tracks.UserControls
 
             if (Track == null)
             {
-                ShowErrorMessage($"No track with ID = {trackID} was found in the system !");
+                FormUtilities.ShowMessage($"No track with ID = {trackID} was found in the system !" , MessageBoxIcon.Error);
                 return false;
             }
 
-            PopulateFormFieldsWithTrackData();
+            DisplayTrackData();
             return true;
         }
 
-        private void PopulateFormFieldsWithTrackData()
+        private void DisplayTrackData()
         {
             TrackID = Track.TrackID;
 
             txtTrackID.Text = TrackID.ToString();
             txtName.Text = Track.Name;
             txtDescription.Text = Track.Description ?? string.Empty;
-        }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
     }

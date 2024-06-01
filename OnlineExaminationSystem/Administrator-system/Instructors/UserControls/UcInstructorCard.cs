@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using System;
 using System.Windows.Forms;
 
@@ -6,7 +7,7 @@ namespace OnlineExaminationSystem.Administrator.Instructors.UserControls
 {
     public partial class UcInstructorCard : UserControl
     {
-        public enum EnLoadBy : byte { PersonID, InstructorID }
+        public enum LoadByOption : byte { PersonID, InstructorID }
         public int? PersonID => ucPersonCard1.PersonID;
         public Person Person => ucPersonCard1.Person;
 
@@ -18,7 +19,7 @@ namespace OnlineExaminationSystem.Administrator.Instructors.UserControls
             InitializeComponent();
         }
 
-        private void LoadInstructorData()
+        private void DisplayInstructorData()
         {
             InstructorID = Instructor.InstructorID;
 
@@ -32,33 +33,27 @@ namespace OnlineExaminationSystem.Administrator.Instructors.UserControls
             pnlExitInformation.Visible = Instructor.ExitDate.HasValue;
         }
 
-        public bool LoadInstructorData(int? value, EnLoadBy loadBy)
+        public bool LoadInstructorData(int? id, LoadByOption loadByOption)
         {
-            switch (loadBy)
+            switch (loadByOption)
             {
-                case EnLoadBy.PersonID:
-                    Instructor = Instructor.Find(value, Instructor.EnFilterBy.PersonID);
+                case LoadByOption.PersonID:
+                    Instructor = Instructor.Find(id, Instructor.FindByOption.PersonID);
                     break;
 
-                case EnLoadBy.InstructorID:
-                    Instructor = Instructor.Find(value, Instructor.EnFilterBy.InstructorID);
+                case LoadByOption.InstructorID:
+                    Instructor = Instructor.Find(id, Instructor.FindByOption.InstructorID);
                     break;
             }
 
             if (Instructor == null)
             {
-                ShowErrorMessage($"No instructor with ID = {value} was found in the system !");
+                FormUtilities.ShowMessage($"No instructor with ID = {id} was found in the system !", MessageBoxIcon.Error);
                 return false;
             }
 
-            LoadInstructorData();
+            DisplayInstructorData();
             return true;
         }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -10,8 +11,8 @@ namespace OnlineExaminationSystem.Administrator.Students
 {
     public partial class FrmAddUpdateStudent : Form
     {
-        private enum EnMode : byte { AddNew, Update };
-        private EnMode _mode;
+        private enum Mode : byte { AddNew, Update };
+        private Mode _mode;
 
         private int? _studentID = null;
         private Student _student = null;
@@ -21,19 +22,19 @@ namespace OnlineExaminationSystem.Administrator.Students
         {
             InitializeComponent();
             _studentID = studentID;
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
         }
         public FrmAddUpdateStudent()
         {
             InitializeComponent();
-            _mode = EnMode.AddNew;
+            _mode = Mode.AddNew;
         }
 
         private void FrmAddUpdateStudent_Load(object sender, EventArgs e)
         {
-            Reset();
+            InitializeForm();
 
-            if (_mode == EnMode.Update)
+            if (_mode == Mode.Update)
                 LoadStudentData();
         }
 
@@ -43,21 +44,21 @@ namespace OnlineExaminationSystem.Administrator.Students
 
             if (!_student.Save())
             {
-                ShowErrorMessage("Student data is not saved successfully.");
+                FormUtilities.ShowMessage("Student data is not saved successfully.", MessageBoxIcon.Error);
                 return false;
             }
 
             else
             {
-                ShowSuccessMessage("Student data saved successfully !");
-                UpdateFormForSavedStudent();
+                FormUtilities.ShowMessage("Student data saved successfully !", MessageBoxIcon.Information);
+                UpdateFormAfterSave();
                 return true;
             }
         }
 
-        private void UpdateFormForSavedStudent()
+        private void UpdateFormAfterSave()
         {
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
 
             _studentID = _student.StudentID;
             txtStudentID.Text = _studentID.ToString();
@@ -70,22 +71,22 @@ namespace OnlineExaminationSystem.Administrator.Students
             _student.PersonID = _personID.Value;
             _student.StartDate = dtpStartDate.Value;
             _student.GraduationDate = dtpGraduationDate.Value;
-            _student.IsMarkedForDelete = _mode == EnMode.AddNew ? false : _student.IsMarkedForDelete;
+            _student.IsMarkedForDelete = _mode == Mode.AddNew ? false : _student.IsMarkedForDelete;
             _student.TrackID = Track.Find(cbTracks.Text).TrackID;
         }
 
         private void LoadStudentData()
         {
-            _student = Student.Find(_studentID, EnFilterBy.StudentID);
+            _student = Student.Find(_studentID, FindByOption.StudentID);
 
             if (_student == null)
             {
-                ShowErrorMessage($"No student with ID = {_studentID} was found in the system !");
-                this.Close();
+                FormUtilities.ShowMessage($"No student with ID = {_studentID} was found in the system !", MessageBoxIcon.Error);
+                Close();
                 return;
             }
 
-            PopulateFormFieldsWithStudentData();
+            DisplayStudentData();
         }
 
         private void PopulateComboBoxWithTracks()
@@ -97,7 +98,7 @@ namespace OnlineExaminationSystem.Administrator.Students
             cbTracks.SelectedIndex = 0;
         }
 
-        private void PopulateFormFieldsWithStudentData()
+        private void DisplayStudentData()
         {
             ucPersonCardWithFilter1.LoadPersonData(_student.PersonID);
 
@@ -109,14 +110,14 @@ namespace OnlineExaminationSystem.Administrator.Students
 
         private void UpdateFormState()
         {
-            lblTitle.Text = _mode == EnMode.AddNew ? "Add New Student" : "Update Student";
-            btnNext.Enabled = _mode == EnMode.Update;
-            btnSave.Enabled = _mode == EnMode.Update;
-            tpAcademicInfo.Enabled = _mode == EnMode.Update;
-            ucPersonCardWithFilter1.FilterEnabled = _mode != EnMode.Update;
+            lblTitle.Text = _mode == Mode.AddNew ? "Add New Student" : "Update Student";
+            btnNext.Enabled = _mode == Mode.Update;
+            btnSave.Enabled = _mode == Mode.Update;
+            tpAcademicInfo.Enabled = _mode == Mode.Update;
+            ucPersonCardWithFilter1.FilterEnabled = _mode != Mode.Update;
         }
 
-        private void Reset()
+        private void InitializeForm()
         {
             PopulateComboBoxWithTracks();
 
@@ -126,7 +127,7 @@ namespace OnlineExaminationSystem.Administrator.Students
 
             ucPersonCardWithFilter1.PersonSelected += PersonSelectedEventHandler;
 
-            if (_mode == EnMode.AddNew)
+            if (_mode == Mode.AddNew)
                 _student = new Student();
 
             UpdateFormState();
@@ -137,9 +138,9 @@ namespace OnlineExaminationSystem.Administrator.Students
             if (personID == null)
                 btnNext.Enabled = false;
 
-            else if (_mode == EnMode.AddNew && Student.DoesStudentExist(personID, EnFilterBy.PersonID))
+            else if (_mode == Mode.AddNew && Student.DoesStudentExist(personID, FindByOption.PersonID))
             {
-                ShowErrorMessage("The person selected is already linked with another student , please select another one !");
+                FormUtilities.ShowMessage("The person selected is already linked with another student , please select another one !", MessageBoxIcon.Error);
                 btnNext.Enabled = false;
             }
 
@@ -154,7 +155,7 @@ namespace OnlineExaminationSystem.Administrator.Students
         {
             if (!ValidateChildren())
             {
-                ShowErrorMessage("Some fields are not valid. Please check the red icon(s) for details.");
+                FormUtilities.ShowMessage("Some fields are not valid. Please check the red icon(s) for details.", MessageBoxIcon.Warning);
                 return;
             }
 
@@ -168,7 +169,7 @@ namespace OnlineExaminationSystem.Administrator.Students
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void BtnNext_EnabledChanged(object sender, EventArgs e)
@@ -183,16 +184,6 @@ namespace OnlineExaminationSystem.Administrator.Students
                 SetValidationError(dtpGraduationDate, e, "Graduation date is not valid !");
             else
                 ClearValidationError(dtpGraduationDate, e);
-        }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void ShowSuccessMessage(string message)
-        {
-            MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void SetValidationError(Control control, System.ComponentModel.CancelEventArgs e, string errorMessage)

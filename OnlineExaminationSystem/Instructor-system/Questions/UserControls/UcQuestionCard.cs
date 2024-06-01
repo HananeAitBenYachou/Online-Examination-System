@@ -1,16 +1,10 @@
 ﻿using Guna.UI2.WinForms;
-using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using OnlineExaminationSystem_BusinessLayer;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace OnlineExaminationSystem.Instructor_system.Questions.UserControls
 {
@@ -27,10 +21,10 @@ namespace OnlineExaminationSystem.Instructor_system.Questions.UserControls
             InitializeChoiceMap();
         }
 
-        private void PopulateModelAnswerChoices(Question.EnQuestionTypes questionType)
+        private void PopulateModelAnswerChoices(Question.QuestionTypeOption questionType)
         {
             cbModelAnswer.Items.Clear();
-            cbModelAnswer.Items.AddRange(questionType == Question.EnQuestionTypes.MCQ
+            cbModelAnswer.Items.AddRange(questionType == Question.QuestionTypeOption.MCQ
                 ? new[] { "Choice 1", "Choice 2", "Choice 3" }
                 : new[] { "True", "False" });
 
@@ -50,10 +44,10 @@ namespace OnlineExaminationSystem.Instructor_system.Questions.UserControls
 
             pnlQuestionChoices.Visible = isMcq;
 
-            PopulateModelAnswerChoices(isMcq ? Question.EnQuestionTypes.MCQ : Question.EnQuestionTypes.TF);
+            PopulateModelAnswerChoices(isMcq ? Question.QuestionTypeOption.MCQ : Question.QuestionTypeOption.TF);
         }
 
-        private void PopulateUserControlFields()
+        private void DisplayQuestionData()
         {
             QuestionID = Question.CourseID;
 
@@ -64,7 +58,7 @@ namespace OnlineExaminationSystem.Instructor_system.Questions.UserControls
             cbQuestionComplexity.SelectedIndex = cbQuestionComplexity.FindStringExact(Question.DifficultyLevel.ToString());
             nudQuestionMark.Value = Convert.ToDecimal(Question.Mark);
 
-            if (Question.QuestionType == Question.EnQuestionTypes.MCQ)
+            if (Question.QuestionType == Question.QuestionTypeOption.MCQ)
             {
                 txtChoice1.Text = Question.QuestionChoices[0].ChoiceText;
                 txtChoice2.Text = Question.QuestionChoices[1].ChoiceText;
@@ -86,17 +80,13 @@ namespace OnlineExaminationSystem.Instructor_system.Questions.UserControls
 
             if (Question == null)
             {
-                ShowErrorMessage($"No question with ID = {questionID} was found in the system !");
+                FormUtilities.ShowMessage($"No question with ID = {questionID} was found in the system !" , MessageBoxIcon.Error);
                 return false;
             }
 
-            PopulateUserControlFields();
+            DisplayQuestionData();
             return true;
         }
 
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
     }
 }

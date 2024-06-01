@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using OnlineExaminationSystem_BusinessLayer;
 using System;
 using System.Data;
@@ -20,7 +21,7 @@ namespace OnlineExaminationSystem.Administrator.TrackCourses
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void RefreshTrackCoursesList()
@@ -30,17 +31,12 @@ namespace OnlineExaminationSystem.Administrator.TrackCourses
             dgvTrackCoursesList.DataSource = _trackCoursesDataView;
         }
 
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
         private void FrmShowTrackCourses_Load(object sender, EventArgs e)
         {
             if (!Track.DoesTrackExist(_trackID))
             {
-                ShowErrorMessage($"No track with ID = {_trackID} was found in the system !");
-                this.Close();
+                FormUtilities.ShowMessage($"No track with ID = {_trackID} was found in the system !" , MessageBoxIcon.Error);
+                Close();
                 return;
             }
             ucTrackCard1.LoadTrackData(_trackID);

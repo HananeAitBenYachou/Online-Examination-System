@@ -6,24 +6,24 @@ namespace OnlineExamination_BusinessLayer
 {
     public class Person
     {
-        private enum EnMode : byte
+        private enum Mode : byte
         { AddNew = 0, Update = 1 };
-        public enum EnFilterBy : byte
+        public enum FindByOption : byte
         {
             PersonID, NationalNo, Email
         }
-        public enum EnGender : byte
+        public enum GenderType : byte
         {
             Male, Female
         }
 
-        private EnMode _mode;
+        private Mode _mode;
         public int? PersonID { get; private set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string NationalNo { get; set; }
         public char Gender { get; set; }
-        public EnGender GenderText => (Gender == 'M' ? EnGender.Male : EnGender.Female);
+        public GenderType GenderText => (Gender == 'M' ? GenderType.Male : GenderType.Female);
         public DateTime BirthDate { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
@@ -32,7 +32,7 @@ namespace OnlineExamination_BusinessLayer
 
         public Person()
         {
-            _mode = EnMode.AddNew;
+            _mode = Mode.AddNew;
             PersonID = null;
             FirstName = default;
             LastName = default;
@@ -44,9 +44,11 @@ namespace OnlineExamination_BusinessLayer
             PhoneNumber = null;
             PersonalImagePath = null;
         }
-        private Person(int? personID, string firstName, string lastName, string nationalNo, char gender, DateTime birthDate, string email, string address, string phoneNumber, string personalImagePath)
+        private Person(int? personID, string firstName, string lastName,
+                       string nationalNo, char gender, DateTime birthDate,
+                       string email, string address, string phoneNumber, string personalImagePath)
         {
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
             this.PersonID = personID;
             this.FirstName = firstName;
             this.LastName = lastName;
@@ -106,21 +108,21 @@ namespace OnlineExamination_BusinessLayer
                 return null;
         }
 
-        public static bool DoesPersonExist<T>(T filterValue, EnFilterBy filterBy)
+        public static bool DoesPersonExist<T>(T value, FindByOption findByOption)
         {
-            if (filterValue == null)
+            if (value == null)
                 return false;
 
-            switch (filterBy)
+            switch (findByOption)
             {
-                case EnFilterBy.PersonID:
-                    return PersonData.DoesPersonExistByID(Convert.ToInt32(filterValue));
+                case FindByOption.PersonID:
+                    return PersonData.DoesPersonExistByID(Convert.ToInt32(value));
 
-                case EnFilterBy.NationalNo:
-                    return PersonData.DoesPersonExistByNationalNo(Convert.ToString(filterValue));
+                case FindByOption.NationalNo:
+                    return PersonData.DoesPersonExistByNationalNo(Convert.ToString(value));
 
-                case EnFilterBy.Email:
-                    return PersonData.DoesPersonExistByEmail(Convert.ToString(filterValue));
+                case FindByOption.Email:
+                    return PersonData.DoesPersonExistByEmail(Convert.ToString(value));
 
                 default:
                     return false;
@@ -146,15 +148,15 @@ namespace OnlineExamination_BusinessLayer
         {
             switch (_mode)
             {
-                case EnMode.AddNew:
+                case Mode.AddNew:
                     if (AddNewPerson())
                     {
-                        _mode = EnMode.Update;
+                        _mode = Mode.Update;
                         return true;
                     }
                     return false;
 
-                case EnMode.Update:
+                case Mode.Update:
                     return UpdatePerson();
 
             }

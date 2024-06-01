@@ -1,42 +1,46 @@
 ﻿using Guna.UI2.WinForms;
 using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Global;
 using OnlineExaminationSystem_BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using static OnlineExaminationSystem_BusinessLayer.Question;
 
 namespace OnlineExaminationSystem.Instructor_system.Questions
 {
     public partial class FrmAddUpdateQuestion : Form
     {
-        private enum EnMode : byte { AddNew, Update };
-        private EnMode _mode;
+        private enum Mode : byte { AddNew, Update };
+        private Mode _mode;
 
         private int? _questionID = null;
         private Question _question = null;
 
         private Dictionary<Guna2TextBox, string> _choiceMap = new Dictionary<Guna2TextBox, string>();
 
-        public FrmAddUpdateQuestion(int? questionID)
+        private readonly int? _instructorID = null;
+
+        public FrmAddUpdateQuestion(int? questionID, int? instructorID)
         {
             InitializeComponent();
             _questionID = questionID;
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
+            _instructorID = instructorID;
         }
 
-        public FrmAddUpdateQuestion()
+        public FrmAddUpdateQuestion(int? instructorID)
         {
             InitializeComponent();
-            _mode = EnMode.AddNew;
+            _mode = Mode.AddNew;
+            _instructorID = instructorID;
         }
 
         private void FrmAddUpdateQuestion_Load(object sender, EventArgs e)
         {
-            Reset();
+            InitializeForm();
 
-            if (_mode == EnMode.Update)
+            if (_mode == Mode.Update)
                 LoadQuestionData();
         }
 
@@ -46,21 +50,21 @@ namespace OnlineExaminationSystem.Instructor_system.Questions
 
             if (_question == null)
             {
-                ShowErrorMessage($"No question with ID = {_questionID} was found in the system !");
-                this.Close();
+                FormUtilities.ShowMessage($"No question with ID = {_questionID} was found in the system !" ,MessageBoxIcon.Error);
+                Close();
                 return;
             }
 
-            PopulateFormFields();
+            DisplayQuestionData();
         }
 
         private void PopulateCourses()
         {
-            cbCourses.DataSource = Course.GetAllCoursesNames();
+            cbCourses.DataSource = InstructorCourse.GetAllInstructorCoursesNames(_instructorID);
             cbCourses.SelectedIndex = 0;
         }
 
-        private void PopulateFormFields()
+        private void DisplayQuestionData()
         {
             txtQuestionText.Text = _question.QuestionText;
             cbCourses.SelectedIndex = cbCourses.FindStringExact(Course.Find(_question.CourseID).Name);
@@ -68,7 +72,7 @@ namespace OnlineExaminationSystem.Instructor_system.Questions
             cbQuestionComplexity.SelectedIndex = cbQuestionComplexity.FindStringExact(_question.DifficultyLevel.ToString());
             nudQuestionMark.Value = Convert.ToDecimal(_question.Mark);
 
-            if (_question.QuestionType == Question.EnQuestionTypes.MCQ)
+            if (_question.QuestionType == Question.QuestionTypeOption.MCQ)
             {
                 txtChoice1.Text = _question.QuestionChoices[0].ChoiceText;
                 txtChoice2.Text = _question.QuestionChoices[1].ChoiceText;
@@ -84,10 +88,10 @@ namespace OnlineExaminationSystem.Instructor_system.Questions
             }
         }
 
-        private void PopulateModelAnswerChoices(Question.EnQuestionTypes questionType)
+        private void PopulateModelAnswerChoices(Question.QuestionTypeOption questionType)
         {
             cbModelAnswer.Items.Clear();
-            cbModelAnswer.Items.AddRange(questionType == Question.EnQuestionTypes.MCQ
+            cbModelAnswer.Items.AddRange(questionType == Question.QuestionTypeOption.MCQ
                 ? new[] { "Choice 1", "Choice 2", "Choice 3" }
                 : new[] { "True", "False" });
 
@@ -101,25 +105,25 @@ namespace OnlineExaminationSystem.Instructor_system.Questions
             _choiceMap.Add(txtChoice3, "Choice 3");
         }
 
-        private void Reset()
+        private void InitializeForm()
         {
             PopulateCourses();
             InitializeChoiceMap();
 
-            if (_mode == EnMode.AddNew)
+            if (_mode == Mode.AddNew)
                 _question = new Question();
 
             cbQuestionTypes.SelectedIndex = 0;
             cbQuestionComplexity.SelectedIndex = 0;
 
-            lblTitle.Text = _mode == EnMode.AddNew ? "Add New Question" : "Update Question";
+            lblTitle.Text = _mode == Mode.AddNew ? "Add New Question" : "Update Question";
         }
 
         private void BtnSave_Click(object sender, System.EventArgs e)
         {
             if (!ValidateChildren())
             {
-                ShowErrorMessage("Some fields are not valid. Please check the red icon(s) for details.");
+                FormUtilities.ShowMessage("Some fields are not valid. Please check the red icon(s) for details.", MessageBoxIcon.Warning);
                 return;
             }
 
@@ -128,7 +132,7 @@ namespace OnlineExaminationSystem.Instructor_system.Questions
 
         private void BtnClose_Click(object sender, System.EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private bool SaveQuestionData()
@@ -137,21 +141,21 @@ namespace OnlineExaminationSystem.Instructor_system.Questions
 
             if (!_question.Save())
             {
-                ShowErrorMessage("Question data is not saved successfully.");
+                FormUtilities.ShowMessage("Question data is not saved successfully.", MessageBoxIcon.Error);
                 return false;
             }
 
             else
             {
-                ShowSuccessMessage("Question data saved successfully !");
-                UpdateFormForSavedQuestion();
+                FormUtilities.ShowMessage("Question data saved successfully !" , MessageBoxIcon.Information);
+                UpdateFormAfterSave();
                 return true;
             }
         }
 
-        private void UpdateFormForSavedQuestion()
+        private void UpdateFormAfterSave()
         {
-            _mode = EnMode.Update;
+            _mode = Mode.Update;
             _questionID = _question.CourseID;
         }
 
@@ -159,11 +163,11 @@ namespace OnlineExaminationSystem.Instructor_system.Questions
         {
             _question.CourseID = Course.Find(cbCourses.Text).CourseID.Value;
             _question.QuestionText = txtQuestionText.Text.Trim();
-            _question.QuestionType = (Question.EnQuestionTypes)Enum.Parse(typeof(Question.EnQuestionTypes), cbQuestionTypes.Text);
-            _question.DifficultyLevel = (Question.EnDifficultyLevels)Enum.Parse(typeof(Question.EnDifficultyLevels), cbQuestionComplexity.Text);
+            _question.QuestionType = (Question.QuestionTypeOption)Enum.Parse(typeof(Question.QuestionTypeOption), cbQuestionTypes.Text);
+            _question.DifficultyLevel = (Question.DifficultyLevelOption)Enum.Parse(typeof(Question.DifficultyLevelOption), cbQuestionComplexity.Text);
             _question.Mark = Convert.ToSingle(nudQuestionMark.Value);
-            _question.IsMarkedForDelete = _mode == EnMode.AddNew ? false : _question.IsMarkedForDelete;
-            _question.ModelAnswer = _question.QuestionType == Question.EnQuestionTypes.MCQ
+            _question.IsMarkedForDelete = _mode == Mode.AddNew ? false : _question.IsMarkedForDelete;
+            _question.ModelAnswer = _question.QuestionType == Question.QuestionTypeOption.MCQ
                 ? _choiceMap.First(x => x.Value == cbModelAnswer.Text).Key.Text
                 : cbModelAnswer.Text;
 
@@ -175,16 +179,6 @@ namespace OnlineExaminationSystem.Instructor_system.Questions
                         return qChoice;
 
                     }).ToList();
-        }
-
-        private void ShowErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void ShowSuccessMessage(string message)
-        {
-            MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void SetValidationError(Control control, System.ComponentModel.CancelEventArgs e, string errorMessage)
@@ -211,12 +205,12 @@ namespace OnlineExaminationSystem.Instructor_system.Questions
             else
                 DetachValidatingEventHandlers();
 
-            PopulateModelAnswerChoices(isMcq ? Question.EnQuestionTypes.MCQ : Question.EnQuestionTypes.TF);
+            PopulateModelAnswerChoices(isMcq ? Question.QuestionTypeOption.MCQ : Question.QuestionTypeOption.TF);
         }
 
         private void AttachValidatingEventHandlers()
         {
-           _choiceMap.Keys.ToList().ForEach(t => t.Validating += TextBox_Validating);
+            _choiceMap.Keys.ToList().ForEach(t => t.Validating += TextBox_Validating);
         }
 
         private void DetachValidatingEventHandlers()
@@ -233,6 +227,6 @@ namespace OnlineExaminationSystem.Instructor_system.Questions
             else
                 ClearValidationError(textBox, e);
         }
-     
+
     }
 }

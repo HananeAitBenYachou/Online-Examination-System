@@ -6,14 +6,14 @@ namespace OnlineExaminationSystem.Administrator.Students
 {
     public partial class FrmShowStudentInfo : Form
     {
-        private readonly int? _value;
-        private readonly UcStudentCard.EnLoadBy _loadBy;
+        private readonly int? _id;
+        private readonly UcStudentCard.LoadByOption _loadByOption;
 
-        public FrmShowStudentInfo(int? value, UcStudentCard.EnLoadBy loadBy)
+        public FrmShowStudentInfo(int? id, UcStudentCard.LoadByOption loadByOption)
         {
             InitializeComponent();
-            _value = value;
-            _loadBy = loadBy;
+            _id = id;
+            _loadByOption = loadByOption;
         }
 
         private void FrmShowStudentInfo_Load(object sender, EventArgs e)
@@ -26,11 +26,11 @@ namespace OnlineExaminationSystem.Administrator.Students
 
         private bool LoadStudentData()
         {
-            switch (_loadBy)
+            switch (_loadByOption)
             {
-                case UcStudentCard.EnLoadBy.PersonID:
+                case UcStudentCard.LoadByOption.PersonID:
                     return LoadStudentDataByPersonID();
-                case UcStudentCard.EnLoadBy.StudentID:
+                case UcStudentCard.LoadByOption.StudentID:
                     return LoadStudentDataByStudentID();
                 default:
                     return false;
@@ -39,12 +39,12 @@ namespace OnlineExaminationSystem.Administrator.Students
 
         private bool LoadStudentDataByPersonID()
         {
-            return ucStudentCard1.LoadStudentData(_value, UcStudentCard.EnLoadBy.PersonID);
+            return ucStudentCard1.LoadStudentData(_id, UcStudentCard.LoadByOption.PersonID);
         }
 
         private bool LoadStudentDataByStudentID()
         {
-            return ucStudentCard1.LoadStudentData(_value, UcStudentCard.EnLoadBy.StudentID);
+            return ucStudentCard1.LoadStudentData(_id, UcStudentCard.LoadByOption.StudentID);
         }
 
         private void BtnClose_Click(object sender, EventArgs e)

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using OnlineExaminationSystem_DataAccessLayer.Global;
+using OnlineExaminationSystem_UtilityLayer;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using OnlineExaminationSystem_DataAccessLayer.Global;
-using OnlineExaminationSystem_UtilityLayer;
 
 namespace OnlineExaminationSystem_DataAccessLayer
 {
@@ -191,7 +191,7 @@ namespace OnlineExaminationSystem_DataAccessLayer
             return rowsAffected != 0;
         }
 
-        public static List<(int? , int , string)> GetAllQuestionChoices(int questionID)
+        public static List<(int?, int, string)> GetAllQuestionChoices(int questionID)
         {
             var questionChoices = new List<(int?, int, string)>();
 
