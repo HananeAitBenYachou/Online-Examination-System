@@ -249,6 +249,80 @@ namespace OnlineExaminationSystem_DataAccessLayer
             return questions;
         }
 
+        public static DataTable GetRandomQuestions(int courseID, byte numberOfTFQuestions, 
+                                                   byte numberOfMcqQuestions)
+        {
+            DataTable questions = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Questions_GetRandomQuestions", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@CourseID", courseID);
+                        command.Parameters.AddWithValue("@NumberOfTFQuestions", numberOfTFQuestions);
+                        command.Parameters.AddWithValue("@NumberOfMcqQuestions", numberOfMcqQuestions);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                questions.Load(reader);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+            }
+            return questions;
+        }
+ 
+        public static short GetNumberOfQuestionsByQuestionType(int courseID , byte questionType)
+        {
+            short questionsCount = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Questions_GetNumberOfQuestionsByQuestionType", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@QuestionType", questionType);
+                        command.Parameters.AddWithValue("@CourseID", courseID);
+
+                        SqlParameter returnValue = new SqlParameter
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+
+                        command.Parameters.Add(returnValue);
+
+                        command.ExecuteScalar();
+
+                        questionsCount = Convert.ToInt16(returnValue.Value);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+
+                questionsCount = 0;
+            }
+            return questionsCount;
+        }
+
     }
 
 }

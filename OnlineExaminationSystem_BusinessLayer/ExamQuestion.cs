@@ -1,30 +1,33 @@
 ﻿using OnlineExaminationSystem_DataAccessLayer;
+using System.Collections.Generic;
 using System.Data;
 
 namespace OnlineExaminationSystem_BusinessLayer
 {
     public class ExamQuestion
     {
-
         private enum Mode { AddNew = 0, Update = 1 };
         private Mode _mode;
         public int? ExamQuestionID { get; private set; }
         public int ExamID { get; set; }
         public int QuestionID { get; set; }
-
+        public Question QuestionInfo { get; }
         public ExamQuestion()
         {
             _mode = Mode.AddNew;
             ExamQuestionID = null;
             ExamID = default;
             QuestionID = default;
+
         }
+
         private ExamQuestion(int? examQuestionID, int examID, int questionID)
         {
             _mode = Mode.Update;
             this.ExamQuestionID = examQuestionID;
             this.ExamID = examID;
             this.QuestionID = questionID;
+            this.QuestionInfo = Question.Find(questionID);
         }
 
         public static ExamQuestion Find(int? examQuestionID)
@@ -80,9 +83,22 @@ namespace OnlineExaminationSystem_BusinessLayer
             return ExamQuestionData.DeleteExamQuestion(examQuestionID);
         }
 
-        public static DataTable GetAllExamQuestions()
+        public static DataTable GetAllExamQuestions(int examID)
         {
-            return ExamQuestionData.GetAllExamQuestions();
+            return ExamQuestionData.GetAllExamQuestions(examID);
         }
+
+        public static List<ExamQuestion> GetAllExamQuestionsList(int examID)
+        {
+            List<ExamQuestion> examQuestions = new List<ExamQuestion>();
+
+            foreach (DataRow row in GetAllExamQuestions(examID).Rows)
+            {
+                examQuestions.Add(Find((int?)row["Question ID"]));
+            }
+
+            return examQuestions;
+        }
+
     }
 }

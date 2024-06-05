@@ -1,5 +1,6 @@
 ﻿using OnlineExaminationSystem_DataAccessLayer;
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace OnlineExaminationSystem_BusinessLayer
@@ -15,6 +16,8 @@ namespace OnlineExaminationSystem_BusinessLayer
         public byte NumOfTrueFalseQuestions { get; set; }
         public byte NumOfMCQQuestions { get; set; }
         public bool IsMarkedForDelete { get; set; }
+        public List<ExamQuestion> ExamQuestions { get; private set; }
+        public bool IsCompleted => ExaminationDate <= DateTime.Now;
 
         public Exam()
         {
@@ -26,8 +29,10 @@ namespace OnlineExaminationSystem_BusinessLayer
             NumOfTrueFalseQuestions = default;
             NumOfMCQQuestions = default;
             IsMarkedForDelete = default;
+            ExamQuestions = new List<ExamQuestion>();
         }
-        private Exam(int? examID, int courseID, byte duration, DateTime examinationDate, byte numOfTrueFalseQuestions, byte numOfMCQQuestions, bool isMarkedForDelete)
+        private Exam(int? examID, int courseID, byte duration, DateTime examinationDate, 
+                     byte numOfTrueFalseQuestions, byte numOfMCQQuestions, bool isMarkedForDelete)
         {
             _mode = Mode.Update;
             this.ExamID = examID;
@@ -37,6 +42,7 @@ namespace OnlineExaminationSystem_BusinessLayer
             this.NumOfTrueFalseQuestions = numOfTrueFalseQuestions;
             this.NumOfMCQQuestions = numOfMCQQuestions;
             this.IsMarkedForDelete = isMarkedForDelete;
+            this.ExamQuestions = ExamQuestion.GetAllExamQuestionsList(examID.Value);
         }
 
         public static Exam Find(int? examID)
@@ -61,23 +67,48 @@ namespace OnlineExaminationSystem_BusinessLayer
             return ExamData.DoesExamExist(examID);
         }
 
-        private bool AddNewExam()
+        private bool AddNewExam(List<int> examQuestions)
         {
             ExamID = ExamData.AddNewExam(CourseID, Duration, ExaminationDate, NumOfTrueFalseQuestions, NumOfMCQQuestions, IsMarkedForDelete);
-            return ExamID.HasValue;
+            
+            if(!ExamID.HasValue)
+                return false;
+
+            return SaveExamQuestions(examQuestions);
         }
 
-        private bool UpdateExam()
+        private bool SaveExamQuestions(List<int> examQuestions)
         {
-            return ExamData.UpdateExamInfo(ExamID, CourseID, Duration, ExaminationDate, NumOfTrueFalseQuestions, NumOfMCQQuestions, IsMarkedForDelete);
+            foreach(int questionID in examQuestions)
+            {
+                ExamQuestion examQuestion = new ExamQuestion();
+
+                examQuestion.QuestionID = questionID;
+                examQuestion.ExamID = this.ExamID.Value;
+
+                if(!examQuestion.Save())
+                    return false;
+            }
+
+            return true;
         }
 
-        public bool Save()
+        private bool UpdateExam(List<int> examQuestions , bool areExamQuestionsRegenerated)
+        {
+            bool isUpdatedSuccessfully  = ExamData.UpdateExamInfo(ExamID, CourseID, Duration, ExaminationDate, NumOfTrueFalseQuestions, NumOfMCQQuestions, IsMarkedForDelete , areExamQuestionsRegenerated);
+
+            if (!isUpdatedSuccessfully)
+                return false;
+
+            return areExamQuestionsRegenerated ? SaveExamQuestions(examQuestions) : true;
+        }
+
+        public bool Save(List<int> examQuestions , bool areExamQuestionsRegenerated)
         {
             switch (_mode)
             {
                 case Mode.AddNew:
-                    if (AddNewExam())
+                    if (AddNewExam(examQuestions))
                     {
                         _mode = Mode.Update;
                         return true;
@@ -85,7 +116,7 @@ namespace OnlineExaminationSystem_BusinessLayer
                     return false;
 
                 case Mode.Update:
-                    return UpdateExam();
+                    return UpdateExam(examQuestions , areExamQuestionsRegenerated);
 
             }
             return false;
@@ -99,6 +130,11 @@ namespace OnlineExaminationSystem_BusinessLayer
         public static DataTable GetAllExams()
         {
             return ExamData.GetAllExams();
+        }
+
+        public DataTable GetAllExamQuestions()
+        {
+            return ExamQuestion.GetAllExamQuestions(this.ExamID.Value);
         }
     }
 }

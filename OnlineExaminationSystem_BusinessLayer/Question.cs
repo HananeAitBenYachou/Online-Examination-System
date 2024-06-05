@@ -139,5 +139,14 @@ namespace OnlineExaminationSystem_BusinessLayer
             return QuestionData.GetAllQuestions(instructorID);
         }
 
+        public static DataTable GetRandomQuestions(int courseID , byte numberOfTFQuestions , byte numberOfMcqQuestions)
+        {
+            return QuestionData.GetRandomQuestions(courseID , numberOfTFQuestions , numberOfMcqQuestions);
+        }
+    
+        public static short GetNumberOfQuestionsByQuestionType(int courseID , QuestionTypeOption questionType)
+        {
+            return QuestionData.GetNumberOfQuestionsByQuestionType(courseID, (byte)questionType);
+        }
     }
 }

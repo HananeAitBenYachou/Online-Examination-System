@@ -171,7 +171,6 @@ namespace OnlineExaminationSystem.Instructor_system.Questions
                 ? _choiceMap.First(x => x.Value == cbModelAnswer.Text).Key.Text
                 : cbModelAnswer.Text;
 
-            var y = _question.QuestionChoices.Count;
             _question.QuestionChoices = _question.QuestionChoices
                     .Select((qChoice, index) =>
                     {

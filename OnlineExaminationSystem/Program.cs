@@ -1,4 +1,5 @@
-﻿using OnlineExaminationSystem.Instructor_system.Questions;
+﻿using OnlineExaminationSystem.Instructor_system.Exams;
+using OnlineExaminationSystem.Instructor_system.Questions;
 using System;
 using System.Windows.Forms;
 
@@ -18,7 +19,7 @@ namespace OnlineExaminationSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new FrmAddUpdateQuestion(1));
+            Application.Run(new FrmAddUpdateExam(2,1));
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]

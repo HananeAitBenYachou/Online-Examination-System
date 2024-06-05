@@ -302,6 +302,9 @@
     <EmbeddedResource Include="Administrator-system\Tracks\UserControls\UcTrackCard.resx">
       <DependentUpon>UcTrackCard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Instructor-system\Exams\FrmAddUpdateExam.resx">
+      <DependentUpon>FrmAddUpdateExam.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Instructor-system\Questions\FrmAddUpdateQuestion.resx">
       <DependentUpon>FrmAddUpdateQuestion.cs</DependentUpon>
     </EmbeddedResource>
@@ -438,6 +441,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\discussion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\light-bulb.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

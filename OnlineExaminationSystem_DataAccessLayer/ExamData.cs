@@ -144,7 +144,7 @@ namespace OnlineExaminationSystem_DataAccessLayer
             return examID;
         }
 
-        public static bool UpdateExamInfo(int? examID, int courseID, byte duration, DateTime examinationDate, byte numOfTrueFalseQuestions, byte numOfMCQQuestions, bool isMarkedForDelete)
+        public static bool UpdateExamInfo(int? examID, int courseID, byte duration, DateTime examinationDate, byte numOfTrueFalseQuestions, byte numOfMCQQuestions, bool isMarkedForDelete , bool areExamQuestionsRegenerated)
         {
             int rowsAffected = 0;
 
@@ -164,7 +164,7 @@ namespace OnlineExaminationSystem_DataAccessLayer
                         command.Parameters.AddWithValue("@NumOfTrueFalseQuestions", numOfTrueFalseQuestions);
                         command.Parameters.AddWithValue("@NumOfMCQQuestions", numOfMCQQuestions);
                         command.Parameters.AddWithValue("@IsMarkedForDelete", isMarkedForDelete);
-
+                        command.Parameters.AddWithValue("@AreExamQuestionsGenerated", areExamQuestionsRegenerated);
 
                         rowsAffected = command.ExecuteNonQuery();
                     }

@@ -5,7 +5,6 @@ namespace OnlineExaminationSystem_BusinessLayer
 {
     public class QuestionChoice
     {
-
         private enum Mode { AddNew = 0, Update = 1 };
         private Mode _mode;
         public int? QuestionChoiceID { get; private set; }

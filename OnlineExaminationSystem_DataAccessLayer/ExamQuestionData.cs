@@ -191,7 +191,7 @@ namespace OnlineExaminationSystem_DataAccessLayer
             return rowsAffected != 0;
         }
 
-        public static DataTable GetAllExamQuestions()
+        public static DataTable GetAllExamQuestions(int examID)
         {
             DataTable examQuestions = new DataTable();
 
@@ -204,6 +204,7 @@ namespace OnlineExaminationSystem_DataAccessLayer
                     using (SqlCommand command = new SqlCommand("SP_ExamQuestions_GetAllExamQuestions", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ExamID", examID);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
