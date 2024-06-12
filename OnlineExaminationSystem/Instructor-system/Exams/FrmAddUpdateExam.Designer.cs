@@ -41,7 +41,6 @@
             this.txtExamID = new Guna.UI2.WinForms.Guna2TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbCourses = new Guna.UI2.WinForms.Guna2ComboBox();
             this.nudNoOfTFQuestions = new Guna.UI2.WinForms.Guna2NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.nudNoOfMcqQuestions = new Guna.UI2.WinForms.Guna2NumericUpDown();
@@ -55,6 +54,7 @@
             this.btnGenerateQuestions = new Guna.UI2.WinForms.Guna2Button();
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
+            this.cbCourses = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2GradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoOfTFQuestions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoOfMcqQuestions)).BeginInit();
@@ -157,23 +157,6 @@
             this.label3.Size = new System.Drawing.Size(68, 21);
             this.label3.TabIndex = 328;
             this.label3.Text = "Course :";
-            // 
-            // cbCourses
-            // 
-            this.cbCourses.BackColor = System.Drawing.Color.Transparent;
-            this.cbCourses.BorderRadius = 22;
-            this.cbCourses.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbCourses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCourses.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbCourses.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbCourses.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold);
-            this.cbCourses.ForeColor = System.Drawing.Color.Black;
-            this.cbCourses.ItemHeight = 40;
-            this.cbCourses.Location = new System.Drawing.Point(802, 121);
-            this.cbCourses.Name = "cbCourses";
-            this.cbCourses.Size = new System.Drawing.Size(231, 46);
-            this.cbCourses.TabIndex = 327;
-            this.cbCourses.SelectedIndexChanged += new System.EventHandler(this.CbCourses_SelectedIndexChanged);
             // 
             // nudNoOfTFQuestions
             // 
@@ -460,6 +443,23 @@
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
+            // cbCourses
+            // 
+            this.cbCourses.BackColor = System.Drawing.Color.Transparent;
+            this.cbCourses.BorderRadius = 22;
+            this.cbCourses.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbCourses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCourses.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbCourses.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbCourses.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold);
+            this.cbCourses.ForeColor = System.Drawing.Color.Black;
+            this.cbCourses.ItemHeight = 40;
+            this.cbCourses.Location = new System.Drawing.Point(802, 121);
+            this.cbCourses.Name = "cbCourses";
+            this.cbCourses.Size = new System.Drawing.Size(231, 46);
+            this.cbCourses.TabIndex = 327;
+            this.cbCourses.SelectedIndexChanged += new System.EventHandler(this.CbCourses_SelectedIndexChanged);
+            // 
             // FrmAddUpdateExam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -509,7 +509,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtExamID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private Guna.UI2.WinForms.Guna2ComboBox cbCourses;
         private Guna.UI2.WinForms.Guna2NumericUpDown nudExamDuration;
         private System.Windows.Forms.Label label5;
         private Guna.UI2.WinForms.Guna2NumericUpDown nudNoOfMcqQuestions;
@@ -523,5 +522,6 @@
         private Guna.UI2.WinForms.Guna2Button btnClose;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private Guna.UI2.WinForms.Guna2Button btnGenerateQuestions;
+        private Guna.UI2.WinForms.Guna2ComboBox cbCourses;
     }
 }

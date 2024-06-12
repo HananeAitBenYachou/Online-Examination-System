@@ -204,6 +204,18 @@
     <Compile Include="Instructor-system\Exams\FrmAddUpdateExam.Designer.cs">
       <DependentUpon>FrmAddUpdateExam.cs</DependentUpon>
     </Compile>
+    <Compile Include="Instructor-system\Exams\FrmShowExamInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instructor-system\Exams\FrmShowExamInfo.Designer.cs">
+      <DependentUpon>FrmShowExamInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instructor-system\Exams\UserControls\UcExamCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Instructor-system\Exams\UserControls\UcExamCard.Designer.cs">
+      <DependentUpon>UcExamCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Instructor-system\Questions\FrmAddUpdateQuestion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,6 +316,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Instructor-system\Exams\FrmAddUpdateExam.resx">
       <DependentUpon>FrmAddUpdateExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instructor-system\Exams\FrmShowExamInfo.resx">
+      <DependentUpon>FrmShowExamInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instructor-system\Exams\UserControls\UcExamCard.resx">
+      <DependentUpon>UcExamCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Instructor-system\Questions\FrmAddUpdateQuestion.resx">
       <DependentUpon>FrmAddUpdateQuestion.cs</DependentUpon>

@@ -30,10 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ucQuestionCard1 = new OnlineExaminationSystem.Instructor_system.Questions.UserControls.UcQuestionCard();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.ucQuestionCard1 = new OnlineExaminationSystem.Instructor_system.Questions.UserControls.UcQuestionCard();
             this.SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -42,19 +40,6 @@
             this.guna2BorderlessForm1.ContainerControl = this;
             this.guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
             this.guna2BorderlessForm1.TransparentWhileDrag = true;
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // ucQuestionCard1
-            // 
-            this.ucQuestionCard1.BackColor = System.Drawing.Color.Transparent;
-            this.ucQuestionCard1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucQuestionCard1.Location = new System.Drawing.Point(0, 0);
-            this.ucQuestionCard1.Name = "ucQuestionCard1";
-            this.ucQuestionCard1.Size = new System.Drawing.Size(1060, 529);
-            this.ucQuestionCard1.TabIndex = 0;
             // 
             // btnClose
             // 
@@ -77,18 +62,28 @@
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
+            // ucQuestionCard1
+            // 
+            this.ucQuestionCard1.BackColor = System.Drawing.Color.Transparent;
+            this.ucQuestionCard1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucQuestionCard1.Location = new System.Drawing.Point(0, 0);
+            this.ucQuestionCard1.Name = "ucQuestionCard1";
+            this.ucQuestionCard1.Size = new System.Drawing.Size(1060, 529);
+            this.ucQuestionCard1.TabIndex = 0;
+            // 
             // FrmShowQuestionInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1060, 600);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ucQuestionCard1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmShowQuestionInfo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmShowQuestionInfo";
             this.Load += new System.EventHandler(this.FrmShowQuestionInfo_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -96,7 +91,6 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
         private UserControls.UcQuestionCard ucQuestionCard1;
         private Guna.UI2.WinForms.Guna2Button btnClose;
     }

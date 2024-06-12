@@ -1,4 +1,5 @@
-﻿using OnlineExaminationSystem_DataAccessLayer;
+﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem_DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +12,8 @@ namespace OnlineExaminationSystem_BusinessLayer
         private Mode _mode;
         public int? ExamID { get; private set; }
         public int CourseID { get; set; }
+
+        public Course CourseInfo { get; }
         public byte Duration { get; set; }
         public DateTime ExaminationDate { get; set; }
         public byte NumOfTrueFalseQuestions { get; set; }
@@ -43,6 +46,7 @@ namespace OnlineExaminationSystem_BusinessLayer
             this.NumOfMCQQuestions = numOfMCQQuestions;
             this.IsMarkedForDelete = isMarkedForDelete;
             this.ExamQuestions = ExamQuestion.GetAllExamQuestionsList(examID.Value);
+            this.CourseInfo = Course.Find(CourseID);
         }
 
         public static Exam Find(int? examID)

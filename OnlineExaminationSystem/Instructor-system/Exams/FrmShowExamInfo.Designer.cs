@@ -1,6 +1,6 @@
-﻿namespace OnlineExaminationSystem.Administrator.Courses
+﻿namespace OnlineExaminationSystem.Instructor_system.Exams
 {
-    partial class FrmShowCourseInfo
+    partial class FrmShowExamInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
+            this.ucExamCard1 = new OnlineExaminationSystem.Instructor_system.Exams.UserControls.UcExamCard();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
-            this.ucCourseCard1 = new OnlineExaminationSystem.Administrator.Courses.UserControls.UcCourseCard();
             this.SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -40,6 +40,15 @@
             this.guna2BorderlessForm1.ContainerControl = this;
             this.guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
             this.guna2BorderlessForm1.TransparentWhileDrag = true;
+            // 
+            // ucExamCard1
+            // 
+            this.ucExamCard1.BackColor = System.Drawing.Color.Transparent;
+            this.ucExamCard1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucExamCard1.Location = new System.Drawing.Point(0, 0);
+            this.ucExamCard1.Name = "ucExamCard1";
+            this.ucExamCard1.Size = new System.Drawing.Size(1093, 689);
+            this.ucExamCard1.TabIndex = 0;
             // 
             // btnClose
             // 
@@ -55,41 +64,34 @@
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Image = global::OnlineExaminationSystem.Properties.Resources.close;
             this.btnClose.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnClose.Location = new System.Drawing.Point(716, 434);
+            this.btnClose.Location = new System.Drawing.Point(941, 695);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(147, 58);
-            this.btnClose.TabIndex = 282;
+            this.btnClose.TabIndex = 284;
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
-            // ucCourseCard1
-            // 
-            this.ucCourseCard1.BackColor = System.Drawing.Color.Transparent;
-            this.ucCourseCard1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucCourseCard1.Location = new System.Drawing.Point(0, 0);
-            this.ucCourseCard1.Name = "ucCourseCard1";
-            this.ucCourseCard1.Size = new System.Drawing.Size(865, 425);
-            this.ucCourseCard1.TabIndex = 283;
-            // 
-            // FrmShowCourseInfo
+            // FrmShowExamInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(865, 500);
-            this.Controls.Add(this.ucCourseCard1);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1093, 760);
             this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.ucExamCard1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmShowCourseInfo";
+            this.Name = "FrmShowExamInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmShowCourseInfo";
-            this.Load += new System.EventHandler(this.FrmShowCourseInfo_Load);
+            this.Text = "FrmShowExamInfo";
+            this.Load += new System.EventHandler(this.FrmShowExamInfo_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
+        private UserControls.UcExamCard ucExamCard1;
         private Guna.UI2.WinForms.Guna2Button btnClose;
-        private UserControls.UcCourseCard ucCourseCard1;
     }
 }
