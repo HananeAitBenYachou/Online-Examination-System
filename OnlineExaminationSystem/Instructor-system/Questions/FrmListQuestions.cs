@@ -141,7 +141,7 @@ namespace OnlineExaminationSystem.Instructor_system.Questions
             if (MessageBox.Show("Are you sure you want to delete this question ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
 
-            if (Student.DeleteStudent(currentQuestionID))
+            if (Question.DeleteQuestion(currentQuestionID))
             {
                 FormUtilities.ShowMessage($"Question with ID: {currentQuestionID} deleted successfully." , MessageBoxIcon.Information);
                 RefreshQuestionsList();

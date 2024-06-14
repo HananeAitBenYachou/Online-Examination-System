@@ -37,16 +37,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListQuestions));
             this.dgvQuestionsList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.cmsQuestions = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addNewQuestionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editQuestionInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showQuestionDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteQuestionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbTemp = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cbFilterByOptions = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtFilterValue = new Guna.UI2.WinForms.Guna2TextBox();
+            this.addNewQuestionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editQuestionInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showQuestionDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteQuestionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAddNewQuestion = new Guna.UI2.WinForms.Guna2Button();
             this.guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuestionsList)).BeginInit();
@@ -137,50 +137,6 @@
             this.deleteQuestionToolStripMenuItem});
             this.cmsQuestions.Name = "cbUsers";
             this.cmsQuestions.Size = new System.Drawing.Size(279, 148);
-            // 
-            // addNewQuestionToolStripMenuItem
-            // 
-            this.addNewQuestionToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
-            this.addNewQuestionToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.addNewQuestionToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.addNewQuestionToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.add1;
-            this.addNewQuestionToolStripMenuItem.Name = "addNewQuestionToolStripMenuItem";
-            this.addNewQuestionToolStripMenuItem.Size = new System.Drawing.Size(278, 36);
-            this.addNewQuestionToolStripMenuItem.Text = "Add New Question";
-            this.addNewQuestionToolStripMenuItem.Click += new System.EventHandler(this.AddNewQuestionToolStripMenuItem_Click);
-            // 
-            // editQuestionInformationToolStripMenuItem
-            // 
-            this.editQuestionInformationToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
-            this.editQuestionInformationToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.editQuestionInformationToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.editQuestionInformationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editQuestionInformationToolStripMenuItem.Image")));
-            this.editQuestionInformationToolStripMenuItem.Name = "editQuestionInformationToolStripMenuItem";
-            this.editQuestionInformationToolStripMenuItem.Size = new System.Drawing.Size(278, 36);
-            this.editQuestionInformationToolStripMenuItem.Text = "Edit Question Information";
-            this.editQuestionInformationToolStripMenuItem.Click += new System.EventHandler(this.UpdateQuestionInfoToolStripMenuItem_Click);
-            // 
-            // showQuestionDetailsToolStripMenuItem
-            // 
-            this.showQuestionDetailsToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
-            this.showQuestionDetailsToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.showQuestionDetailsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.showQuestionDetailsToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.show;
-            this.showQuestionDetailsToolStripMenuItem.Name = "showQuestionDetailsToolStripMenuItem";
-            this.showQuestionDetailsToolStripMenuItem.Size = new System.Drawing.Size(278, 36);
-            this.showQuestionDetailsToolStripMenuItem.Text = "Show Question Details";
-            this.showQuestionDetailsToolStripMenuItem.Click += new System.EventHandler(this.ShowQuestionDetailsToolStripMenuItem_Click);
-            // 
-            // deleteQuestionToolStripMenuItem
-            // 
-            this.deleteQuestionToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
-            this.deleteQuestionToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.deleteQuestionToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.deleteQuestionToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.delete;
-            this.deleteQuestionToolStripMenuItem.Name = "deleteQuestionToolStripMenuItem";
-            this.deleteQuestionToolStripMenuItem.Size = new System.Drawing.Size(278, 36);
-            this.deleteQuestionToolStripMenuItem.Text = "Delete Question";
-            this.deleteQuestionToolStripMenuItem.Click += new System.EventHandler(this.DeleteQuestionToolStripMenuItem_Click);
             // 
             // cbTemp
             // 
@@ -282,6 +238,50 @@
             this.txtFilterValue.TextChanged += new System.EventHandler(this.TxtFilterValue_TextChanged);
             this.txtFilterValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtFilterValue_KeyPress);
             // 
+            // addNewQuestionToolStripMenuItem
+            // 
+            this.addNewQuestionToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.addNewQuestionToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.addNewQuestionToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.addNewQuestionToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.add1;
+            this.addNewQuestionToolStripMenuItem.Name = "addNewQuestionToolStripMenuItem";
+            this.addNewQuestionToolStripMenuItem.Size = new System.Drawing.Size(278, 36);
+            this.addNewQuestionToolStripMenuItem.Text = "Add New Question";
+            this.addNewQuestionToolStripMenuItem.Click += new System.EventHandler(this.AddNewQuestionToolStripMenuItem_Click);
+            // 
+            // editQuestionInformationToolStripMenuItem
+            // 
+            this.editQuestionInformationToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.editQuestionInformationToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.editQuestionInformationToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.editQuestionInformationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editQuestionInformationToolStripMenuItem.Image")));
+            this.editQuestionInformationToolStripMenuItem.Name = "editQuestionInformationToolStripMenuItem";
+            this.editQuestionInformationToolStripMenuItem.Size = new System.Drawing.Size(278, 36);
+            this.editQuestionInformationToolStripMenuItem.Text = "Edit Question Information";
+            this.editQuestionInformationToolStripMenuItem.Click += new System.EventHandler(this.UpdateQuestionInfoToolStripMenuItem_Click);
+            // 
+            // showQuestionDetailsToolStripMenuItem
+            // 
+            this.showQuestionDetailsToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.showQuestionDetailsToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.showQuestionDetailsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.showQuestionDetailsToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.show;
+            this.showQuestionDetailsToolStripMenuItem.Name = "showQuestionDetailsToolStripMenuItem";
+            this.showQuestionDetailsToolStripMenuItem.Size = new System.Drawing.Size(278, 36);
+            this.showQuestionDetailsToolStripMenuItem.Text = "Show Question Details";
+            this.showQuestionDetailsToolStripMenuItem.Click += new System.EventHandler(this.ShowQuestionDetailsToolStripMenuItem_Click);
+            // 
+            // deleteQuestionToolStripMenuItem
+            // 
+            this.deleteQuestionToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.deleteQuestionToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.deleteQuestionToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.deleteQuestionToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.delete;
+            this.deleteQuestionToolStripMenuItem.Name = "deleteQuestionToolStripMenuItem";
+            this.deleteQuestionToolStripMenuItem.Size = new System.Drawing.Size(278, 36);
+            this.deleteQuestionToolStripMenuItem.Text = "Delete Question";
+            this.deleteQuestionToolStripMenuItem.Click += new System.EventHandler(this.DeleteQuestionToolStripMenuItem_Click);
+            // 
             // btnAddNewQuestion
             // 
             this.btnAddNewQuestion.BorderRadius = 22;
@@ -300,7 +300,7 @@
             this.btnAddNewQuestion.Name = "btnAddNewQuestion";
             this.btnAddNewQuestion.Size = new System.Drawing.Size(188, 58);
             this.btnAddNewQuestion.TabIndex = 275;
-            this.btnAddNewQuestion.Text = "Add Student";
+            this.btnAddNewQuestion.Text = "Add Question";
             this.btnAddNewQuestion.Click += new System.EventHandler(this.BtnAddNewQuestion_Click);
             // 
             // guna2ImageButton1

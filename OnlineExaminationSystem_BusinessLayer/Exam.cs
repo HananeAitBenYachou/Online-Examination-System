@@ -131,9 +131,9 @@ namespace OnlineExaminationSystem_BusinessLayer
             return ExamData.DeleteExam(examID);
         }
 
-        public static DataTable GetAllExams()
+        public static DataTable GetAllExams(int? instructorID)
         {
-            return ExamData.GetAllExams();
+            return ExamData.GetAllExams(instructorID);
         }
 
         public DataTable GetAllExamQuestions()
