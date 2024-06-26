@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Administrator_system.Users;
 using OnlineExaminationSystem.Global;
 using System;
 using System.Data;
@@ -152,6 +153,56 @@ namespace OnlineExaminationSystem.Administrator.Instructors
         private void DgvInstructorsList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             showInstructorDetailsToolStripMenuItem.PerformClick();
+        }
+
+        private void CreateInstructorAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAddUpdateUserAccount form = new FrmAddUpdateUserAccount((int?)dgvInstructorsList.CurrentRow.Cells[1].Value , User.Role.Instructor);
+            form.ShowDialog();
+        }
+
+        private void DeactivateInstructorAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Instructor currentInstructor = Instructor.Find((int)dgvInstructorsList.CurrentRow.Cells[0].Value, Instructor.FindByOption.InstructorID);
+
+            if (MessageBox.Show("Are you sure you want to deactivate this instructor's user account ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            if (currentInstructor.DeactivateInstructorUserAccount())
+            {
+                FormUtilities.ShowMessage($"Instructor with ID: {currentInstructor.InstructorID}'s user account deactivated successfully.", MessageBoxIcon.Information);
+                RefreshInstructorsList();
+            }
+
+            else
+                FormUtilities.ShowMessage($"Failed to deactivate instructor with ID : {currentInstructor.InstructorID}'s user account.", MessageBoxIcon.Error);
+
+        }
+
+        private void ActivateInstructorAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Instructor currentInstructor = Instructor.Find((int)dgvInstructorsList.CurrentRow.Cells[0].Value, Instructor.FindByOption.InstructorID);
+
+            if (MessageBox.Show("Are you sure you want to activate this instructor's user account ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            if (currentInstructor.ActivateInstructorUserAccount())
+            {
+                FormUtilities.ShowMessage($"Instructor with ID: {currentInstructor.InstructorID}'s user account activated successfully.", MessageBoxIcon.Information);
+                RefreshInstructorsList();
+            }
+
+            else
+                FormUtilities.ShowMessage($"Failed to activate instructor with ID : {currentInstructor.InstructorID}'s user account.", MessageBoxIcon.Error);
+        }
+
+        private void CmsInstructors_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Instructor currentInstructor = Instructor.Find((int)dgvInstructorsList.CurrentRow.Cells[0].Value, Instructor.FindByOption.InstructorID);
+
+            createInstructorAccountToolStripMenuItem.Enabled = !currentInstructor.HasUserAccount;
+            deactivateInstructorAccountToolStripMenuItem.Enabled = currentInstructor.HasUserAccount && currentInstructor.UserAccountInfo.IsActive;
+            activateInstructorAccountToolStripMenuItem.Enabled = currentInstructor.HasUserAccount && !currentInstructor.UserAccountInfo.IsActive;
         }
 
     }

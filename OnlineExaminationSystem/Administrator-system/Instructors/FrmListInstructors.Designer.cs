@@ -34,13 +34,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListInstructors));
             this.dgvInstructorsList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.cmsInstructors = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addNewInstructorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editInstructorInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showInstructorDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteInstructorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createInstructorAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deactivateInstructorAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbTemp = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cbFilterByOptions = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,6 +50,7 @@
             this.txtFilterValue = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnAddNewInstructor = new Guna.UI2.WinForms.Guna2Button();
             this.guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
+            this.activateInstructorAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInstructorsList)).BeginInit();
             this.cmsInstructors.SuspendLayout();
             this.SuspendLayout();
@@ -134,9 +136,13 @@
             this.addNewInstructorToolStripMenuItem,
             this.editInstructorInformationToolStripMenuItem,
             this.showInstructorDetailsToolStripMenuItem,
-            this.deleteInstructorToolStripMenuItem});
+            this.deleteInstructorToolStripMenuItem,
+            this.createInstructorAccountToolStripMenuItem,
+            this.deactivateInstructorAccountToolStripMenuItem,
+            this.activateInstructorAccountToolStripMenuItem});
             this.cmsInstructors.Name = "cbUsers";
-            this.cmsInstructors.Size = new System.Drawing.Size(284, 148);
+            this.cmsInstructors.Size = new System.Drawing.Size(321, 256);
+            this.cmsInstructors.Opening += new System.ComponentModel.CancelEventHandler(this.CmsInstructors_Opening);
             // 
             // addNewInstructorToolStripMenuItem
             // 
@@ -145,7 +151,7 @@
             this.addNewInstructorToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.addNewInstructorToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.add1;
             this.addNewInstructorToolStripMenuItem.Name = "addNewInstructorToolStripMenuItem";
-            this.addNewInstructorToolStripMenuItem.Size = new System.Drawing.Size(283, 36);
+            this.addNewInstructorToolStripMenuItem.Size = new System.Drawing.Size(320, 36);
             this.addNewInstructorToolStripMenuItem.Text = "Add New Instructor";
             this.addNewInstructorToolStripMenuItem.Click += new System.EventHandler(this.AddNewInstructorToolStripMenuItem_Click);
             // 
@@ -154,9 +160,9 @@
             this.editInstructorInformationToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
             this.editInstructorInformationToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.editInstructorInformationToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.editInstructorInformationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editInstructorInformationToolStripMenuItem.Image")));
+            this.editInstructorInformationToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.edit;
             this.editInstructorInformationToolStripMenuItem.Name = "editInstructorInformationToolStripMenuItem";
-            this.editInstructorInformationToolStripMenuItem.Size = new System.Drawing.Size(283, 36);
+            this.editInstructorInformationToolStripMenuItem.Size = new System.Drawing.Size(320, 36);
             this.editInstructorInformationToolStripMenuItem.Text = "Edit Instructor Information";
             this.editInstructorInformationToolStripMenuItem.Click += new System.EventHandler(this.UpdateInstructorInfoToolStripMenuItem_Click);
             // 
@@ -167,7 +173,7 @@
             this.showInstructorDetailsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.showInstructorDetailsToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.show;
             this.showInstructorDetailsToolStripMenuItem.Name = "showInstructorDetailsToolStripMenuItem";
-            this.showInstructorDetailsToolStripMenuItem.Size = new System.Drawing.Size(283, 36);
+            this.showInstructorDetailsToolStripMenuItem.Size = new System.Drawing.Size(320, 36);
             this.showInstructorDetailsToolStripMenuItem.Text = "Show Instructor Details";
             this.showInstructorDetailsToolStripMenuItem.Click += new System.EventHandler(this.ShowInstructorDetailsToolStripMenuItem_Click);
             // 
@@ -178,9 +184,29 @@
             this.deleteInstructorToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.deleteInstructorToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.delete;
             this.deleteInstructorToolStripMenuItem.Name = "deleteInstructorToolStripMenuItem";
-            this.deleteInstructorToolStripMenuItem.Size = new System.Drawing.Size(283, 36);
+            this.deleteInstructorToolStripMenuItem.Size = new System.Drawing.Size(320, 36);
             this.deleteInstructorToolStripMenuItem.Text = "Delete Instructor";
             this.deleteInstructorToolStripMenuItem.Click += new System.EventHandler(this.DeleteInstructorToolStripMenuItem_Click);
+            // 
+            // createInstructorAccountToolStripMenuItem
+            // 
+            this.createInstructorAccountToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.createInstructorAccountToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.createInstructorAccountToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.add1;
+            this.createInstructorAccountToolStripMenuItem.Name = "createInstructorAccountToolStripMenuItem";
+            this.createInstructorAccountToolStripMenuItem.Size = new System.Drawing.Size(320, 36);
+            this.createInstructorAccountToolStripMenuItem.Text = "Create Instructor Account";
+            this.createInstructorAccountToolStripMenuItem.Click += new System.EventHandler(this.CreateInstructorAccountToolStripMenuItem_Click);
+            // 
+            // deactivateInstructorAccountToolStripMenuItem
+            // 
+            this.deactivateInstructorAccountToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.deactivateInstructorAccountToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.deactivateInstructorAccountToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.delete;
+            this.deactivateInstructorAccountToolStripMenuItem.Name = "deactivateInstructorAccountToolStripMenuItem";
+            this.deactivateInstructorAccountToolStripMenuItem.Size = new System.Drawing.Size(320, 36);
+            this.deactivateInstructorAccountToolStripMenuItem.Text = "Deactivate Instructor Account";
+            this.deactivateInstructorAccountToolStripMenuItem.Click += new System.EventHandler(this.DeactivateInstructorAccountToolStripMenuItem_Click);
             // 
             // cbTemp
             // 
@@ -316,6 +342,16 @@
             this.guna2ImageButton1.Size = new System.Drawing.Size(64, 64);
             this.guna2ImageButton1.TabIndex = 270;
             // 
+            // activateInstructorAccountToolStripMenuItem
+            // 
+            this.activateInstructorAccountToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.activateInstructorAccountToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.activateInstructorAccountToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.edit;
+            this.activateInstructorAccountToolStripMenuItem.Name = "activateInstructorAccountToolStripMenuItem";
+            this.activateInstructorAccountToolStripMenuItem.Size = new System.Drawing.Size(320, 36);
+            this.activateInstructorAccountToolStripMenuItem.Text = "Activate Instructor Account";
+            this.activateInstructorAccountToolStripMenuItem.Click += new System.EventHandler(this.ActivateInstructorAccountToolStripMenuItem_Click);
+            // 
             // FrmListInstructors
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -359,5 +395,8 @@
         private System.Windows.Forms.Label lblTitle;
         private Guna.UI2.WinForms.Guna2TextBox txtFilterValue;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton1;
+        private System.Windows.Forms.ToolStripMenuItem createInstructorAccountToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deactivateInstructorAccountToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem activateInstructorAccountToolStripMenuItem;
     }
 }

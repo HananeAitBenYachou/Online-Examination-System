@@ -197,12 +197,24 @@
     <Compile Include="Administrator-system\Tracks\UserControls\UcTrackCard.Designer.cs">
       <DependentUpon>UcTrackCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator-system\Users\FrmAddUpdateUserAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator-system\Users\FrmAddUpdateUserAccount.Designer.cs">
+      <DependentUpon>FrmAddUpdateUserAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global\FormUtilities.cs" />
     <Compile Include="Instructor-system\Exams\FrmAddUpdateExam.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Instructor-system\Exams\FrmAddUpdateExam.Designer.cs">
       <DependentUpon>FrmAddUpdateExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Instructor-system\Exams\FrmListExams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instructor-system\Exams\FrmListExams.Designer.cs">
+      <DependentUpon>FrmListExams.cs</DependentUpon>
     </Compile>
     <Compile Include="Instructor-system\Exams\FrmShowExamInfo.cs">
       <SubType>Form</SubType>
@@ -314,8 +326,14 @@
     <EmbeddedResource Include="Administrator-system\Tracks\UserControls\UcTrackCard.resx">
       <DependentUpon>UcTrackCard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administrator-system\Users\FrmAddUpdateUserAccount.resx">
+      <DependentUpon>FrmAddUpdateUserAccount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Instructor-system\Exams\FrmAddUpdateExam.resx">
       <DependentUpon>FrmAddUpdateExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instructor-system\Exams\FrmListExams.resx">
+      <DependentUpon>FrmListExams.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Instructor-system\Exams\FrmShowExamInfo.resx">
       <DependentUpon>FrmShowExamInfo.cs</DependentUpon>
@@ -371,6 +389,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Login\" />
     <Folder Include="Student-system\" />
   </ItemGroup>
   <ItemGroup>
@@ -465,6 +484,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\light-bulb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exam1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

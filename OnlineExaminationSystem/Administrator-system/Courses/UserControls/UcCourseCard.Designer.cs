@@ -250,7 +250,7 @@
             // groupBox
             // 
             this.groupBox.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox.BorderColor = System.Drawing.Color.Silver;
+            this.groupBox.BorderColor = System.Drawing.Color.White;
             this.groupBox.BorderRadius = 15;
             this.groupBox.Controls.Add(this.txtPrerequisites);
             this.groupBox.Controls.Add(this.label10);
@@ -266,7 +266,6 @@
             this.groupBox.Controls.Add(this.label1);
             this.groupBox.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
             this.groupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox.FillColor = System.Drawing.SystemColors.Control;
             this.groupBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox.ForeColor = System.Drawing.Color.White;
             this.groupBox.Location = new System.Drawing.Point(0, 0);

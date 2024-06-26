@@ -16,7 +16,9 @@ namespace OnlineExamination_BusinessLayer
         public DateTime? ExitDate { get; set; }
         public float MonthlySalary { get; set; }
         public bool IsMarkedForDelete { get; set; }
-
+        public bool HasUserAccount { get; }
+        public User UserAccountInfo { get; }
+        
         public Instructor()
         {
             _mode = Mode.AddNew;
@@ -26,6 +28,8 @@ namespace OnlineExamination_BusinessLayer
             ExitDate = null;
             MonthlySalary = default;
             IsMarkedForDelete = default;
+            HasUserAccount = default;
+            UserAccountInfo = default;
         }
         private Instructor(int? instructorID, int personID, DateTime hireDate, DateTime? exitDate, float monthlySalary, bool isMarkedForDelete)
         {
@@ -36,6 +40,8 @@ namespace OnlineExamination_BusinessLayer
             this.ExitDate = exitDate;
             this.MonthlySalary = monthlySalary;
             this.IsMarkedForDelete = isMarkedForDelete;
+            this.HasUserAccount = User.DoesUserExist(personID, User.Role.Instructor);
+            this.UserAccountInfo = User.Find(personID, User.Role.Instructor);
         }
 
         private static Instructor FindByInstructorID(int? instructorID)
@@ -141,6 +147,16 @@ namespace OnlineExamination_BusinessLayer
         public static DataTable GetAllInstructors()
         {
             return InstructorData.GetAllInstructors();
+        }
+
+        public bool DeactivateInstructorUserAccount()
+        {
+            return User.DeactivateUser(UserAccountInfo.UserID);
+        }
+
+        public bool ActivateInstructorUserAccount()
+        {
+            return User.ActivateUser(UserAccountInfo.UserID);
         }
 
     }

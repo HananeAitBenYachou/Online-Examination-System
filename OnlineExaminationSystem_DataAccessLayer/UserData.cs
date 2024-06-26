@@ -3,6 +3,7 @@ using OnlineExaminationSystem_UtilityLayer;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net;
 
 namespace OnlineExamination_DataAccessLayer
 {
@@ -61,6 +62,57 @@ namespace OnlineExamination_DataAccessLayer
             return isFound;
         }
 
+        public static bool GetUserInfoByPersonIDAndRule(int? personID, byte userRule , ref int? userID, ref string username, ref string password, ref bool isActive)
+        {
+            bool isFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Users_GetUserInfoByPersonIDAndRule", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@PersonID", (object)personID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@UserRule", userRule);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found successfully !
+                                isFound = true;
+
+                                userID = (reader["UserID"] != DBNull.Value) ? (int?)reader["UserID"] : null;
+
+                                username = (string)reader["Username"];
+
+                                password = (string)reader["Password"];
+
+                                isActive = (bool)reader["IsActive"];
+                            }
+
+                            else
+                            {
+                                // The record wasn't found !
+                                isFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+
+                isFound = false;
+            }
+            return isFound;
+        }
+
         public static bool DoesUserExist(int? userID)
         {
             bool isFound = false;
@@ -71,11 +123,88 @@ namespace OnlineExamination_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_Users_CheckIfUserExists", connection))
+                    using (SqlCommand command = new SqlCommand("SP_Users_CheckIfUserExistsByUserID", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@UserID", (object)userID ?? DBNull.Value);
+
+                        SqlParameter returnValue = new SqlParameter
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+
+                        command.Parameters.Add(returnValue);
+
+                        command.ExecuteScalar();
+
+                        isFound = (int)returnValue.Value == 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+
+                isFound = false;
+            }
+            return isFound;
+        }
+
+        public static bool DoesUserExist(string username)
+        {
+            bool isFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Users_CheckIfUserExistsByUsername", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@Username", username);
+
+                        SqlParameter returnValue = new SqlParameter
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+
+                        command.Parameters.Add(returnValue);
+
+                        command.ExecuteScalar();
+
+                        isFound = (int)returnValue.Value == 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+
+                isFound = false;
+            }
+            return isFound;
+        }
+
+        public static bool DoesUserExist(int? personID , byte userRule)
+        {
+            bool isFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Users_CheckIfUserExistsByPersonIDAndRule", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@PersonID", (object)personID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@UserRule", userRule);
 
                         SqlParameter returnValue = new SqlParameter
                         {
@@ -202,6 +331,33 @@ namespace OnlineExamination_DataAccessLayer
             return rowsAffected != 0;
         }
 
+        public static bool ActivateUser(int? userID)
+        {
+            int rowsAffected = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Users_ActivateUser", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@UserID", (object)userID ?? DBNull.Value);
+
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+            }
+            return rowsAffected != 0;
+        }
+
         public static DataTable GetAllUsers()
         {
             DataTable users = new DataTable();
@@ -232,6 +388,5 @@ namespace OnlineExamination_DataAccessLayer
             }
             return users;
         }
-
     }
 }
