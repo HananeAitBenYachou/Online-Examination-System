@@ -203,6 +203,12 @@
     <Compile Include="Administrator-system\Users\FrmAddUpdateUserAccount.Designer.cs">
       <DependentUpon>FrmAddUpdateUserAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator-system\Users\FrmListUserAccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator-system\Users\FrmListUserAccounts.Designer.cs">
+      <DependentUpon>FrmListUserAccounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrator-system\Users\FrmShowUserAccountInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -340,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator-system\Users\FrmAddUpdateUserAccount.resx">
       <DependentUpon>FrmAddUpdateUserAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator-system\Users\FrmListUserAccounts.resx">
+      <DependentUpon>FrmListUserAccounts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator-system\Users\FrmShowUserAccountInfo.resx">
       <DependentUpon>FrmShowUserAccountInfo.cs</DependentUpon>
@@ -508,6 +517,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\management.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

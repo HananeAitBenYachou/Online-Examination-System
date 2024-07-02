@@ -304,7 +304,7 @@ namespace OnlineExamination_DataAccessLayer
             return rowsAffected != 0;
         }
 
-        public static bool DeleteUser(int? userID)
+        public static bool DeactivateUser(int? userID)
         {
             int rowsAffected = 0;
 
@@ -314,7 +314,7 @@ namespace OnlineExamination_DataAccessLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_Users_DeleteUser", connection))
+                    using (SqlCommand command = new SqlCommand("SP_Users_DeactivateUser", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 

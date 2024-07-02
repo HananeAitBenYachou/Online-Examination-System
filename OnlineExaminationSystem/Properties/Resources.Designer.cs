@@ -263,6 +263,16 @@ namespace OnlineExaminationSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap management {
+            get {
+                object obj = ResourceManager.GetObject("management", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap person {
             get {
                 object obj = ResourceManager.GetObject("person", resourceCulture);

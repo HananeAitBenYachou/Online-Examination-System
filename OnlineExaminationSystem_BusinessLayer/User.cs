@@ -113,14 +113,9 @@ namespace OnlineExamination_BusinessLayer
             return false;
         }
 
-        public static bool DeleteUser(int? userID)
-        {
-            return UserData.DeleteUser(userID);
-        }
-
         public static bool DeactivateUser(int? userID)
         {
-            return DeleteUser(userID);
+            return UserData.DeactivateUser(userID);
         }
 
         public static bool ActivateUser(int? userID)

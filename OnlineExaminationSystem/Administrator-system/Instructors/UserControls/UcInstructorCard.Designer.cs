@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.groupBox = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.pnlExitInformation = new Guna.UI2.WinForms.Guna2Panel();
+            this.dtpExitDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtMonthlySalary = new Guna.UI2.WinForms.Guna2TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dtpExitDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.dtpHireDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.txtInstructorID = new Guna.UI2.WinForms.Guna2TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ucPersonCard1 = new OnlineExaminationSystem.Administrator.People.UserControls.UcPersonCard();
-            this.pnlExitInformation = new Guna.UI2.WinForms.Guna2Panel();
             this.groupBox.SuspendLayout();
             this.pnlExitInformation.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +57,6 @@
             this.groupBox.Controls.Add(this.label1);
             this.groupBox.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
             this.groupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox.FillColor = System.Drawing.SystemColors.Control;
             this.groupBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox.ForeColor = System.Drawing.Color.White;
             this.groupBox.Location = new System.Drawing.Point(0, 420);
@@ -66,6 +65,45 @@
             this.groupBox.TabIndex = 4;
             this.groupBox.Text = "Work Information";
             this.groupBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // pnlExitInformation
+            // 
+            this.pnlExitInformation.Controls.Add(this.dtpExitDate);
+            this.pnlExitInformation.Controls.Add(this.label3);
+            this.pnlExitInformation.Location = new System.Drawing.Point(529, 107);
+            this.pnlExitInformation.Name = "pnlExitInformation";
+            this.pnlExitInformation.Size = new System.Drawing.Size(394, 92);
+            this.pnlExitInformation.TabIndex = 278;
+            // 
+            // dtpExitDate
+            // 
+            this.dtpExitDate.BackColor = System.Drawing.Color.Transparent;
+            this.dtpExitDate.BorderRadius = 22;
+            this.dtpExitDate.Checked = true;
+            this.dtpExitDate.Enabled = false;
+            this.dtpExitDate.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(129)))), ((int)(((byte)(100)))));
+            this.dtpExitDate.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpExitDate.ForeColor = System.Drawing.Color.Black;
+            this.dtpExitDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpExitDate.Location = new System.Drawing.Point(150, 21);
+            this.dtpExitDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpExitDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpExitDate.Name = "dtpExitDate";
+            this.dtpExitDate.Size = new System.Drawing.Size(229, 43);
+            this.dtpExitDate.TabIndex = 274;
+            this.dtpExitDate.Value = new System.DateTime(2024, 3, 2, 0, 28, 59, 414);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(9, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(83, 21);
+            this.label3.TabIndex = 275;
+            this.label3.Text = "Exit Date :";
             // 
             // txtMonthlySalary
             // 
@@ -105,36 +143,6 @@
             this.label4.Size = new System.Drawing.Size(125, 21);
             this.label4.TabIndex = 276;
             this.label4.Text = "Monthly Salary :";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(9, 31);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 21);
-            this.label3.TabIndex = 275;
-            this.label3.Text = "Exit Date :";
-            // 
-            // dtpExitDate
-            // 
-            this.dtpExitDate.BackColor = System.Drawing.Color.Transparent;
-            this.dtpExitDate.BorderRadius = 22;
-            this.dtpExitDate.Checked = true;
-            this.dtpExitDate.Enabled = false;
-            this.dtpExitDate.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(129)))), ((int)(((byte)(100)))));
-            this.dtpExitDate.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpExitDate.ForeColor = System.Drawing.Color.Black;
-            this.dtpExitDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpExitDate.Location = new System.Drawing.Point(150, 21);
-            this.dtpExitDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtpExitDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtpExitDate.Name = "dtpExitDate";
-            this.dtpExitDate.Size = new System.Drawing.Size(229, 43);
-            this.dtpExitDate.TabIndex = 274;
-            this.dtpExitDate.Value = new System.DateTime(2024, 3, 2, 0, 28, 59, 414);
             // 
             // label2
             // 
@@ -213,15 +221,6 @@
             this.ucPersonCard1.Name = "ucPersonCard1";
             this.ucPersonCard1.Size = new System.Drawing.Size(1002, 405);
             this.ucPersonCard1.TabIndex = 3;
-            // 
-            // pnlExitInformation
-            // 
-            this.pnlExitInformation.Controls.Add(this.dtpExitDate);
-            this.pnlExitInformation.Controls.Add(this.label3);
-            this.pnlExitInformation.Location = new System.Drawing.Point(529, 107);
-            this.pnlExitInformation.Name = "pnlExitInformation";
-            this.pnlExitInformation.Size = new System.Drawing.Size(394, 92);
-            this.pnlExitInformation.TabIndex = 278;
             // 
             // UcInstructorCard
             // 
