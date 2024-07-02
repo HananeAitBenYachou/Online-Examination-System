@@ -258,7 +258,7 @@
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Image = global::OnlineExaminationSystem.Properties.Resources.close;
             this.btnClose.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnClose.Location = new System.Drawing.Point(176, 494);
+            this.btnClose.Location = new System.Drawing.Point(176, 490);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(147, 58);
             this.btnClose.TabIndex = 266;
@@ -279,7 +279,7 @@
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Image = global::OnlineExaminationSystem.Properties.Resources.save;
             this.btnSave.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnSave.Location = new System.Drawing.Point(18, 494);
+            this.btnSave.Location = new System.Drawing.Point(18, 490);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(147, 58);
             this.btnSave.TabIndex = 265;

@@ -203,6 +203,18 @@
     <Compile Include="Administrator-system\Users\FrmAddUpdateUserAccount.Designer.cs">
       <DependentUpon>FrmAddUpdateUserAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator-system\Users\FrmShowUserAccountInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator-system\Users\FrmShowUserAccountInfo.Designer.cs">
+      <DependentUpon>FrmShowUserAccountInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator-system\Users\UserControls\UcUserAccountCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrator-system\Users\UserControls\UcUserAccountCard.Designer.cs">
+      <DependentUpon>UcUserAccountCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global\FormUtilities.cs" />
     <Compile Include="Instructor-system\Exams\FrmAddUpdateExam.cs">
       <SubType>Form</SubType>
@@ -328,6 +340,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrator-system\Users\FrmAddUpdateUserAccount.resx">
       <DependentUpon>FrmAddUpdateUserAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator-system\Users\FrmShowUserAccountInfo.resx">
+      <DependentUpon>FrmShowUserAccountInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrator-system\Users\UserControls\UcUserAccountCard.resx">
+      <DependentUpon>UcUserAccountCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Instructor-system\Exams\FrmAddUpdateExam.resx">
       <DependentUpon>FrmAddUpdateExam.cs</DependentUpon>
