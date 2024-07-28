@@ -33,7 +33,7 @@ namespace OnlineExaminationSystem.Administrator_system.Users
 
         private void RefreshUserAccountsList()
         {
-            _userAccountsDataView = Student.GetAllStudents().DefaultView;
+            _userAccountsDataView = User.GetAllUsers().DefaultView;
 
             dgvUserAccountsList.DataSource = _userAccountsDataView;
 
@@ -113,30 +113,6 @@ namespace OnlineExaminationSystem.Administrator_system.Users
             form.ShowDialog();
         }
 
-        private void DeactivateUserAccountToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            int? currentUserAccountID = (int)dgvUserAccountsList.CurrentRow.Cells[0].Value;
-            bool isAdmin = (string)dgvUserAccountsList.CurrentRow.Cells["Role"].Value == "Admin";
-
-            if(isAdmin)
-            {
-                FormUtilities.ShowMessage($"You can't deactivate the admin user account", MessageBoxIcon.Error);
-                return;
-            }
-
-            if (MessageBox.Show("Are you sure you want to deactivate this user account ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-                return;
-             
-            if (User.DeactivateUser(currentUserAccountID))
-            {
-                FormUtilities.ShowMessage($"User account with ID: {currentUserAccountID} deactivated successfully.", MessageBoxIcon.Information);
-                RefreshUserAccountsList();
-            }
-
-            else
-                FormUtilities.ShowMessage($"Failed to deactivate user account with ID: {currentUserAccountID}.", MessageBoxIcon.Error);
-        } 
-
         private void DgvUserAccountsList_SelectionChanged(object sender, EventArgs e)
         {
             cmsUserAccounts.Enabled = dgvUserAccountsList.SelectedRows.Count > 0;
@@ -155,5 +131,53 @@ namespace OnlineExaminationSystem.Administrator_system.Users
             _userAccountsDataView.RowFilter = filterValue == "All" ? null : $"[{filterOption}] = '{filterValue}'";
         }
 
+        private void ActivateUserAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int? currentUserAccountID = (int)dgvUserAccountsList.CurrentRow.Cells[0].Value;
+
+            if (MessageBox.Show("Are you sure you want to activate this user account ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            if (User.ActivateUser(currentUserAccountID))
+            {
+                FormUtilities.ShowMessage($"User account with ID: {currentUserAccountID} activated successfully.", MessageBoxIcon.Information);
+                RefreshUserAccountsList();
+            }
+
+            else
+                FormUtilities.ShowMessage($"Failed to activate user account with ID: {currentUserAccountID}.", MessageBoxIcon.Error);
+        }
+
+        private void DeactivateUserAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int? currentUserAccountID = (int)dgvUserAccountsList.CurrentRow.Cells[0].Value;
+            bool isAdmin = (string)dgvUserAccountsList.CurrentRow.Cells["Role"].Value == "Admin";
+
+            if (isAdmin)
+            {
+                FormUtilities.ShowMessage($"You can't deactivate the admin user account", MessageBoxIcon.Error);
+                return;
+            }
+
+            if (MessageBox.Show("Are you sure you want to deactivate this user account ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            if (User.DeactivateUser(currentUserAccountID))
+            {
+                FormUtilities.ShowMessage($"User account with ID: {currentUserAccountID} deactivated successfully.", MessageBoxIcon.Information);
+                RefreshUserAccountsList();
+            }
+
+            else
+                FormUtilities.ShowMessage($"Failed to deactivate user account with ID: {currentUserAccountID}.", MessageBoxIcon.Error);
+        }
+
+        private void CmsUserAccounts_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            User currentUser = User.Find((int)dgvUserAccountsList.CurrentRow.Cells[0].Value);
+
+            deactivateUserAccountToolStripMenuItem.Enabled = currentUser.IsActive;
+            activateUserAccountToolStripMenuItem.Enabled =  !currentUser.IsActive;
+        }
     }
 }

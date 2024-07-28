@@ -1,4 +1,5 @@
 ﻿using OnlineExamination_BusinessLayer;
+using OnlineExaminationSystem.Administrator_system.Users;
 using OnlineExaminationSystem.Global;
 using System;
 using System.Data;
@@ -167,6 +168,56 @@ namespace OnlineExaminationSystem.Administrator.Students
             string filterValue = cbTemp.Text;
 
             _studentsDataView.RowFilter = filterValue == "All" ? null : $"[{filterOption}] = '{filterValue}'";
+        }
+
+        private void CreateStudentAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAddUpdateUserAccount form = new FrmAddUpdateUserAccount((int?)dgvStudentsList.CurrentRow.Cells[1].Value, User.Role.Student);
+            form.ShowDialog();
+        }
+
+        private void DeactivateStudentAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Student currentStudent = Student.Find((int)dgvStudentsList.CurrentRow.Cells[0].Value, Student.FindByOption.StudentID);
+
+            if (MessageBox.Show("Are you sure you want to deactivate this student's user account ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            if (currentStudent.DeactivateStudentUserAccount())
+            {
+                FormUtilities.ShowMessage($"Student with ID: {currentStudent.StudentID}'s user account deactivated successfully.", MessageBoxIcon.Information);
+                RefreshStudentsList();
+            }
+
+            else
+                FormUtilities.ShowMessage($"Failed to deactivate student with ID : {currentStudent.StudentID}'s user account.", MessageBoxIcon.Error);
+
+        }
+
+        private void ActivateStudentAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Student currentStudent = Student.Find((int)dgvStudentsList.CurrentRow.Cells[0].Value, Student.FindByOption.StudentID);
+
+            if (MessageBox.Show("Are you sure you want to activate this student's user account ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            if (currentStudent.ActivateStudentUserAccount())
+            {
+                FormUtilities.ShowMessage($"Student with ID: {currentStudent.StudentID}'s user account activated successfully.", MessageBoxIcon.Information);
+                RefreshStudentsList();
+            }
+
+            else
+                FormUtilities.ShowMessage($"Failed to activate student with ID : {currentStudent.StudentID}'s user account.", MessageBoxIcon.Error);
+        }
+
+        private void CmsStudents_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Student currentStudent = Student.Find((int)dgvStudentsList.CurrentRow.Cells[0].Value, Student.FindByOption.StudentID);
+
+            createStudentAccountToolStripMenuItem.Enabled = !currentStudent.HasUserAccount;
+            deactivateStudentAccountToolStripMenuItem.Enabled = currentStudent.HasUserAccount && currentStudent.UserAccountInfo.IsActive;
+            activateStudentAccountToolStripMenuItem.Enabled = currentStudent.HasUserAccount && !currentStudent.UserAccountInfo.IsActive;
         }
 
     }

@@ -113,6 +113,57 @@ namespace OnlineExamination_DataAccessLayer
             return isFound;
         }
 
+        public static bool GetUserInfoByUsernameAndPassword(string username, string password , ref int personID, ref byte userRule, ref int? userID, ref bool isActive)
+        {
+            bool isFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataAccessSettings.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_Users_GetUserInfoByUsernameAndPassword", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@Username", username);
+                        command.Parameters.AddWithValue("@Password", password);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found successfully !
+                                isFound = true;
+
+                                userID = (reader["UserID"] != DBNull.Value) ? (int?)reader["UserID"] : null;
+
+                                personID = (int)reader["PersonID"];
+
+                                userRule = (byte)reader["UserRule"];
+
+                                isActive = (bool)reader["IsActive"];
+                            }
+
+                            else
+                            {
+                                // The record wasn't found !
+                                isFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogError(ex);
+
+                isFound = false;
+            }
+            return isFound;
+        }
+
         public static bool DoesUserExist(int? userID)
         {
             bool isFound = false;

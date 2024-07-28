@@ -17,6 +17,8 @@ namespace OnlineExamination_BusinessLayer
         public bool IsMarkedForDelete { get; set; }
         public int? TrackID { get; set; }
         public Track TrackInfo { get; }
+        public bool HasUserAccount { get; }
+        public User UserAccountInfo { get; }
 
         public Student()
         {
@@ -27,6 +29,8 @@ namespace OnlineExamination_BusinessLayer
             GraduationDate = default;
             IsMarkedForDelete = default;
             TrackID = null;
+            HasUserAccount = default;
+            UserAccountInfo = default;
         }
         private Student(int? studentID, int personID, DateTime startDate,
                         DateTime graduationDate, bool isMarkedForDelete, int? trackID)
@@ -39,6 +43,8 @@ namespace OnlineExamination_BusinessLayer
             this.IsMarkedForDelete = isMarkedForDelete;
             this.TrackID = trackID;
             this.TrackInfo = Track.Find(trackID);
+            this.HasUserAccount = User.DoesUserExist(personID, User.Role.Student);
+            this.UserAccountInfo = User.Find(personID, User.Role.Student);
         }
 
         private static Student FindByStudentID(int? studentID)
@@ -144,6 +150,16 @@ namespace OnlineExamination_BusinessLayer
         public static DataTable GetAllStudents()
         {
             return StudentData.GetAllStudents();
+        }
+
+        public bool DeactivateStudentUserAccount()
+        {
+            return User.DeactivateUser(UserAccountInfo.UserID);
+        }
+
+        public bool ActivateStudentUserAccount()
+        {
+            return User.ActivateUser(UserAccountInfo.UserID);
         }
 
     }

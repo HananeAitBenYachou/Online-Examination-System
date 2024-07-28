@@ -30,15 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListUserAccounts));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmsUserAccounts = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editUserAccountInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showUserAccountDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteUserAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deactivateUserAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.activateUserAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.lblTitle = new System.Windows.Forms.Label();
             this.guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
@@ -58,9 +59,11 @@
             this.cmsUserAccounts.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editUserAccountInformationToolStripMenuItem,
             this.showUserAccountDetailsToolStripMenuItem,
-            this.deleteUserAccountToolStripMenuItem});
+            this.deactivateUserAccountToolStripMenuItem,
+            this.activateUserAccountToolStripMenuItem});
             this.cmsUserAccounts.Name = "cbUsers";
-            this.cmsUserAccounts.Size = new System.Drawing.Size(308, 112);
+            this.cmsUserAccounts.Size = new System.Drawing.Size(308, 148);
+            this.cmsUserAccounts.Opening += new System.ComponentModel.CancelEventHandler(this.CmsUserAccounts_Opening);
             // 
             // editUserAccountInformationToolStripMenuItem
             // 
@@ -84,16 +87,26 @@
             this.showUserAccountDetailsToolStripMenuItem.Text = "Show User Account Details";
             this.showUserAccountDetailsToolStripMenuItem.Click += new System.EventHandler(this.ShowUserAccountDetailsToolStripMenuItem_Click);
             // 
-            // deleteUserAccountToolStripMenuItem
+            // deactivateUserAccountToolStripMenuItem
             // 
-            this.deleteUserAccountToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
-            this.deleteUserAccountToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.deleteUserAccountToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.deleteUserAccountToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.delete;
-            this.deleteUserAccountToolStripMenuItem.Name = "deleteUserAccountToolStripMenuItem";
-            this.deleteUserAccountToolStripMenuItem.Size = new System.Drawing.Size(307, 36);
-            this.deleteUserAccountToolStripMenuItem.Text = "Deactivate User Account";
-            this.deleteUserAccountToolStripMenuItem.Click += new System.EventHandler(this.DeactivateUserAccountToolStripMenuItem_Click);
+            this.deactivateUserAccountToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.deactivateUserAccountToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.deactivateUserAccountToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.deactivateUserAccountToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.delete;
+            this.deactivateUserAccountToolStripMenuItem.Name = "deactivateUserAccountToolStripMenuItem";
+            this.deactivateUserAccountToolStripMenuItem.Size = new System.Drawing.Size(307, 36);
+            this.deactivateUserAccountToolStripMenuItem.Text = "Deactivate User Account";
+            this.deactivateUserAccountToolStripMenuItem.Click += new System.EventHandler(this.DeactivateUserAccountToolStripMenuItem_Click);
+            // 
+            // activateUserAccountToolStripMenuItem
+            // 
+            this.activateUserAccountToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.activateUserAccountToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.activateUserAccountToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.edit;
+            this.activateUserAccountToolStripMenuItem.Name = "activateUserAccountToolStripMenuItem";
+            this.activateUserAccountToolStripMenuItem.Size = new System.Drawing.Size(307, 36);
+            this.activateUserAccountToolStripMenuItem.Text = "Activate User Account";
+            this.activateUserAccountToolStripMenuItem.Click += new System.EventHandler(this.ActivateUserAccountToolStripMenuItem_Click);
             // 
             // guna2Separator1
             // 
@@ -152,45 +165,45 @@
             this.dgvUserAccountsList.AllowUserToAddRows = false;
             this.dgvUserAccountsList.AllowUserToDeleteRows = false;
             this.dgvUserAccountsList.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(203)))), ((int)(((byte)(232)))));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            this.dgvUserAccountsList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvUserAccountsList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(181)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(181)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUserAccountsList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(203)))), ((int)(((byte)(232)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            this.dgvUserAccountsList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(181)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(181)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUserAccountsList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUserAccountsList.ColumnHeadersHeight = 45;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(220)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(139)))), ((int)(((byte)(205)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvUserAccountsList.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvUserAccountsList.ContextMenuStrip = this.cmsUserAccounts;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(220)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(139)))), ((int)(((byte)(205)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvUserAccountsList.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvUserAccountsList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(201)))), ((int)(((byte)(231)))));
             this.dgvUserAccountsList.Location = new System.Drawing.Point(42, 268);
             this.dgvUserAccountsList.MultiSelect = false;
             this.dgvUserAccountsList.Name = "dgvUserAccountsList";
             this.dgvUserAccountsList.ReadOnly = true;
             this.dgvUserAccountsList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUserAccountsList.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUserAccountsList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvUserAccountsList.RowHeadersVisible = false;
             this.dgvUserAccountsList.RowHeadersWidth = 51;
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            this.dgvUserAccountsList.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            this.dgvUserAccountsList.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvUserAccountsList.RowTemplate.Height = 50;
             this.dgvUserAccountsList.Size = new System.Drawing.Size(1126, 408);
             this.dgvUserAccountsList.TabIndex = 271;
@@ -310,7 +323,7 @@
         private System.Windows.Forms.ContextMenuStrip cmsUserAccounts;
         private System.Windows.Forms.ToolStripMenuItem editUserAccountInformationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showUserAccountDetailsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteUserAccountToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deactivateUserAccountToolStripMenuItem;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private System.Windows.Forms.Label lblTitle;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton1;
@@ -319,5 +332,6 @@
         private Guna.UI2.WinForms.Guna2ComboBox cbFilterByOptions;
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2TextBox txtFilterValue;
+        private System.Windows.Forms.ToolStripMenuItem activateUserAccountToolStripMenuItem;
     }
 }

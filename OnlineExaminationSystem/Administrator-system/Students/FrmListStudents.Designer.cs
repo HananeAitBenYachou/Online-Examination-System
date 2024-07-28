@@ -49,6 +49,9 @@
             this.txtFilterValue = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
             this.cbTemp = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.createStudentAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deactivateStudentAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.activateStudentAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentsList)).BeginInit();
             this.cmsStudents.SuspendLayout();
             this.SuspendLayout();
@@ -134,9 +137,13 @@
             this.addNewStudentToolStripMenuItem,
             this.editStudentInformationToolStripMenuItem,
             this.showStudentDetailsToolStripMenuItem,
-            this.deleteStudentToolStripMenuItem});
+            this.deleteStudentToolStripMenuItem,
+            this.activateStudentAccountToolStripMenuItem,
+            this.createStudentAccountToolStripMenuItem,
+            this.deactivateStudentAccountToolStripMenuItem});
             this.cmsStudents.Name = "cbUsers";
-            this.cmsStudents.Size = new System.Drawing.Size(270, 148);
+            this.cmsStudents.Size = new System.Drawing.Size(307, 256);
+            this.cmsStudents.Opening += new System.ComponentModel.CancelEventHandler(this.CmsStudents_Opening);
             // 
             // addNewStudentToolStripMenuItem
             // 
@@ -145,7 +152,7 @@
             this.addNewStudentToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.addNewStudentToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.add1;
             this.addNewStudentToolStripMenuItem.Name = "addNewStudentToolStripMenuItem";
-            this.addNewStudentToolStripMenuItem.Size = new System.Drawing.Size(269, 36);
+            this.addNewStudentToolStripMenuItem.Size = new System.Drawing.Size(306, 36);
             this.addNewStudentToolStripMenuItem.Text = "Add New Student";
             this.addNewStudentToolStripMenuItem.Click += new System.EventHandler(this.AddNewStudentToolStripMenuItem_Click);
             // 
@@ -156,7 +163,7 @@
             this.editStudentInformationToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.editStudentInformationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editStudentInformationToolStripMenuItem.Image")));
             this.editStudentInformationToolStripMenuItem.Name = "editStudentInformationToolStripMenuItem";
-            this.editStudentInformationToolStripMenuItem.Size = new System.Drawing.Size(269, 36);
+            this.editStudentInformationToolStripMenuItem.Size = new System.Drawing.Size(306, 36);
             this.editStudentInformationToolStripMenuItem.Text = "Edit Student Information";
             this.editStudentInformationToolStripMenuItem.Click += new System.EventHandler(this.UpdateStudentInfoToolStripMenuItem_Click);
             // 
@@ -167,7 +174,7 @@
             this.showStudentDetailsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.showStudentDetailsToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.show;
             this.showStudentDetailsToolStripMenuItem.Name = "showStudentDetailsToolStripMenuItem";
-            this.showStudentDetailsToolStripMenuItem.Size = new System.Drawing.Size(269, 36);
+            this.showStudentDetailsToolStripMenuItem.Size = new System.Drawing.Size(306, 36);
             this.showStudentDetailsToolStripMenuItem.Text = "Show Student Details";
             this.showStudentDetailsToolStripMenuItem.Click += new System.EventHandler(this.ShowStudentDetailsToolStripMenuItem_Click);
             // 
@@ -178,7 +185,7 @@
             this.deleteStudentToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.deleteStudentToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.delete;
             this.deleteStudentToolStripMenuItem.Name = "deleteStudentToolStripMenuItem";
-            this.deleteStudentToolStripMenuItem.Size = new System.Drawing.Size(269, 36);
+            this.deleteStudentToolStripMenuItem.Size = new System.Drawing.Size(306, 36);
             this.deleteStudentToolStripMenuItem.Text = "Delete Student";
             this.deleteStudentToolStripMenuItem.Click += new System.EventHandler(this.DeleteStudentToolStripMenuItem_Click);
             // 
@@ -317,7 +324,37 @@
             this.cbTemp.Visible = false;
             this.cbTemp.SelectedIndexChanged += new System.EventHandler(this.CbTemp_SelectedIndexChanged);
             // 
-            // FrmListStudents
+            // createStudentAccountToolStripMenuItem
+            // 
+            this.createStudentAccountToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.createStudentAccountToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.createStudentAccountToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.add1;
+            this.createStudentAccountToolStripMenuItem.Name = "createStudentAccountToolStripMenuItem";
+            this.createStudentAccountToolStripMenuItem.Size = new System.Drawing.Size(306, 36);
+            this.createStudentAccountToolStripMenuItem.Text = "Create Student Account";
+            this.createStudentAccountToolStripMenuItem.Click += new System.EventHandler(this.CreateStudentAccountToolStripMenuItem_Click);
+            // 
+            // deactivateStudentAccountToolStripMenuItem
+            // 
+            this.deactivateStudentAccountToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.deactivateStudentAccountToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.deactivateStudentAccountToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.delete;
+            this.deactivateStudentAccountToolStripMenuItem.Name = "deactivateStudentAccountToolStripMenuItem";
+            this.deactivateStudentAccountToolStripMenuItem.Size = new System.Drawing.Size(306, 36);
+            this.deactivateStudentAccountToolStripMenuItem.Text = "Deactivate Student Account";
+            this.deactivateStudentAccountToolStripMenuItem.Click += new System.EventHandler(this.DeactivateStudentAccountToolStripMenuItem_Click);
+            // 
+            // activateStudentAccountToolStripMenuItem
+            // 
+            this.activateStudentAccountToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(34)))), ((int)(((byte)(81)))));
+            this.activateStudentAccountToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.activateStudentAccountToolStripMenuItem.Image = global::OnlineExaminationSystem.Properties.Resources.edit;
+            this.activateStudentAccountToolStripMenuItem.Name = "activateStudentAccountToolStripMenuItem";
+            this.activateStudentAccountToolStripMenuItem.Size = new System.Drawing.Size(306, 36);
+            this.activateStudentAccountToolStripMenuItem.Text = "Activate Student Account";
+            this.activateStudentAccountToolStripMenuItem.Click += new System.EventHandler(this.ActivateStudentAccountToolStripMenuItem_Click);
+            // 
+            // FrmAddUpdateInstrcutor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -333,7 +370,7 @@
             this.Controls.Add(this.txtFilterValue);
             this.Controls.Add(this.guna2ImageButton1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmListStudents";
+            this.Name = "FrmAddUpdateInstrcutor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmListStudents";
             this.Load += new System.EventHandler(this.FrmListStudents_Load);
@@ -360,5 +397,8 @@
         private Guna.UI2.WinForms.Guna2TextBox txtFilterValue;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton1;
         private Guna.UI2.WinForms.Guna2ComboBox cbTemp;
+        private System.Windows.Forms.ToolStripMenuItem createStudentAccountToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem activateStudentAccountToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deactivateStudentAccountToolStripMenuItem;
     }
 }

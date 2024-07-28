@@ -2,6 +2,7 @@
 using OnlineExaminationSystem.Administrator_system.Users;
 using OnlineExaminationSystem.Instructor_system.Exams;
 using OnlineExaminationSystem.Instructor_system.Questions;
+using OnlineExaminationSystem.Login;
 using System;
 using System.Windows.Forms;
 
@@ -21,7 +22,7 @@ namespace OnlineExaminationSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new FrmShowUserAccountInfo(2));
+            Application.Run(new FrmLogin());
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]

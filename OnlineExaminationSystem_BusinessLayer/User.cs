@@ -8,7 +8,7 @@ namespace OnlineExamination_BusinessLayer
         private enum Mode { AddNew = 0, Update = 1 };
         private Mode _mode;
 
-        public enum Role { Admin = 0 , Instructor = 1 , Student = 3};
+        public enum Role { Admin = 0 , Instructor = 1 , Student = 2};
         public int? UserID { get; private set; }
         public int PersonID { get; set; }
         public string Username { get; set; }
@@ -64,6 +64,21 @@ namespace OnlineExamination_BusinessLayer
 
             if (isFound)
                 return new User(userID, personID.Value, username, password, userRule, isActive);
+            else
+                return null;
+        }
+
+        public static User Find(string username , string password)
+        {
+            int? userID = default;
+            int personID = default;
+            bool isActive = default;
+            byte userRule = default;
+
+            bool isFound = UserData.GetUserInfoByUsernameAndPassword(username , password , ref personID, ref userRule, ref userID, ref isActive);
+
+            if (isFound)
+                return new User(userID, personID, username, password, (Role)userRule, isActive);
             else
                 return null;
         }
